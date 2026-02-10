@@ -4,7 +4,7 @@ This repository contains the source code for my personal portfolio website.
 It showcases my projects, skills, and experience, and serves as a central hub for my work.
 
 ## Live Site
-👉 [Visit the website](link coming soon)
+👉 [[Visit the website](https://homepages.uc.edu/~daltonty/portfolio/)]
 
 ## About the Project
 
