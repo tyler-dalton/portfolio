@@ -1,0 +1,183 @@
+/* ==== PERSONAL PAGE === */
+
+.personal-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin: 0 0 0.35em;
+  font-size: clamp(2.0rem, 3vw, 3.0rem);
+}
+
+.page-lede {
+  margin: 0.4em 0 2em;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.7;
+  opacity: 0.95;
+  max-width: 70ch;
+}
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 1.25em;
+}
+
+.personal-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 1.6em;
+  padding-bottom: 2.2em;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06);
+}
+
+.personal-card h3 {
+  margin: 0 0 0.65em;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+}
+
+.personal-card p {
+  margin: 0.6em 0 0;
+  line-height: 1.7;
+  opacity: 0.95;
+  max-width: 75ch;
+}
+
+.personal-bullets {
+  margin: 1.1em 0 0;
+  padding-left: 1.2em;
+  line-height: 1.6;
+}
+
+.personal-divider {
+  height: 1px;
+  margin: 2.25em 0;
+  background: rgba(255,255,255,0.14);
+}
+
+.logo-grid {
+  margin-top: 1.25em;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em;
+}
+
+.logo-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.45em;
+  padding: 1.4em 1em;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  min-height: 120px;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: rgba(0,0,0,0.24);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.logo-label {
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  opacity: 0.95;
+}
+
+/* subtle per-tile tint */
+.logo-tile[data-logo="mint"]   { background: linear-gradient(180deg, rgba(46,204,113,0.10), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="proxmox"]{ background: linear-gradient(180deg, rgba(243,156,18,0.12), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="rpi"]    { background: linear-gradient(180deg, rgba(231,76,60,0.11), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="docker"] { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
+
+.personal-note {
+  margin-top: 1.2em;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .personal-grid { grid-template-columns: 1fr; }
+}
+
+/* === COACHING CARD: IMAGE + TEXT SPLIT === */
+
+.coach-split {
+  margin-top: 0.9em;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1.1em;
+  align-items: start;
+}
+
+.coach-image {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border-radius: 14px;
+  display: block;
+  object-fit: cover;
+  object-position: 25% 35%;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.coach-content p {
+  margin-top: 0;
+}
+
+/* Mobile: stack image above text */
+@media (max-width: 768px) {
+  .coach-split {
+    grid-template-columns: 1fr;
+  }
+
+  .coach-image {
+    min-height: 220px;
+  }
+}
+
+.training-snapshot {
+  margin-top: 1.6em;
+  padding: 1.2em 1.3em;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.training-snapshot h4 {
+  margin: 0 0 0.6em;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.snapshot-list {
+  margin: 0;
+  padding-left: 1.1em;
+  line-height: 1.6;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+
+

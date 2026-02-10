@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tyler Dalton | Home</title>
+        <link rel="stylesheet" href="port.css">
+        <script src="script.js" defer></script>
+        <meta property="og:title" content="Tyler Dalton | Cybersecurity + Systems" />
+        <meta property="og:description" content="Cybersecurity + Systems Admin student focused on secure infrastructure, automation, and homelab engineering." />
+        <meta property="og:type" content="website" />
+    </head>
+
+    <body>
+        <header>
+            <div class="header-container">
+                <h1><a href="index.html">Tyler Dalton</a></h1>
+                <nav class="site-nav" aria-label="Primary">
+                    <button class="nav-toggle" type="button"
+                        aria-controls="primary-nav"
+                        aria-expanded="false"
+                        aria-label="Open menu">
+                        <span class="nav-toggle__bar"></span>
+                        <span class="nav-toggle__bar"></span>
+                        <span class="nav-toggle__bar"></span>
+                    </button>
+
+                    <ul id="primary-nav" class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="personal.html">Personal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <div id="hero" class="reveal">
+            <div class="hero_content hero-split">
+                <div class="hero-image">
+                    <img src="headshot.jpg" alt="Professional photo of Tyler Dalton">
+                </div>
+                <div class="hero-text">
+                    <h2>Hi, I'm Tyler Dalton.</h2>
+                    <p class="hero-intro">Cybersecurity + Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.</p>
+                    <a href="projects.html" class="btn">View My Work</a>
+                    <div class="status-row">
+                        <span id="homelabStatus" class="status-pill is-loading" data-status="construction" role="status" aria-live="polite">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            <span class="status-text">Checking homelab status…</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main id="main">
+            <section id="about-me" class="reveal">
+                <div class="about-text">
+                    <h3 id="WhoIam" class="aboutTitle">Who <strong>I am:</strong></h3>
+                    <p>I am a born and raised Cincinnati native. Outside of class, I enjoy spending my time focusing on health & fitness, cooking, or personal home labbing.</p>
+                    <h3 id="WhatIstudy" class="aboutTitle">What I <strong>study:</strong></h3>
+                    <p>I am currently studying a double major in Cybersecurity and Network/System Administration at the University of Cincinnati. I plan to enter the accelerated Master's in Information Technology program. My coursework includes network security, system administration, computer networking, and many coding language classes.</p>
+                    <h3 id="WhatImInterestedIn" class="aboutTitle">What I'm <strong>Interested</strong> in:</h3>
+                    <ul>
+                        <li>Health & Fitness</li>
+                        <li>Cooking</li>
+                        <li>Personal Home Labbing</li>
+                        <li>Stoicism</li>
+                        <li>Pursuing my faith</li>
+                        <li>Music</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="toolbox" class="reveal">
+                <div class="toolbox-inner">
+                    <h3 class="toolbox-title">Toolbox</h3>
+                    <p class="toolbox-sub">The stuff I build and operate with.</p>
+
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <h4>Networking</h4>
+                            <p>I build and secure home-lab networking: private recursive DNS, VPN remote access, and firewall policy with hands-on routing.</p>
+                            <ul class="tool-bullets">
+                                <li>Recursive DNS (Pi-hole + Unbound) to block ads network-wide</li>
+                                <li>Tailscale VPN (previously WireGuard) for secure remote access from any location</li>
+                                <li>Router + firewall policy work (OPNsense), traffic control + segmentation</li>
+                            </ul>
+                            <div class="tag-row">
+                                <span class="tag">Pi-hole</span>
+                                <span class="tag">Unbound</span>
+                                <span class="tag">Tailscale/WireGuard</span>
+                                <span class="tag">OPNsense</span>
+
+                            </div>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Systems</h4>
+                            <p>I operate and maintain Linux/Windows environments that focus on secure administration, and performance.</p>
+                            <ul class="tool-bullets">
+                                <li>Linux administration across Kali / AlmaLinux + Windows + Raspberry Pi OS</li>
+                                <li>Virtualization and lab environments (Proxmox) for security practice + multi-VM host</li>
+                                <li>Secure SSH hygiene (key-based auth), hands-on system maintenance, and maintaining clean, repeatable system setups</li>
+                            </ul>
+                            <div class="tag-row">
+                                <span class="tag">Linux</span>
+                                <span class="tag">Proxmox</span>
+                                <span class="tag">Ubuntu</span>
+                                <span class="tag">Windows</span>
+                                <span class="tag">Bash</span>
+                                <span class="tag">PowerShell</span>
+                                <span class="tag">PuTTY</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Dev + Ops</h4>
+                            <p>I containerize services and applications so I can measure performance, manage deployments efficiently, and assess failures like a real environment.</p>
+                            <ul class="tool-bullets">
+                                <li>Dockerized services (Grafana / Prometheus) for metric scraping and dashboards</li>
+                                <li>Uptime monitoring + alerting with Discord webhooks</li>
+                                <li>One-Stop-Shop for all services using Heimdall</li>
+                            </ul>
+                            <div class="tag-row">
+                                <span class="tag">Docker</span>
+                                <span class="tag">Portainer</span>
+                                <span class="tag">Uptime Kuma</span>
+                                <span class="tag">Grafana</span>
+                                <span class="tag">Prometheus</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        <footer>
+            <div class="footer-cards reveal">
+                
+                <div class="card quote-card">
+                    <div class="quote-content">
+                        <p id="quoteText" class="quote"></p>
+                        <p id="quoteAuthor" class="quote-author"></p>
+                    </div>
+                    <div class="quote-controls">
+                        <button class="prev-quote">&larr;</button>
+                        <button class="next-quote">&rarr;</button>
+                    </div>
+
+                    <div class="quote-dots"></div>
+                </div>
+
+                <div class="card song-card">
+                    <h3>Current song on repeat:</h3>
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/imQDelNtwwU?si=MUnuuTbJJz1VSDkY" 
+                        title="I Run - HAVEN" 
+                        loading="lazy"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="footer-split">
+                <div class="footer-left">
+                    <p><strong>Email:</strong></p>
+                    <p>tldalton54@gmail.com</p>
+                </div>
+                <div class="footer-middle">
+                    <p><strong>GitHub:</strong></p>
+                    <p><a href="https://github.com/tyler-dalton">github.com/tyler-dalton</a></p>
+                </div>
+                <div class="footer-right">
+                    <p>&copy; 2026 This site was proudly <br> created by Tyler Dalton.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+</html>

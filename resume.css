@@ -1,0 +1,237 @@
+/* resume.css — resume-only styles */
+
+.resume-mainpage {
+  background: #2c3e50;
+  color: #ecf0f1;
+}
+
+.resume-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5em 1em 4em;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2.25em;
+  align-items: start;
+}
+
+/* LEFT column */
+.resume-left {
+  position: sticky;
+  top: 1.25em;
+  align-self: start;
+}
+
+.resume-page-title {
+  margin: 0;
+  font-size: clamp(3.2rem, 5vw, 5.2rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.resume-left-actions {
+  margin-top: 1.25em;
+  display: grid;
+  gap: 1.1em;
+}
+
+.resume-left-links {
+  display: grid;
+  gap: 0.55em;
+  opacity: 0.95;
+}
+
+.resume-left-links a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+.resume-left-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* RIGHT column accordions */
+.resume-right {
+  display: grid;
+  gap: 1.25em;
+}
+
+/* Accordion container */
+.resume-acc {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Accordion header */
+.resume-acc__summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+
+  padding: 1.35em 1.35em;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.resume-acc__summary::-webkit-details-marker {
+  display: none;
+}
+
+.resume-acc__summary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.resume-acc__summary:focus-visible {
+  outline: 3px solid rgba(52, 152, 219, 0.7);
+  outline-offset: 3px;
+}
+
+/* Big title */
+.resume-acc__title {
+  font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+/* Chevron */
+.resume-acc__chev {
+  width: 14px;
+  height: 14px;
+  border-right: 3px solid rgba(236, 240, 241, 0.92);
+  border-bottom: 3px solid rgba(236, 240, 241, 0.92);
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+  flex-shrink: 0;
+  margin-right: 0.2em;
+}
+
+.resume-acc[open] .resume-acc__chev {
+  transform: rotate(-135deg);
+}
+
+/* Accordion body */
+/* Smooth accordion body open/close */
+.resume-acc__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms ease, opacity 260ms ease;
+  opacity: 0;
+  padding-top: 0.9em;
+}
+
+.resume-acc__content {
+  overflow: hidden;
+}
+
+.resume-acc[open] .resume-acc__body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+
+/* Inner card content */
+.resume-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  padding: 1.25em;
+}
+
+.resume-item + .resume-item {
+  margin-top: 1.15em;
+  padding-top: 1.15em;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.resume-item-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.resume-item-top h4 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.resume-meta {
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.resume-role {
+  margin: 0.45em 0 0;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.resume-role a {
+  color: inherit;
+}
+
+.resume-bullets {
+  margin: 0.9em 0 0;
+  padding-left: 1.15em;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  padding-top: 0.85em;
+}
+
+.resume-bullets li {
+  margin: 0.45em 0;
+  line-height: 1.55;
+}
+
+.resume-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 1.15em 0;
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em;
+}
+
+.skills-block h4 {
+  margin: 0 0 0.35em;
+  font-size: 1.05rem;
+}
+
+.skills-block p {
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.55;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .resume-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-left {
+    position: static;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}

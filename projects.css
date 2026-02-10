@@ -1,0 +1,133 @@
+/* projects.css — projects-only styles */
+
+.projects-main {
+  background: #2c3e50;
+  color: #ecf0f1;
+}
+
+.projects-hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5em 1em 1.5em;
+  text-align: center;
+}
+
+.projects-hero h2 {
+  margin: 0;
+  font-size: clamp(2.6rem, 4.2vw, 3.6rem);
+}
+
+.projects-sub {
+  margin: 0.9em auto 0;
+  max-width: 68ch;
+  opacity: 0.95;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.projects-grid-wrap {
+  padding: 1.5em 1em 4em;
+}
+
+.projects-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25em;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 1.35em;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.project-top {
+  display: grid;
+  gap: 0.45em;
+  margin-bottom: 0.75em;
+}
+
+.project-top h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.project-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.35em 0.75em;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+.project-desc {
+  margin: 0.75em 0 0;
+  line-height: 1.65;
+  opacity: 0.95;
+}
+
+.project-highlights {
+  margin: 1em 0 0;
+  padding-left: 1.15em;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  padding-top: 0.9em;
+}
+
+.project-highlights li {
+  margin: 0.45em 0;
+  line-height: 1.55;
+}
+
+.project-tags {
+  margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+}
+
+.project-links {
+  margin-top: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9em;
+}
+
+.project-btn {
+  letter-spacing: 0.12em;
+  padding: 0.6em 1.1em;
+}
+
+.project-link {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.project-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+@media (max-width: 980px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-links {
+    justify-content: flex-start;
+  }
+}

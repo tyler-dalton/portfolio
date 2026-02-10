@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tyler Dalton | Projects</title>
+
+    <link rel="stylesheet" href="port.css" />
+    <link rel="stylesheet" href="projects.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <h1><a href="index.html">Tyler Dalton</a></h1>
+
+        <nav class="site-nav" aria-label="Primary">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+            aria-label="Open menu"
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+
+          <ul id="primary-nav" class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="personal.html">Personal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="projects-main">
+      <section class="projects-hero reveal">
+        <h2>Projects</h2>
+        <p class="projects-sub">
+          A mix of hands-on infrastructure, practical security work, and real-world collaboration.
+        </p>
+      </section>
+
+      <section class="projects-grid-wrap">
+        <div class="projects-grid">
+          <!-- Project 1: Homelab -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Home Lab Infrastructure</h3>
+              <span class="project-badge">Infrastructure • Security</span>
+            </div>
+
+            <p class="project-desc">
+              Personal lab environment built for secure networking, monitoring, and service hosting—designed to mimic
+              real-world operations and failure handling.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Recursive DNS + network-wide ad blocking (Pi-hole + Unbound)</li>
+              <li>Remote access VPN (Tailscale / WireGuard) + secure SSH hygiene</li>
+              <li>Docker services: monitoring + dashboards + uptime alerts</li>
+              <li>Firewall policy + segmentation with OPNsense</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Pi-hole</span>
+              <span class="tag">Unbound</span>
+              <span class="tag">OPNsense</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Uptime Kuma</span>
+            </div>
+
+            <div class="project-links">
+              <a class="btn project-btn" href="https://github.com/tyler-dalton/homelab-infra" target="_blank" rel="noopener">
+                GitHub Repo
+              </a>
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+
+          <!-- Project 2: Replit app -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Phishing Training Platform (Fishnet)</h3>
+              <span class="project-badge">Web • Security Awareness</span>
+            </div>
+
+            <p class="project-desc">
+              Team project: a phishing training platform designed to teach users how to recognize real-world social
+              engineering patterns through interactive examples.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Managed a team of 5; coordinated delivery and presentation</li>
+              <li>Built a clean UX and training flow focused on realism + learning outcomes</li>
+              <li>Hosted as a web app for easy access and demos</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Security Awareness</span>
+              <span class="tag">Web App</span>
+              <span class="tag">Team Lead</span>
+              <span class="tag">Presentation</span>
+            </div>
+
+            <div class="project-links">
+              <a class="btn project-btn" href="https://fishnet.replit.app/" target="_blank" rel="noopener">
+                Live Demo
+              </a>
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+
+          <!-- Project 3: Client challenge  -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Client Challenge (Miami University)</h3>
+              <span class="project-badge">Client Work • Strategy</span>
+            </div>
+
+            <p class="project-desc">
+              Business/strategy project: developed and pitched a growth plan for a multi-state company, combining research,
+              structured communication, and stakeholder-focused delivery.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Market research + competitive analysis to identify growth levers</li>
+              <li>Collaborated in a team environment under deadlines</li>
+              <li>Delivered a clear pitch deck and presentation to simulate client-facing work</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Communication</span>
+              <span class="tag">Research</span>
+              <span class="tag">Stakeholders</span>
+              <span class="tag">Presentation</span>
+            </div>
+
+            <div class="project-links">
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <hr />
+      <div class="footer-split">
+        <div class="footer-left">
+          <p><strong>Email:</strong></p>
+          <p>tldalton54@gmail.com</p>
+        </div>
+        <div class="footer-middle">
+          <p><strong>GitHub:</strong></p>
+          <p><a href="https://github.com/tyler-dalton">github.com/tyler-dalton</a></p>
+        </div>
+        <div class="footer-right">
+          <p>&copy; 2026 This site was proudly <br /> created by Tyler Dalton.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
