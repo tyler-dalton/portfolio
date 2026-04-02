@@ -235,3 +235,52 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Education: Coursework pill link (matches .btn style) ===== */
+
+.resume-course-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0.85em;
+
+  padding: 0.65em 1.6em;
+  border-radius: 999px;
+
+  background: #ecf0f1;
+  color: #2c3e50;
+
+  text-decoration: none;
+
+  font-weight: 600;
+  letter-spacing: 0.2em;
+
+  transition: background-color 200ms ease, transform 150ms ease, box-shadow 150ms ease, color 200ms ease;
+}
+
+/* keep visited links from turning purple */
+.resume-course-link:visited {
+  color: #2c3e50;
+}
+
+/* hover matches your button behavior */
+.resume-course-link:hover {
+  background-color: #1f2f3f;
+  color: #ecf0f1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.resume-course-link:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* INVERT on focus (keyboard) */
+.resume-course-link:focus-visible {
+  background-color: #1f2f3f;
+  color: #ecf0f1;
+  outline: 3px solid rgba(236, 240, 241, 0.55);
+  outline-offset: 3px;
+}

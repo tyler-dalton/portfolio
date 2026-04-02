@@ -403,12 +403,24 @@ function initFakeHomelabStatus() {
   // Simulate network delay
   window.setTimeout(() => {
     el.classList.remove("is-loading");
+
+    // keep whatever status string you want
     el.dataset.status = "construction";
 
     const textEl = el.querySelector(".status-text");
-    if (textEl) textEl.textContent = "Homelab Under Construction";
+    if (textEl) textEl.textContent = "Homelab Under Configuration";
 
-    el.title = "Rebuilding services + cleanup in progress.";
+    el.title = "Rebuilding services + firewall configuration in progress";
+
+    // HARD FORCE YELLOW DOT
+    const dotEl =
+      el.querySelector(".status-dot") ||      // preferred
+      el.querySelector('[data-status-dot]');  // optional fallback if you use an attribute
+
+    if (dotEl) {
+      dotEl.style.backgroundColor = "#f1c40f"; // yellow
+      dotEl.style.boxShadow = "0 0 0 3px rgba(241, 196, 15, 0.18)"; // optional “glow”
+    }
   }, 200);
 }
 
