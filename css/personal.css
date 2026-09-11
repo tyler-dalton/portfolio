@@ -1,0 +1,376 @@
+/* ==== PERSONAL PAGE === */
+
+.personal-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin: 0 0 0.35em;
+  font-size: clamp(2.0rem, 3vw, 3.0rem);
+}
+
+.page-lede {
+  margin: 0.4em 0 2em;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.7;
+  opacity: 0.95;
+  max-width: 70ch;
+}
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 1.25em;
+}
+
+.personal-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 1.6em;
+  padding-bottom: 2.2em;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06);
+}
+
+.personal-card h3 {
+  margin: 0 0 0.65em;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+}
+
+.personal-card p {
+  margin: 0.6em 0 0;
+  line-height: 1.7;
+  opacity: 0.95;
+  max-width: 75ch;
+}
+
+.personal-bullets {
+  margin: 1.1em 0 0;
+  padding-left: 1.2em;
+  line-height: 1.6;
+}
+
+.personal-divider {
+  height: 1px;
+  margin: 2.25em 0;
+  background: rgba(255,255,255,0.14);
+}
+
+.logo-grid {
+  margin-top: 1.25em;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em;
+}
+
+.logo-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.45em;
+  padding: 1.4em 1em;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  min-height: 120px;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: rgba(0,0,0,0.24);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.logo-label {
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  opacity: 0.95;
+}
+
+/* subtle per-tile tint */
+.logo-tile[data-logo="arch"]   { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="proxmox"]{ background: linear-gradient(180deg, rgba(243,156,18,0.12), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="terraform"]    { background: linear-gradient(180deg, rgba(231,76,60,0.11), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="docker"] { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
+
+.personal-note {
+  margin-top: 1.2em;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .personal-grid { grid-template-columns: 1fr; }
+}
+
+/* === COACHING CARD: IMAGE + TEXT SPLIT === */
+
+.coach-split {
+  margin-top: 0.9em;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1.1em;
+  align-items: start;
+}
+
+.coach-image {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border-radius: 14px;
+  display: block;
+  object-fit: cover;
+  object-position: 25% 35%;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.coach-content p {
+  margin-top: 0;
+}
+
+/* Mobile: stack image above text */
+@media (max-width: 768px) {
+  .coach-split {
+    grid-template-columns: 1fr;
+  }
+
+  .coach-image {
+    min-height: 220px;
+  }
+}
+
+.training-snapshot {
+  margin-top: 1.6em;
+  padding: 1.2em 1.3em;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.training-snapshot h4 {
+  margin: 0 0 0.6em;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.snapshot-list {
+  margin: 0;
+  padding-left: 1.1em;
+  line-height: 1.6;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* === HOMELAB MODAL === */
+
+.homelab-more {
+  margin-top: 1.4em;
+  text-align: center;
+}
+
+.learn-more-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ecf0f1;
+  padding: 0.7em 1.3em;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.learn-more-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease, visibility 220ms ease;
+  z-index: 9999;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.homelab-modal {
+  width: min(1100px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #34495e;
+  color: #ecf0f1;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.homelab-modal h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ecf0f1;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.05);
+}
+
+.rack-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.rack-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 1.25rem;
+}
+
+.rack-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  display: block;
+}
+
+.rack-card:last-child .rack-image {
+  object-fit: contain;
+  background: rgba(0,0,0,0.18);
+  padding: 0.5rem;
+}
+
+.rack-content {
+  padding: 1.4rem;
+}
+
+.rack-content h3 {
+  margin-top: 0;
+}
+
+.rack-content p {
+  line-height: 1.7;
+}
+
+.rack-content ul {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .rack-card {
+    grid-template-columns: 1fr;
+  }
+
+  .rack-image {
+    max-height: 320px;
+  }
+
+  .homelab-modal {
+    padding: 1.25rem;
+  }
+}
+
+/* === HOMELAB FOOTER BOX === */
+
+.lab-footer-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  text-align: center;
+}
+
+.lab-footer-box p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  opacity: 0.92;
+}
+
+.lab-gitlab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background 160ms ease,
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.lab-gitlab-btn:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.24);
+  transform: translateY(-2px);
+}
+
+
+
+

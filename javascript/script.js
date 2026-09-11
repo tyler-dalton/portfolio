@@ -319,6 +319,7 @@ window.addEventListener("load", () => {
   // initHomelabStatus();
   initFakeHomelabStatus();
   initCopyEmail();
+  initHomelabModal();
 
 
   document.querySelector(".next-quote")?.addEventListener("click", () => nextQuote(false));
@@ -441,5 +442,46 @@ function initCopyEmail() {
       console.error("Clipboard copy failed:", err);
       btn.textContent = "Failed";
     }
+  });
+}
+
+/* ========= Homelab Modal ========= */
+
+function initHomelabModal() {
+  const modal = document.getElementById("homelabModal");
+  const openBtn = document.getElementById("openHomelabModal");
+  const closeBtn = document.getElementById("closeHomelabModal");
+
+  if (!modal || !openBtn || !closeBtn) return;
+
+  const openModal = () => {
+    modal.hidden = false;
+
+    requestAnimationFrame(() => {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    });
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    setTimeout(() => {
+      modal.hidden = true;
+    }, 220);
+  };
+
+  openBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) closeModal();
   });
 }

@@ -92,12 +92,12 @@
                     Here are a few of the core platforms I’m working with right now.
                     </p>
                     <div class="logo-grid" aria-label="Homelab stack">
-                    <div class="logo-tile" data-logo="mint" role="img" aria-label="Linux Mint">
+                    <div class="logo-tile" data-logo="arch" role="img" aria-label="Kubernetes">
                         <img 
-                        src="linuxmint.svg"
-                        alt="Linux Mint Logo"
+                        src="kubernetes.svg"
+                        alt="Kubernetes Logo"
                         class="logo-icon">
-                        <span class="logo-label">Linux Mint</span>
+                        <span class="logo-label">Kubernetes</span>
                     </div>
                     <div class="logo-tile" data-logo="proxmox" role="img" aria-label="Proxmox">
                         <img
@@ -106,12 +106,12 @@
                         class="logo-icon">
                         <span class="logo-label">Proxmox</span>
                     </div>
-                    <div class="logo-tile" data-logo="rpi" role="img" aria-label="Raspberry Pi">
+                    <div class="logo-tile" data-logo="terraform" role="img" aria-label="Terraform">
                         <img
-                        src="raspberrypi.svg"
-                        alt="Raspberry Pi Logo"
+                        src="terraform.svg"
+                        alt="Terraform Logo"
                         class="logo-icon">
-                        <span class="logo-label">Raspberry Pi</span>
+                        <span class="logo-label">Terraform</span>
                     </div>
                     <div class="logo-tile" data-logo="docker" role="img" aria-label="Docker">
                         <img
@@ -121,9 +121,66 @@
                         <span class="logo-label">Docker</span>
                     </div>
                     </div>
+                    <div class="homelab-more">
+                        <button
+                            class="learn-more-btn"
+                            id="openHomelabModal"
+                            type="button">
+                            Learn More
+                        </button>
+                    </div>
                 </article>
                 </div>
             </section>
+            <div class="modal-overlay" id="homelabModal" aria-hidden="true" hidden>
+                <div class="homelab-modal" role="dialog" aria-modal="true" aria-labelledby="homelabModalTitle">
+                    <button class="modal-close" id="closeHomelabModal" aria-label="close modal">&times;</button>
+                    <h2 id="homelabModalTitle">Homelab Infrastructure</h2>
+                    <div class="rack-grid">
+                        <div class="rack-card">
+                            <img src="19-rack.jpeg" alt="Primary 19-inch rack" class="rack-image">
+                            <div class="rack-content">
+                                <h3>19-inch Networking Rack</h3>
+                                <p>This rack handles my heavier workloads, and is classified as my production environment.</p>
+                                <ul>
+                                    <li>Proxmox VE three-node cluster</li>
+                                    <li>LXC containers</li>
+                                    <li>AdGuard DNS</li>
+                                    <li>OPNsense firewall & VLAN routing</li>
+                                    <li>Grafana & Prometheus monitoring stack</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="rack-card">
+                            <img src="10-rack.jpeg" alt="Lab Rax 10-inch Mini Rack" class="rack-image">
+                            <div class="rack-content">
+                                <h3>Mobile Unit</h3>
+                                <p>This rack is a fully 3D printed unit designed by Lab Rax. I use this setup to further my knowledge of Kubernetes HA clusters.</p>
+                                <ul>
+                                    <li>Five-node Kubernetes HA cluster</li>
+                                    <li>Talos Linux</li>
+                                    <li>Layer 3 Netgear switch firewall</li>
+                                    <li>High availability experimentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lab-footer-box">
+                        <p>
+                            You can explore a deeper breakdown of my infrastructure,
+                            services, automation work, and documentation on my GitLab.
+                        </p>
+
+                        <a
+                            href="https://gitlab.com/daltontyler3"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="lab-gitlab-btn">
+                            View Homelab Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
             </main>
         <footer>
             <hr>
@@ -133,11 +190,11 @@
                     <p>tldalton54@gmail.com</p>
                 </div>
                 <div class="footer-middle">
-                    <p><strong>GitHub:</strong></p>
+                    <p><strong>GitLab:</strong></p>
                     <p><a href="https://gitlab.com/users/daltontyler3/projects">gitlab.com/tylerdalton3</a></p>
         </div>
         <div class="footer-right">
-          <p>&copy; 2026 This site was proudly <br> created by Tyler Dalton. v- 1.3</p>
+          <p>&copy; 2026 This site was proudly <br> created by Tyler Dalton. v- 1.7</p>
                 </div>
             </div>
         </footer>
