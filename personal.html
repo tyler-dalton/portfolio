@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tyler Dalton | Personal</title>
-        <link rel="stylesheet" href="port.css">
-        <link rel="stylesheet" href="personal.css">
-        <script src="script.js" defer></script>
-        <link rel="icon" type="image/svg+xml" href="favicon.svg">
+        <link rel="stylesheet" href="css/port.css">
+        <link rel="stylesheet" href="css/personal.css">
+        <script src="javascript/script.js" defer></script>
+        <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
     </head>
 
     <body>
@@ -46,7 +46,7 @@
                         <h3>Mason Youth Football Coach</h3>
                         <div class="coach-split">
                             <img
-                                src="coaching.jpg"
+                                src="media/coaching.jpg"
                                 alt="Coaching a 3rd grade youth football team during practice"
                                 class="coach-image">
                         <div class="coach-content">
@@ -92,38 +92,99 @@
                     Here are a few of the core platforms I’m working with right now.
                     </p>
                     <div class="logo-grid" aria-label="Homelab stack">
-                    <div class="logo-tile" data-logo="mint" role="img" aria-label="Linux Mint">
+                    <div class="logo-tile" data-logo="kube" role="img" aria-label="Kubernetes">
                         <img 
-                        src="linuxmint.svg"
-                        alt="Linux Mint Logo"
+                        src="media/kubernetes.svg"
+                        alt="Kubernetes Logo"
                         class="logo-icon">
-                        <span class="logo-label">Linux Mint</span>
+                        <span class="logo-label">Kubernetes</span>
                     </div>
                     <div class="logo-tile" data-logo="proxmox" role="img" aria-label="Proxmox">
                         <img
-                        src="proxmox.svg"
+                        src="media/proxmox.svg"
                         alt="Proxmox Logo"
                         class="logo-icon">
                         <span class="logo-label">Proxmox</span>
                     </div>
-                    <div class="logo-tile" data-logo="rpi" role="img" aria-label="Raspberry Pi">
+                    <div class="logo-tile" data-logo="argo" role="img" aria-label="Argo CD">
                         <img
-                        src="raspberrypi.svg"
-                        alt="Raspberry Pi Logo"
+                        src="media/argo.svg"
+                        alt="Argo CD Logo"
                         class="logo-icon">
-                        <span class="logo-label">Raspberry Pi</span>
+                        <span class="logo-label">Argo CD</span>
                     </div>
-                    <div class="logo-tile" data-logo="docker" role="img" aria-label="Docker">
+                    <div class="logo-tile" data-logo="fedora" role="img" aria-label="Fedora Linux">
                         <img
-                        src="docker.svg"
-                        alt="Docker Logo"
+                        src="media/fedora.svg"
+                        alt="Fedora Linux Logo"
                         class="logo-icon">
-                        <span class="logo-label">Docker</span>
+                        <span class="logo-label">Fedora Linux</span>
                     </div>
+                    </div>
+                    <div class="homelab-more">
+                        <button
+                            class="learn-more-btn"
+                            id="openHomelabModal"
+                            type="button">
+                            Learn More
+                        </button>
                     </div>
                 </article>
                 </div>
             </section>
+            <div class="modal-overlay" id="homelabModal" aria-hidden="true" hidden>
+                <div class="homelab-modal" role="dialog" aria-modal="true" aria-labelledby="homelabModalTitle">
+                    <button class="modal-close" id="closeHomelabModal" aria-label="close modal">&times;</button>
+                    <h2 id="homelabModalTitle">Homelab Infrastructure</h2>
+                    <div class="rack-grid">
+                        <div class="rack-card">
+                            <img src="19-rack.jpeg" alt="Primary 19-inch rack" class="rack-image">
+                            <div class="rack-content">
+                                <h3>19-inch Networking Rack</h3>
+                                <p>This rack handles my heavier workloads, and is classified as my production environment.</p>
+                                <ul>
+                                    <li>Proxmox VE three-node cluster</li>
+                                    <li>OPNsense firewall, routing, and VLAN segmentation</li>
+                                    <li>Managed switching and segmented lab networks</li>
+                                    <li>Linux virtual machines and LXC containers</li>
+                                    <li>DNS and core infrastructure services</li>
+                                    <li>Grafana and Prometheus observability</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="rack-card">
+                            <img src="10-rack.jpeg" alt="Lab Rax 10-inch Mini Rack" class="rack-image">
+                            <div class="rack-content">
+                                <h3>Mobile Unit</h3>
+                                <p>
+                                    A compact bare-metal Kubernetes environment built for experimenting with highly available clusters, GitOps, platform engineering and cloud-native infrastructure.
+                                </p>
+                                <ul>
+                                    <li>Multi-node RKE2 Kubernetes cluster</li>
+                                    <li>Argo CD GitOps application delivery</li>
+                                    <li>Helm-based application deployments</li>
+                                    <li>High-availability control plane</li>
+                                    <li>Platform and observability experimentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lab-footer-box">
+                        <p>
+                            You can explore a deeper breakdown of my infrastructure,
+                            services, automation work, and documentation on my GitLab.
+                        </p>
+
+                        <a
+                            href="https://github.com/tyler-dalton/homelab-infra"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="lab-gitlab-btn">
+                            View Homelab Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
             </main>
         <footer>
             <hr>
@@ -134,10 +195,10 @@
                 </div>
                 <div class="footer-middle">
                     <p><strong>GitHub:</strong></p>
-                    <p><a href="https://gitlab.com/users/daltontyler3/projects">gitlab.com/tylerdalton3</a></p>
+                    <p><a href="https://github.com/tyler-dalton">github.com/tyler-dalton</a></p>
         </div>
         <div class="footer-right">
-          <p>&copy; 2026 This site was proudly <br> created by Tyler Dalton. v- 1.3</p>
+          <p>&copy; 2026 This site was proudly <br> created by Tyler Dalton. v2.0.0</p>
                 </div>
             </div>
         </footer>
