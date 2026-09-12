@@ -97,10 +97,10 @@
 }
 
 /* subtle per-tile tint */
-.logo-tile[data-logo="arch"]   { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="kube"]   { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
 .logo-tile[data-logo="proxmox"]{ background: linear-gradient(180deg, rgba(243,156,18,0.12), rgba(255,255,255,0.04)); }
-.logo-tile[data-logo="terraform"]    { background: linear-gradient(180deg, rgba(231,76,60,0.11), rgba(255,255,255,0.04)); }
-.logo-tile[data-logo="docker"] { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="argo"]    { background: linear-gradient(180deg, rgba(231,76,60,0.11), rgba(255,255,255,0.04)); }
+.logo-tile[data-logo="fedora"] { background: linear-gradient(180deg, rgba(52,152,219,0.12), rgba(255,255,255,0.04)); }
 
 .personal-note {
   margin-top: 1.2em;
