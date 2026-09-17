@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="512" height="512"
+     viewBox="0 0 512 512">
+
+  <title>TD Shield Favicon</title>
+
+  <!-- Outer Shield (White) -->
+  <path fill="#ffffff"
+        d="M256 44
+           C210 80 162 92 118 104
+           V252
+           C118 344 177 418 256 468
+           C335 418 394 344 394 252
+           V104
+           C350 92 302 80 256 44
+           Z"/>
+
+  <!-- Inner Shield (Dark Grey) -->
+  <path fill="#2f3b46"
+        d="M256 86
+           C216 114 176 124 146 132
+           V252
+           C146 330 196 394 256 436
+           C316 394 366 330 366 252
+           V132
+           C336 124 296 114 256 86
+           Z"/>
+
+  <!-- Monogram "T" -->
+  <rect x="170" y="170" width="172" height="40" rx="14" fill="#ffffff"/>
+  <rect x="236" y="170" width="40" height="180" rx="14" fill="#ffffff"/>
+
+  <!-- Monogram "D" -->
+  <path fill="#ffffff"
+        d="M190 240
+           H252
+           C310 240 340 270 340 320
+           C340 370 310 400 252 400
+           H190
+           Z"/>
+
+  <!-- Inner hollow of D -->
+  <path fill="#2f3b46"
+        d="M228 276
+           H252
+           C282 276 302 292 302 320
+           C302 348 282 364 252 364
+           H228
+           Z"/>
+</svg>

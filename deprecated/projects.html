@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Tyler Dalton | Projects</title>
+
+    <link rel="stylesheet" href="css/port.css" >
+    <link rel="stylesheet" href="css/projects.css" >
+    <script src="javascript/script.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <h1><a href="index.html">Tyler Dalton</a></h1>
+
+        <nav class="site-nav" aria-label="Primary">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+            aria-label="Open menu"
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+
+          <ul id="primary-nav" class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="personal.html">Personal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="projects-main">
+      <section class="projects-hero reveal">
+        <h2>Projects</h2>
+        <p class="projects-sub">
+          A mix of hands-on infrastructure, practical security work, and real-world collaboration.
+        </p>
+      </section>
+
+      <section class="projects-grid-wrap">
+        <div class="projects-grid">
+          <!-- Project: Panoptes -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Panoptes — Kubernetes Observability Platform</h3>
+              <span class="project-badge">Platform Engineering • Observability</span>
+            </div>
+
+            <p class="project-desc">
+              Production-oriented Kubernetes observability platform developed during
+              my Platform Engineering internship at Awetomaton, designed to provide
+              standardized monitoring across multiple Kubernetes environments.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Developed a reusable Helm-based observability platform for Kubernetes environments</li>
+              <li>Integrated Prometheus, Grafana, Alertmanager, and supporting monitoring components</li>
+              <li>Designed deployment support for both RKE2 and Red Hat OpenShift environments</li>
+              <li>Contributed to CI/CD, GitOps deployment workflows, dashboards, routing, and platform configuration</li>
+              <li>Successfully rendered and deployed the platform into an air-gapped environment</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Helm</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">OpenShift</span>
+              <span class="tag">RKE2</span>
+              <span class="tag">CI/CD</span>
+            </div>
+
+            <div class="project-links">
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+          
+
+          <!-- Project: Homelab -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Home Lab Infrastructure</h3>
+              <span class="project-badge">Infrastructure • Kubernetes • Networking</span>
+            </div>
+
+            <p class="project-desc">
+              Multi-node home lab built as a hands-on environment for Kubernetes,
+              virtualization, networking, GitOps, and production-style infrastructure
+              experimentation.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Operate a 5-node Kubernetes cluster & 3-node Proxmox virtualization environment</li>
+              <li>Deploy and manage Kubernetes workloads with RKE2, Helm, Argo CD, and GitOps workflows</li>
+              <li>Design segmented networking and firewall policy with OPNsense and managed VLAN infrastructure</li>
+              <li>Experiment with observability, ingress, identity, storage, and highly available platform services</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Kubernetes</span>
+              <span class="tag">RKE2</span>
+              <span class="tag">Proxmox</span>
+              <span class="tag">Argo CD</span>
+              <span class="tag">Helm</span>
+              <span class="tag">OPNSense</span>
+              <span class="tag">GitOps</span>
+              <span class="tag">Headlamp</span>
+            </div>
+
+            <div class="project-links">
+              <a class="btn project-btn" href="https://github.com/tyler-dalton/homelab-infra" target="_blank" rel="noopener">
+                GitHub Repo
+              </a>
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+
+          <!-- Project: Deployment Bags -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Networking Deployment Bags</h3>
+              <span class="project-badge">Networking • Education • Infrastructure</span>
+            </div>
+
+            <p class="project-desc">
+              Designed and built portable Cisco networking environments for the University of Cincinnati's Computer Networking course, replacing simulation-only Packet Tracer labs with hands-on enterprise networking experiences.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Designed portable, isolated network environments using enterprise Cisco routers and switches</li>
+              <li>Built multi-router WAN topologies for hands-on routing, switching, subnetting, and troubleshooting labs</li>
+              <li>Developed standardized network diagrams, equipment inventories, configurations, and reset procedures</li>
+              <li>Designed the platform to be repeatable, portable, fluid, and safely isolated from university production infrastructure</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Cisco</span>
+              <span class="tag">Project Manager</span>
+              <span class="tag">Routing</span>
+              <span class="tag">Switching</span>
+              <span class="tag">VLANs</span>
+              <span class="tag">Subnetting</span>
+              <span class="tag">Network Design</span>
+            </div>
+
+            <div class="project-links">
+              <a class="btn project-btn" href="https://github.com/tyler-dalton/deployment-bags" target="_blank"
+              rel="noopener">
+                GitHub Repo
+              </a>
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+
+          <!-- Project: Replit app -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Phishing Training Platform (Fishnet)</h3>
+              <span class="project-badge">Web • Security Awareness</span>
+            </div>
+
+            <p class="project-desc">
+              Team project: a phishing training platform designed to teach users how to recognize real-world social
+              engineering patterns through interactive examples.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Managed a team of 5; coordinated delivery and presentation</li>
+              <li>Built a clean UX and training flow focused on realism + learning outcomes</li>
+              <li>Hosted as a web app for easy access and demos</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Security Awareness</span>
+              <span class="tag">Web App</span>
+              <span class="tag">Team Lead</span>
+              <span class="tag">Presentation</span>
+            </div>
+
+            <div class="project-links">
+              <a class="btn project-btn" href="https://fishnet.replit.app/" target="_blank" rel="noopener">
+                Live Demo
+              </a>
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+
+          <!-- Project: Client challenge  -->
+          <article class="project-card reveal">
+            <div class="project-top">
+              <h3>Client Challenge (Miami University)</h3>
+              <span class="project-badge">Client Work • Strategy</span>
+            </div>
+
+            <p class="project-desc">
+              Business/strategy project: developed and pitched a growth plan for a multi-state company, combining research,
+              structured communication, and stakeholder-focused delivery.
+            </p>
+
+            <ul class="project-highlights">
+              <li>Market research + competitive analysis to identify growth levers</li>
+              <li>Collaborated in a team environment under deadlines</li>
+              <li>Delivered a clear pitch deck and presentation to simulate client-facing work</li>
+            </ul>
+
+            <div class="project-tags">
+              <span class="tag">Communication</span>
+              <span class="tag">Research</span>
+              <span class="tag">Stakeholders</span>
+              <span class="tag">Presentation</span>
+            </div>
+
+            <div class="project-links">
+              <a class="project-link" href="resume.html">See on Resume →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <hr>
+      <div class="footer-split">
+                <div class="footer-left">
+                    <p><strong>Email:</strong></p>
+                    <p>tldalton54@gmail.com</p>
+                </div>
+                <div class="footer-middle">
+                    <p><strong>GitHub:</strong></p>
+                    <p><a href="https://github.com/tyler-dalton">github.com/tyler-dalton</a></p>
+        </div>
+        <div class="footer-right">
+          <p>&copy; 2026 This site was proudly <br> created by Tyler Dalton. v2.0.1</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

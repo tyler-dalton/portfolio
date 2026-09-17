@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2c3e50">
+  <meta name="description" content="Connect with Tyler Dalton, a Cybersecurity and Systems Administration student at the University of Cincinnati.">
+  <meta property="og:title" content="Tyler Dalton | Digital Business Card">
+  <meta property="og:description" content="Cybersecurity and Systems Administration student at the University of Cincinnati.">
+  <meta property="og:type" content="website">
+  <title>Tyler Dalton | Digital Business Card</title>
+  <link rel="icon" type="image/svg+xml" href="media/favicon.svg">
+  <link rel="stylesheet" href="css/port.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/card.css">
+  <script src="javascript/card.js" defer></script>
+</head>
+<body>
+  <main class="business-card-page">
+    <article class="business-card" aria-labelledby="card-name">
+      <div class="hero-image">
+        <img src="media/headshot.jpg" alt="Tyler Dalton" width="160" height="160">
+      </div>
+      <h1 id="card-name">Tyler Dalton</h1>
+      <p class="card-role">Cybersecurity + Systems Administration</p>
+      <p class="card-school">University of Cincinnati</p>
+      <div class="contact-actions">
+        <a class="btn contact-btn" href="media/tyler-dalton.vcf" download="Tyler-Dalton.vcf">Save Contact</a>
+        <a class="btn contact-btn" href="mailto:tldalton54@gmail.com">Send Email</a>
+      </div>
+      <nav class="contact-grid" aria-label="Connect with Tyler">
+        <a class="contact-card linkedin" href="https://linkedin.com/in/daltontyler/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">
+          <img src="media/linkedin.svg" alt="">
+          <h2>LinkedIn</h2>
+        </a>
+        <a class="contact-card github" href="https://github.com/tyler-dalton" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">
+          <img src="media/github.svg" alt="">
+          <h2>GitHub</h2>
+        </a>
+      </nav>
+      <a class="portfolio-link" href="index.html">View My Portfolio <span aria-hidden="true">&rarr;</span></a>
+      <div class="share-actions">
+        <button id="share-card" type="button" hidden>Share Card</button>
+        <p id="share-status" role="status"></p>
+        <div id="share-fallback" hidden>
+          <label for="card-url">Copy this link to share</label>
+          <input id="card-url" type="text" readonly>
+        </div>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
