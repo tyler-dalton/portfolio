@@ -12,11 +12,15 @@ const navItems = [
 
 <header class="bg-[#2c3e50] text-[#ecf0f1]">
     <div class="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-1">
-        <h1>
-            <a href="/">Tyler Dalton</a>
+        <h1 class="m-0">
+            <a 
+                href="/"
+                class="text-3xl font-bold tracking-tight text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]">
+                Tyler Dalton
+            </a>
         </h1>
         <nav>
-            <ul class="flex list-none items-center gap-6 p-6">
+            <ul class="flex list-none items-center gap-6 p-3">
             {
                 navItems.map((item) => {
                     const isActive =
@@ -25,11 +29,11 @@ const navItems = [
                     : currentPath.startsWith(item.href);
                     
                     return (
-                        <li>
+                        <li class="relative pl-6 first:pl-0 before:absolute before:left-0 before:text-[#ecf0f1]/50 before:content-['|'] first:before:hidden">
                             <a href={item.href}
                             aria-current={isActive ? "page" : undefined}
                             class:list={[
-                            "text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[$3498db]",
+                            "text-xl text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]",
                             { "font-bold !text-[#3498db]": isActive }
                         ]}
                             >
