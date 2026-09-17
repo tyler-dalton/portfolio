@@ -2,7 +2,11 @@ BEGIN:VCARD
 VERSION:3.0
 N:Dalton;Tyler;;;
 FN:Tyler Dalton
+ORG:
+TITLE:
 TEL;TYPE=CELL:+15136147939
 EMAIL;TYPE=INTERNET:tldalton54@gmail.com
-URL:https://homepages.uc.edu/~daltonty/portfolio/
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/daltontyler/
+URL;TYPE=GitHub:https://github.com/tyler-dalton
+URL;TYPE=Portfolio:https://homepages.uc.edu/~daltonty/portfolio/
 END:VCARD
