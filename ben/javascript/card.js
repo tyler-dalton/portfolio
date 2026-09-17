@@ -13,7 +13,7 @@
     try {
       if (navigator.share) {
         try {
-          await navigator.share({ title: 'Tyler Dalton | Digital Business Card', url });
+          await navigator.share({ title: 'Ben Morneau | Digital Business Card', url });
           status.textContent = 'Card shared.';
           return;
         } catch (error) {
