@@ -1,3 +1,15 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+    { label: "Home", href: "/" },
+    {label: "Projects", href: "/projects"},
+    {label: "Resume", href: "/resume"},
+    {label: "Personal", href: "/personal"},
+    {label: "Contact", href: "/contact"}
+];
+---
+
 <header class="bg-[#2c3e50] text-[#ecf0f1]">
     <div class="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-1">
         <h1>
@@ -5,41 +17,28 @@
         </h1>
         <nav>
             <ul class="flex list-none items-center gap-6 p-6">
-                <li>
-                    <a 
-                    href="/"
-                    class="text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]">
-                    Home
-                    </a>
-                </li>
-                <li>
-                    <a 
-                    href="/projects"
-                    class="text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]">
-                    Projects
-                    </a>
-                </li>
-                <li>
-                    <a 
-                    href="/resume"
-                    class="text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]">
-                    Resume
-                    </a>
-                </li>
-                <li>
-                    <a 
-                    href="/personal"
-                    class="text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]">
-                    Personal
-                    </a>
-                </li>
-                <li>
-                    <a 
-                    href="/contact"
-                    class="text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]">
-                    Contact
-                    </a>
-                </li>
+            {
+                navItems.map((item) => {
+                    const isActive =
+                    item.href == "/"
+                    ? currentPath === "/"
+                    : currentPath.startsWith(item.href);
+                    
+                    return (
+                        <li>
+                            <a href={item.href}
+                            aria-current={isActive ? "page" : undefined}
+                            class:list={[
+                            "text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[$3498db]",
+                            { "font-bold !text-[#3498db]": isActive }
+                        ]}
+                            >
+                            {item.label}
+                            </a>
+                        </li>
+                    )
+                })
+            }
             </ul>
         </nav>
     </div>
