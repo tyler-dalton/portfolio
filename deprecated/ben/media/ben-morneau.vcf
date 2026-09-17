@@ -1,13 +1,11 @@
 BEGIN:VCARD
 VERSION:3.0
-N:Dalton;Tyler;;;
-FN:Tyler Dalton
+N:Morneau;Ben;;;
+FN:Ben Morneau
 ORG:
 TITLE:
-TEL;TYPE=CELL:+15136147939
-EMAIL;TYPE=INTERNET:tldalton54@gmail.com
-URL;TYPE=LinkedIn:https://www.linkedin.com/in/daltontyler/
-URL;TYPE=GitHub:https://github.com/tyler-dalton
-URL;TYPE=Portfolio:https://homepages.uc.edu/~daltonty/portfolio/
+TEL;TYPE=CELL:+12693595352
+EMAIL;TYPE=INTERNET:morneabt@mail.uc.edu
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/ben-morneau/
 PHOTO;ENCODING=b;TYPE=JPEG:
 END:VCARD
