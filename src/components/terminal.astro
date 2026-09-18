@@ -34,13 +34,13 @@
           </p>
 
           <p class="mt-1 max-w-3xl text-white/80">
-            Cyber/Electronic Operations & Warfare + Network/Systems Administration student at the Univeristy of Cincinnati focused on secure infrastructure, automation, and platform engineering.
+            Cyber/Electronic Operations & Warfare + Network/Systems Administration student at the University of Cincinnati focused on secure infrastructure, automation, and platform engineering.
           </p>
         </div>
 
         <div>
           <p>
-            <span class="text-[#3498db]">tyler@porfolio</span>:<span class="text-[#8fb3c9]">~</span>$ status
+            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ status
           </p>
 
           <div class="mt-2 grid gap-x-8 gap-y-1 md:grid-cols-[140px_1fr]">
@@ -63,16 +63,73 @@
 
         <div>
           <p>
-            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$
-            <span id="terminal-command">currently building</span>
-            <span class="animate-pulse text-white">█</span>
+            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ currently building
           </p>
 
-          <p id="terminal-output" class="mt-1 text-white/80">
-            olympus kubernetes cluster
+          <p class="mt-1 text-white/80">
+            <span id="terminal-output">olympus kubernetes cluster</span><span id="terminal-cursor" class="text-white">█</span>
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+<script>
+  const projects = [
+    "Olympus kubernetes cluster",
+    "Pantheon agentic environment",
+    "physical Cisco networking labs",
+    "open-source contributions",
+  ];
+
+  const output = document.getElementById("terminal-output");
+  const cursor = document.getElementById("terminal-cursor");
+
+  if (output) {
+    let projectIndex = 0;
+    let characterIndex = projects[0].length;
+    let deleting = true;
+
+    const typeSpeed = 65;
+    const deleteSpeed = 35;
+    const pauseAfterTyping = 2200;
+    const pauseBeforeTyping = 400;
+
+    const animate = () => {
+      cursor?.classList.remove("animate-pulse");
+      const project = projects[projectIndex];
+
+      if (deleting) {
+        characterIndex--;
+        output.textContent = project.slice(0, characterIndex);
+
+        if (characterIndex === 0) {
+          deleting = false;
+          projectIndex = (projectIndex + 1) % projects.length;
+
+          setTimeout(animate, pauseBeforeTyping);
+          return;
+        }
+
+        setTimeout(animate, deleteSpeed);
+        return;
+      }
+
+      characterIndex++;
+      const nextProject = projects[projectIndex];
+      output.textContent = nextProject.slice(0, characterIndex);
+
+      if (characterIndex === nextProject.length) {
+        deleting = true;
+        cursor?.classList.add("animate-pulse");
+
+        setTimeout(animate, pauseAfterTyping);
+        return;
+      }
+
+      setTimeout(animate, typeSpeed);
+    };
+
+    setTimeout(animate, pauseAfterTyping);
+  }
+</script>
