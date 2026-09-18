@@ -22,7 +22,7 @@ const navItems = [
         <button 
             id="nav-toggle"
             type="button" 
-            class="flex flex-col gap-1.5 md:hidden"
+            class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg md:hidden"
             aria-label="Open menu"
             aria-expanded="false"
             aria-controls="mobile-nav">
@@ -44,7 +44,7 @@ const navItems = [
                             <a href={item.href}
                             aria-current={isActive ? "page" : undefined}
                             class:list={[
-                            "text-xl text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]",
+                            "text-xl text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
                             { "font-bold !text-[#3498db]": isActive }
                         ]}
                             >
@@ -74,7 +74,7 @@ const navItems = [
                                 <a href={item.href}
                                     aria-current={isActive ? "page" : undefined}
                                     class:list={[
-                                        "block py-3 text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]",
+                                        "block py-3 text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
                                         { "font-bold !text-[#3498db]": isActive }
                                     ]}
                                 >
