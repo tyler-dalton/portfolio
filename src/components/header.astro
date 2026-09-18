@@ -11,7 +11,7 @@ const navItems = [
 ---
 
 <header class="bg-[#2c3e50] text-[#ecf0f1]">
-    <div class="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-1">
+    <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-1">
         <h1 class="m-0">
             <a 
                 href="/"
@@ -87,4 +87,18 @@ const navItems = [
             </ul>
         </nav>
     </div>
+    <script>
+    const toggle = document.getElementById("nav-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+
+    toggle?.addEventListener("click", () => {
+      if (!mobileNav) return;
+
+      const isOpen = !mobileNav.classList.contains("hidden");
+
+      mobileNav.classList.toggle("hidden");
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+    });
+  </script>
 </header>
