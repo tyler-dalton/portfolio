@@ -1,0 +1,23 @@
+---
+import Header from "../components/header.astro";
+import "../styles/global.css";
+
+const { title = "Tyler Dalton" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-[#2c3e50] text-[#ecf0f1]">
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
