@@ -1,7 +1,30 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/layout.astro";
 ---
 
 <Layout title="Tyler Dalton | Home">
-	<h2>Astro migration test</h2>
+  <!-- HERO -->
+	<section class="px-4 py-16">
+    <div class="mx-auto flex max-w-[1100px] items-center gap-12">
+      <!-- Headshot -->
+      <div>
+        <img
+          src="/media/headshot.jpg"
+          alt="Professional headshot of Tyler Dalton"
+          class="h-[340px] w-[340px] rounded-full object-cover"
+        />
+      </div>
+
+      <!-- Introduction -->
+      <div>
+        <h1>Hi, I'm Tyler Dalton.</h1>
+        <p>
+          Cybersecurity + Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.
+        </p>
+        <a href="/projects">
+          View my Work
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>
