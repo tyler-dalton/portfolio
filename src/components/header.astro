@@ -26,9 +26,18 @@ const navItems = [
             aria-label="Open menu"
             aria-expanded="false"
             aria-controls="mobile-nav">
-            <span class="h-0.5 w-7 bg-[#ecf0f1]"></span>
-            <span class="h-0.5 w-7 bg-[#ecf0f1]"></span>
-            <span class="h-0.5 w-7 bg-[#ecf0f1]"></span>
+            <span 
+              id="nav-bar-1"
+              class="h-0.5 w-7 bg-[#ecf0f1]" transition-transform duration-200
+            ></span>
+            <span 
+              id="nav-bar-2" 
+              class="h-0.5 w-7 bg-[#ecf0f1]" transition-opacity duration-200
+            ></span>
+            <span 
+              id="nav-bar-3" 
+              class="h-0.5 w-7 bg-[#ecf0f1]" transition-transform duration-200
+            ></span>
         </button>
         <nav class="hidden md:block">
             <ul class="flex list-none items-center gap-6 p-3">
@@ -90,18 +99,29 @@ const navItems = [
     <script>
     const toggle = document.getElementById("nav-toggle");
     const mobileNav = document.getElementById("mobile-nav");
+    const bar1 = document.getElementById("nav-bar-1");
+    const bar2 = document.getElementById("nav-bar-2");
+    const bar3 = document.getElementById("nav-bar-3");
 
     if (toggle && mobileNav) {
       const closeMenu = () => {
         mobileNav.classList.add("hidden");
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "Open menu");
+
+        bar1?.classList.remove("translate-y-2", "rotate-45");
+        bar2?.classList.remove("opacity-0");
+        bar3?.classList.remove("-translate-y-2", "-rotate-45");
       };
 
       const openMenu = () => {
         mobileNav.classList.remove("hidden");
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Close menu");
+
+        bar1?.classList.add("translate-y-2", "rotate-45");
+        bar2?.classList.add("opacity-0");
+        bar3?.classList.add("-translate-y-2", "-rotate-45");
       };
 
       toggle.addEventListener("click", () => {
