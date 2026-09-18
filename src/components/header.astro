@@ -91,14 +91,41 @@ const navItems = [
     const toggle = document.getElementById("nav-toggle");
     const mobileNav = document.getElementById("mobile-nav");
 
-    toggle?.addEventListener("click", () => {
-      if (!mobileNav) return;
+    if (toggle && mobileNav) {
+      const closeMenu = () => {
+        mobileNav.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      };
 
-      const isOpen = !mobileNav.classList.contains("hidden");
+      const openMenu = () => {
+        mobileNav.classList.remove("hidden");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Close menu");
+      };
 
-      mobileNav.classList.toggle("hidden");
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      toggle.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
-    });
+      toggle.addEventListener("click", () => {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      mobileNav.addEventListener("click", (event) => {
+        if (event.target instanceof Element && event.target.closest("a")) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+          closeMenu();
+        }
+      });
+    }
   </script>
 </header>
