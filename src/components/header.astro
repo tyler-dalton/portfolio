@@ -19,12 +19,23 @@ const navItems = [
                 Tyler Dalton
             </a>
         </h1>
-        <nav>
+        <button 
+            id="nav-toggle"
+            type="button" 
+            class="flex flex-col gap-1.5 md:hidden"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav">
+            <span class="h-0.5 w-7 bg-[#ecf0f1]"></span>
+            <span class="h-0.5 w-7 bg-[#ecf0f1]"></span>
+            <span class="h-0.5 w-7 bg-[#ecf0f1]"></span>
+        </button>
+        <nav class="hidden md:block">
             <ul class="flex list-none items-center gap-6 p-3">
             {
                 navItems.map((item) => {
                     const isActive =
-                    item.href == "/"
+                    item.href === "/"
                     ? currentPath === "/"
                     : currentPath.startsWith(item.href);
                     
@@ -43,6 +54,36 @@ const navItems = [
                     )
                 })
             }
+            </ul>
+        </nav>
+        <nav
+            id="mobile-nav"
+            class="hidden border-t border-white/20 md:hidden"
+            aria-label="Mobile"
+        >
+            <ul class="flex list-none flex-col gap-0 p-3">
+                {
+                    navItems.map((item) => {
+                        const isActive =
+                        item.href === "/"
+                        ? currentPath === "/"
+                        : currentPath.startsWith(item.href);
+
+                        return (
+                            <li>
+                                <a href={item.href}
+                                    aria-current={isActive ? "page" : undefined}
+                                    class:list={[
+                                        "block py-3 text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db]",
+                                        { "font-bold !text-[#3498db]": isActive }
+                                    ]}
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </nav>
     </div>
