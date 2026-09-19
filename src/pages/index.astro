@@ -45,4 +45,30 @@ import SelectedWork from "../components/project-card.astro";
   <AboutTerminal />
   <!-- Selected Projects import from components -->
   <SelectedWork />
+
+  <!-- GitHub Contribution Activity -->
+  <section class="px-4 py-16">
+    <div class="mx-auto max-w-[1100px] border-t border-white/10 pt-10">
+      <div class="mb-5 flex items-baseline justify-between gap-4">
+        <h2 class="text-xl font-semibold tracking-tight">GitHub Contributions</h2>
+        <a
+          href="https://github.com/tyler-dalton"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-[#ecf0f1]/60 transition-colors hover:text-[#ecf0f1]"
+        >
+          @tyler-dalton ↗
+        </a>
+      </div>
+
+      <div class="overflow-x-auto">
+        <img
+          src="/github/contributions.svg"
+          alt="Tyler Dalton's GitHub contributions over the last year"
+          class="block h-auto w-full min-w-[735px]"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
 </Layout>
