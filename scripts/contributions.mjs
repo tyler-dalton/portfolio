@@ -65,8 +65,8 @@ if (result.errors) {
   throw new Error(`Could not find contribution data for ${username}`);
 }
 
-const weeks = calander.weeks;
-const months = calander.months;
+const weeks = calendar.weeks;
+const months = calendarr.months;
 
 /* Graph sizing */
 const CELL = 10;
