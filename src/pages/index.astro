@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/layout.astro";
 import AboutTerminal from "../components/terminal.astro";
+import SelectedWork from "../components/project-card.astro";
 ---
 
 <Layout title="Tyler Dalton | Home">
@@ -15,7 +16,6 @@ import AboutTerminal from "../components/terminal.astro";
           class="h-[260px] w-[260px] rounded-full border-3 border-white/15 object-cover shadow-[0_18px_40px_rgba(0,0,0,0.18)] md:h-[340px] md:w-[340px]"
         />
       </div>
-
       <!-- Introduction -->
       <div class="max-w-xl">
         <h1 class="mb-3 text-5xl font-bold tracking-tight md:text-6xl">
@@ -31,7 +31,6 @@ import AboutTerminal from "../components/terminal.astro";
           >
             View My Work
           </a>
-
           <a
             href="/contact"
             class="inline-block rounded-full border border-[#ecf0f1]/60 px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[#ecf0f1] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
@@ -42,7 +41,8 @@ import AboutTerminal from "../components/terminal.astro";
       </div>
     </div>
   </section>
-
   <!-- Imorting About Terminal from Componets -->
   <AboutTerminal />
+  <!-- Selected Projects import from components -->
+  <SelectedWork />
 </Layout>
