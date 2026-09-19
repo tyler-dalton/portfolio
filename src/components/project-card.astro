@@ -1,0 +1,92 @@
+---
+const projects = [
+  {
+    number: "01",
+    period: "Summer 2026",
+    title: "Panoptes",
+    organization: "Awetomaton",
+    subtitle: "Standardized Kubernetes observability platform across RKE2 & OpenShift",
+
+    description: [
+      "Built a standardized Helm-based monitoring platform around Prometheus, Grafana, Thanos and the Kubernetes monitoring ecosystm. The platform was designed to support multiple Kubernetes distributions from a common deployment stragegy.",
+
+      "The project ultimately reached a classified, air-gapped environment at Wright-Patterson Air Force Base during the final week of my internship.",
+    ],
+
+    technologies: [
+      "Kubernetes",
+      "Helm",
+      "Prometheus",
+      "Grafana",
+      "Openshift",
+      "RKE2",
+    ],
+
+    href: "/projects",
+  },
+];
+---
+
+<section class="px-4 py-20">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="flex items-end justify-between border-b border-white/20 pb-4">
+      <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
+        Selected Work
+      </h2>
+      <a 
+        href="/projects"
+        class="hidden text-sm text-white/60 transition-colors hover:text-white md:block"
+      >
+        View all projects →
+      </a>
+    </div>
+    {
+      projects.map((project) => (
+        <article class="grid gap-6 border-b border-white/20 py-10 md:grid-cols-[180px_1fr]">
+          <div class="font-mono text-sm text-white/45">
+            <p>{project.number}</p>
+            <p class="mt-1">{project.period}</p>
+          </div>
+          <div>
+            <div class="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+              <h3 class="text-3xl font-bold">
+                {project.title}
+              </h3>
+              <p class="font-mono text-sm text-white/50">
+                {project.organization}
+              </p>
+            </div>
+            <p class="mt-2 text-lg text-white/70">
+              {project.subtitle}
+            </p>
+            {
+              project.description.map((paragraph, index) => (
+                <p
+                  class:list={[
+                    "max-w-3xl text-lg leading-relaxed text-white/75",
+                    index === 0 ? "mt-5" : "mt-4",
+                  ]}
+                >
+                  {paragraph}
+                </p>
+              ))
+            }
+            <div class="mt-6 font-mono text-sm text-white/45">
+              {project.technologies.join(" / ")}
+            </div>
+            {
+              project.href && (
+                <a 
+                  href={project.href} 
+                  class="mt-6 inline-block font-medium text-[#ecf0f1] underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+                >
+                  View project →
+                </a>
+              )
+            }
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
