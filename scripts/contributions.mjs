@@ -13,16 +13,16 @@ const query = `
       contributionsCollection {
         contributionCalendar {
           totalContributions
-          
+
           months {
             firstDay
             name
             year
           }
-            
+
           weeks {
             firstDay
-            
+
             contributionDays {
               date
               contributionCount
@@ -62,11 +62,18 @@ if (!response.ok) {
 const result = await response.json();
 
 if (result.errors) {
+  throw new Error(JSON.stringify(result.errors, null, 2));
+}
+
+const calendar =
+  result.data?.user?.contributionsCollection?.contributionCalendar;
+
+if (!calendar) {
   throw new Error(`Could not find contribution data for ${username}`);
 }
 
 const weeks = calendar.weeks;
-const months = calendarr.months;
+const months = calendar.months;
 
 /* Graph sizing */
 const CELL = 10;
@@ -74,13 +81,15 @@ const GAP = 3;
 const STEP = CELL + GAP;
 
 const LEFT = 34;
-const RIGHT = 24;
+const TOP = 24;
 
 const GRID_WIDTH = weeks.length * STEP;
 const GRID_HEIGHT = 7 * STEP;
+
 const WIDTH = LEFT + GRID_WIDTH + 12;
 const HEIGHT = TOP + GRID_HEIGHT + 34;
 
+/* Contribution colors */
 const colors = {
   NONE: "#405467",
   FIRST_QUARTILE: "#1a4a6b",
@@ -91,7 +100,7 @@ const colors = {
 
 const textColor = "#ecf0f1";
 
-/* Contribution colors */
+/* Contribution squares */
 const squares = weeks
   .map((week, weekIndex) =>
     week.contributionDays
@@ -99,8 +108,13 @@ const squares = weeks
         const x = LEFT + weekIndex * STEP;
         const y = TOP + day.weekday * STEP;
 
-        const color = colors[decodeAsync.contributionLevel] ?? colors.NONE;
-        const contributionWord = day.contributionCount === 1 ? "contribution" : "contributions";
+        const color =
+          colors[day.contributionLevel] ?? colors.NONE;
+
+        const contributionWord =
+          day.contributionCount === 1
+            ? "contribution"
+            : "contributions";
 
         return `
           <rect
@@ -116,16 +130,22 @@ const squares = weeks
         `;
       })
       .join(""),
-    )
-    .join("");
+  )
+  .join("");
 
+/* Month labels */
 const monthLabels = months
   .map((month) => {
-    const monthDate = new Date(`${month.firstDay}T00:00:002`);
-    const weekIndex = weeks.findIndex((week) => {
-      const start = new Date(`${week.firstDay}T00:00:002`);
-      const end = new Date(start);
+    const monthDate = new Date(
+      `${month.firstDay}T00:00:00Z`,
+    );
 
+    const weekIndex = weeks.findIndex((week) => {
+      const start = new Date(
+        `${week.firstDay}T00:00:00Z`,
+      );
+
+      const end = new Date(start);
       end.setUTCDate(end.getUTCDate() + 6);
 
       return monthDate >= start && monthDate <= end;
@@ -144,38 +164,39 @@ const monthLabels = months
         fill="${textColor}"
         fill-opacity="0.55"
         font-size="10"
-        font-family="ui-monospace, SFMono-Regular, Menio, monospace"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
       >
         ${month.name.slice(0, 3)}
-      </text?
+      </text>
     `;
   })
   .join("");
 
-  const weekdayLabels = [
-    { label: "Mon", weekday: 1 },
-    { label: "Wed", weekday: 3 },
-    { label: "Fri", weekday: 5 },
-  ]
+/* Weekday labels */
+const weekdayLabels = [
+  { label: "Mon", weekday: 1 },
+  { label: "Wed", weekday: 3 },
+  { label: "Fri", weekday: 5 },
+]
+  .map(({ label, weekday }) => {
+    const y = TOP + weekday * STEP + CELL - 1;
 
-    .map(({ label, weekday }) => {
-      const y = TOP + weekday * STEP + CELL - 1;
+    return `
+      <text
+        x="0"
+        y="${y}"
+        fill="${textColor}"
+        fill-opacity="0.45"
+        font-size="9"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+      >
+        ${label}
+      </text>
+    `;
+  })
+  .join("");
 
-      return `
-        <text
-          x="0"
-          y="${y}"
-          fill="${textColor}"
-          fill-opacity="0.45"
-          font-size="9"
-          font-family="ui-monospace, SFMono-Regular, Menio monospace"
-        >
-          ${label}
-        </text>
-      `;
-    })
-    .join("");
-
+/* Legend */
 const legendColors = [
   colors.NONE,
   colors.FIRST_QUARTILE,
@@ -185,18 +206,20 @@ const legendColors = [
 ];
 
 const LEGEND_GAP = 5;
-const legendWidth = 
-  28 + 
+
+const legendWidth =
+  28 +
   legendColors.length * CELL +
-  (legendColors.length - 1) * LEGEND_GAP + 
+  (legendColors.length - 1) * LEGEND_GAP +
   34;
 
-const legendX = WIDTH = legendWidth;
+const legendX = WIDTH - legendWidth;
 const legendY = TOP + GRID_HEIGHT + 14;
 
 const legendSquares = legendColors
   .map((color, index) => {
-    const x = legendX + 28 + index * (CELL + LEGEND_GAP);
+    const x =
+      legendX + 28 + index * (CELL + LEGEND_GAP);
 
     return `
       <rect
@@ -211,17 +234,17 @@ const legendSquares = legendColors
   })
   .join("");
 
-const moreX = 
-  legendX + 
-  28 
+const moreX =
+  legendX +
+  28 +
   legendColors.length * CELL +
   (legendColors.length - 1) * LEGEND_GAP +
   6;
 
-/* FINAL SVG */
+/* Final SVG */
 const svg = `
 <svg
-  xmins="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
   width="${WIDTH}"
   height="${HEIGHT}"
   viewBox="0 0 ${WIDTH} ${HEIGHT}"
@@ -231,28 +254,28 @@ const svg = `
   ${monthLabels}
   ${weekdayLabels}
   ${squares}
+
   <text
     x="${legendX}"
     y="${legendY}"
     fill="${textColor}"
     fill-opacity="0.6"
     font-size="10"
-    font-family="ui-monospace, SFMono-Regular, Menio, monospace"
+    font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
   >
-
     Less
   </text>
 
   ${legendSquares}
+
   <text
-    x="${morex}"
+    x="${moreX}"
     y="${legendY}"
     fill="${textColor}"
     fill-opacity="0.6"
     font-size="10"
-    font-family="ui-monospace, SFMono-Regular, Menio, monospace"
+    font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
   >
-
     More
   </text>
 </svg>
