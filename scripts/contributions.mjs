@@ -124,6 +124,11 @@ const squares = weeks
             height="${CELL}"
             rx="2"
             fill="${color}"
+            data-date="${day.date}"
+            data-count="${day.contributionCount}"
+            tabindex="0"
+            role="img"
+            aria-label="${day.date}: ${day.contributionCount} ${contributionWord}"
           >
             <title>${day.date}: ${day.contributionCount} ${contributionWord}</title>
           </rect>

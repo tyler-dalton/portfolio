@@ -48,27 +48,143 @@ import SelectedWork from "../components/project-card.astro";
 
   <!-- GitHub Contribution Activity -->
   <section class="px-4 py-16">
-    <div class="mx-auto max-w-[1100px] border-t border-white/10 pt-10">
-      <div class="mb-5 flex items-baseline justify-between gap-4">
-        <h2 class="text-xl font-semibold tracking-tight">GitHub Contributions</h2>
-        <a
-          href="https://github.com/tyler-dalton"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-[#ecf0f1]/60 transition-colors hover:text-[#ecf0f1]"
-        >
-          @tyler-dalton ↗
-        </a>
-      </div>
+      <div class="mx-auto max-w-[1100px] border-t border-white/10 pt-10">
+        <div class="mb-5 flex items-baseline justify-between gap-4">
+          <h2 class="text-xl font-semibold tracking-tight">GitHub Contributions</h2>
+          <a
+            href="https://github.com/tyler-dalton"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-[#ecf0f1]/60 transition-colors hover:text-[#ecf0f1]"
+          >
+            @tyler-dalton ↗
+          </a>
+        </div>
 
-      <div class="overflow-x-auto">
-        <img
-          src="/github/contributions.svg"
-          alt="Tyler Dalton's GitHub contributions over the last year"
-          class="block h-auto w-full min-w-[735px]"
-          loading="lazy"
-        />
+        <div class="overflow-x-auto">
+          <div
+            id="contribution-graph"
+            class="block min-w-[735px] [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
+            aria-label="Tyler Dalton's GitHub contributions over the last year"
+          >
+            <img
+              src="/github/contributions.svg"
+              alt="Tyler Dalton's GitHub contributions over the last year"
+              class="block h-auto w-full"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div
+          id="contribution-tooltip"
+          class="pointer-events-none fixed z-50 hidden rounded-md border border-white/15 bg-[#22313f] px-2.5 py-1.5 text-xs text-[#ecf0f1] shadow-lg"
+          role="tooltip"
+        ></div>
       </div>
-    </div>
-  </section>
+    </section>
+    <script>
+      const graph = document.getElementById("contribution-graph");
+      const tooltip = document.getElementById("contribution-tooltip");
+
+      if (graph && tooltip) {
+        const formatDate = (date: string) =>
+          new Intl.DateTimeFormat("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC",
+          }).format(new Date(`${date}T00:00:00Z`));
+
+        const tooltipText = (square: SVGRectElement) => {
+          const date = square.dataset.date;
+          const count = Number(square.dataset.count ?? 0);
+          const contributionWord = count === 1 ? "contribution" : "contributions";
+
+          return `${count} ${contributionWord} on ${formatDate(date!)}`;
+        };
+
+        const positionTooltip = (x: number, y: number) => {
+          const offset = 12;
+          const padding = 8;
+          const rect = tooltip.getBoundingClientRect();
+
+          let left = x + offset;
+          let top = y - rect.height - offset;
+
+          if (left + rect.width > window.innerWidth - padding) {
+            left = x - rect.width - offset;
+          }
+
+          if (top < padding) {
+            top = y + offset;
+          }
+
+          tooltip.style.left = `${Math.max(padding, left)}px`;
+          tooltip.style.top = `${Math.max(padding, top)}px`;
+        };
+
+        const showTooltip = (square: SVGRectElement, x: number, y: number) => {
+          tooltip.textContent = tooltipText(square);
+          tooltip.classList.remove("hidden");
+          positionTooltip(x, y);
+        };
+
+        const hideTooltip = () => {
+          tooltip.classList.add("hidden");
+        };
+
+        fetch("/github/contributions.svg")
+          .then((response) => {
+            if (!response.ok) throw new Error("Could not load contribution graph");
+            return response.text();
+          })
+          .then((svgText) => {
+            const parsed = new DOMParser().parseFromString(svgText, "image/svg+xml");
+            const svg = parsed.documentElement;
+
+            if (svg.nodeName.toLowerCase() !== "svg") return;
+
+            graph.replaceChildren(document.importNode(svg, true));
+
+            graph.querySelectorAll("rect").forEach((square) => {
+              const title = square.querySelector("title");
+
+              if ((!square.dataset.date || square.dataset.count === undefined) && title?.textContent) {
+                const match = title.textContent.match(
+                  /^(\d{4}-\d{2}-\d{2}): (\d+) contributions?$/,
+                );
+
+                if (match) {
+                  square.dataset.date = match[1];
+                  square.dataset.count = match[2];
+                }
+              }
+
+              if (!square.dataset.date || square.dataset.count === undefined) return;
+
+              title?.remove();
+
+              square.addEventListener("pointerenter", (event) => {
+                showTooltip(square, event.clientX, event.clientY);
+              });
+
+              square.addEventListener("pointermove", (event) => {
+                positionTooltip(event.clientX, event.clientY);
+              });
+
+              square.addEventListener("pointerleave", hideTooltip);
+
+              square.addEventListener("focus", () => {
+                const rect = square.getBoundingClientRect();
+                showTooltip(square, rect.left + rect.width / 2, rect.top);
+              });
+
+              square.addEventListener("blur", hideTooltip);
+            });
+          })
+          .catch(() => {
+          });
+      }
+    </script>
 </Layout>
