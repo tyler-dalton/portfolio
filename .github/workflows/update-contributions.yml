@@ -2,8 +2,8 @@ name: Update Contribution Graph
 
 on:
   workflow_dispatch:
-    schedule:
-      - cron: "23 6 * * *"
+  schedule:
+    - cron: "23 6 * * *"
 
 permissions:
   contents: write
