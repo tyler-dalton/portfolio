@@ -13,6 +13,15 @@ html[data-theme="default"] {
   --color-text-soft:  rgba(236, 240, 241, 0.9);
   --color-text-muted: rgba(236, 240, 241, 0.6);
 
+  /* ACCENT */
+  --color-accent: #3498db;
+  --color-accent-hover: #3498db;
+
+  /* WHITE-BASED STATES */
+  --color-white-10: rgba(255, 255, 255, 0.10);
+  --color-white-20: rgba(255, 255, 255, 0.20);
+  --color-white-60: rgba(255, 255, 255, 0.60);
+
   /* BORDERS */
   --color-border: rgba(255, 255, 255, 0.15);
   --color-border-strong: rgba(236, 240, 241, 0.6);
@@ -38,12 +47,7 @@ html[data-theme="default"] {
 
 /* === SEMANTIC UTILITIES === */
 @layer utilities {
-  .bg-page {
-    background-color: var(--color-page);
-  }
-  .bg-surface {
-    background-color: var(--color-surface);
-  }
+  /* TEXT */
   .text-primary {
     color: var(--color-text);
   }
@@ -56,19 +60,58 @@ html[data-theme="default"] {
   .text-action {
     color: var(--color-action-text);
   }
+  .text-accent {
+    color: var(--color-accent);
+  }
+  /* BACKGROUNDS */
+  .bg-page {
+    background-color: var(--color-page);
+  }
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
   .bg-action {
     background-color: var(--color-action);
   }
+  /* BORDERS */
   .border-subtle {
     border-color: var(--color-border);
   }
   .border-strong {
     border-color: var(--color-border-strong);
   }
+  .border-white-20 {
+    border-color: var(--color-white-20);
+  }
+  /* HOVER STATES */
+  .hover-surface:hover {
+    background-color: var(--color-action-hover);
+  }
+  .hover-text-accent:hover {
+    color: var(--color-accent-hover);
+  }
+  .hover-text-primary:hover {
+    color: var(--color-text);
+  }
+  /* FOCUS STATES */
+  .focus-ring-accent:focus-visible {
+    --tw-ring-color: var(--color-accent);
+  }
+  /* DURATIONS */
+  .duration-fast {
+    transition-duration: var(--duration-fast);
+  }
+  .duration-normal {
+    transition-duration: var(--duration-normal);
+  }
+  .duration-slow {
+    transition-duration: var(--duration-slow);
+  }
+  /* MISC */
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
-  .hover-surface:hover {
-    background-color: var(--color-action-hover);
+  .content-width {
+    max-width: var(--content-width);
   }
 }
