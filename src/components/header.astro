@@ -10,12 +10,12 @@ const navItems = [
 ];
 ---
 
-<header class="bg-[#2c3e50] text-[#ecf0f1]">
+<header class="bg-page texxt-primary">
     <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-1">
         <h1 class="m-0">
             <a 
                 href="/"
-                class="text-3xl font-bold tracking-tight text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]">
+                class="text-primary text-3xl font-bold tracking-tight no-underline transition-colors --duration-fast hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]">
                 Tyler Dalton
             </a>
         </h1>
@@ -28,15 +28,15 @@ const navItems = [
             aria-controls="mobile-nav">
             <span 
               id="nav-bar-1"
-              class="h-0.5 w-7 bg-[#ecf0f1] transition-transform duration-300"
+              class="h-0.5 w-7 bg-page transition-transform --duration-normal"
             ></span>
             <span 
               id="nav-bar-2" 
-              class="h-0.5 w-7 bg-[#ecf0f1] transition-opacity duration-300"
+              class="h-0.5 w-7 bg-page transition-opacity --duration-normal"
             ></span>
             <span 
               id="nav-bar-3" 
-              class="h-0.5 w-7 bg-[#ecf0f1] transition-transform duration-300"
+              class="h-0.5 w-7 bg-page transition-transform --duration-normal"
             ></span>
         </button>
         <nav class="hidden md:block">
@@ -53,7 +53,7 @@ const navItems = [
                             <a href={item.href}
                             aria-current={isActive ? "page" : undefined}
                             class:list={[
-                            "text-xl text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
+                            "text-xl text-primary no-underline transition-colors --duration-fast hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
                             { "font-bold !text-[#3498db]": isActive }
                         ]}
                             >
@@ -83,7 +83,7 @@ const navItems = [
                                 <a href={item.href}
                                     aria-current={isActive ? "page" : undefined}
                                     class:list={[
-                                        "block py-3 text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
+                                        "block py-3 text-lg text-primary no-underline transition-colors --duration-fast hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
                                         { "font-bold !text-[#3498db]": isActive }
                                     ]}
                                 >
