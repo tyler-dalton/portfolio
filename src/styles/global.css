@@ -54,7 +54,7 @@ html[data-theme="default"] {
     color: var(--color-text-muted);
   }
   .text-action {
-    color: var(--color-action);
+    color: var(--color-action-text);
   }
   .bg-action {
     background-color: var(--color-action);
