@@ -7,7 +7,7 @@ import SelectedWork from "../components/project-card.astro";
 <Layout title="Tyler Dalton | Home">
   <!-- HERO -->
 	<section class="px-4 py-16">
-    <div class="mx-auto flex max-w-[1100px] flex-col items-center gap-12 md:flex-row">
+    <div class="mx-auto flex content-width flex-col items-center gap-12 md:flex-row">
       <!-- Headshot -->
       <div>
         <img
@@ -27,13 +27,13 @@ import SelectedWork from "../components/project-card.astro";
         <div class="mt-6 flex flex-wrap gap-4">
           <a
             href="/projects"
-            class="inline-block rounded-full bg-page px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[#2c3e50] no-underline transition-all duration-200 hover:-translate-y-0.5"
+            class="inline-block rounded-full bg-page px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-action no-underline transition-all duration-normal hover:-translate-y-0.5"
           >
             View My Work
           </a>
           <a
             href="/contact"
-            class="inline-block rounded-full border border-[#ecf0f1]/60 px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-primary no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+            class="inline-block rounded-full border border-[#ecf0f1]/60 px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-primary no-underline transition-all duration-normal hover:-translate-y-0.5 hover:bg-white/10"
           >
             Contact Me
           </a>
@@ -48,14 +48,14 @@ import SelectedWork from "../components/project-card.astro";
 
   <!-- GitHub Contribution Activity -->
   <section class="px-4 py-6">
-      <div class="mx-auto max-w-[1100px] pt-10">
+      <div class="mx-auto content-width pt-10">
         <div class="mb-5 flex items-baseline justify-between gap-4">
           <h2 class="text-3xl font-semibold tracking-tight">GitHub Contributions</h2>
           <a
             href="https://github.com/tyler-dalton"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-[#ecf0f1]/60 transition-colors hover:text-[#ecf0f1]"
+            class="text-sm text-[#ecf0f1]/60 transition-colors hover-text-accent"
           >
             @tyler-dalton ↗
           </a>
