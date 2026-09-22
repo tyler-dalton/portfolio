@@ -113,3 +113,19 @@ html[data-theme="default"] {
     max-width: var(--content-width);
   }
 }
+
+/* === SCROLLING === */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+}
+
+[id] {
+  scroll-margin-top: var(--header-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
