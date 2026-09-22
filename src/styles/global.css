@@ -17,11 +17,6 @@ html[data-theme="default"] {
   --color-accent: #3498db;
   --color-accent-hover: #3498db;
 
-  /* WHITE-BASED STATES */
-  --color-white-10: rgba(255, 255, 255, 0.10);
-  --color-white-20: rgba(255, 255, 255, 0.20);
-  --color-white-60: rgba(255, 255, 255, 0.60);
-
   /* BORDERS */
   --color-border: rgba(255, 255, 255, 0.15);
   --color-border-strong: rgba(236, 240, 241, 0.6);
@@ -67,6 +62,9 @@ html[data-theme="default"] {
   .bg-page {
     background-color: var(--color-page);
   }
+  .bg-primary {
+    background-color: var(--color-text);
+  }
   .bg-surface {
     background-color: var(--color-surface);
   }
@@ -85,7 +83,7 @@ html[data-theme="default"] {
   }
   /* HOVER STATES */
   .hover-surface:hover {
-    background-color: var(--color-action-hover);
+    background-color: var(--color-surface-hover);
   }
   .hover-text-accent:hover {
     color: var(--color-accent-hover);
