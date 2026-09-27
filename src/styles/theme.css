@@ -7,6 +7,10 @@
   --terminal-background: #0f1720;
   --terminal-chrome: #17212b;
   --terminal-foreground: #ecf0f1;
+  --terminal-muted: rgba(236, 240, 241, 0.55);
+  --terminal-prompt: #3498db;
+  --terminal-path: #8fb3c9;
+  --terminal-alert: #febc2e;
 }
 
 :root[data-theme="light"] {
@@ -18,25 +22,14 @@
   --terminal-background: #2c3e50;
   --terminal-chrome: #22313f;
   --terminal-foreground: #ecf0f1;
+  --terminal-muted: rgba(236, 240, 241, 0.6);
+  --terminal-prompt: #ecf0f1;
+  --terminal-path: #b7c5ce;
+  --terminal-alert: #febc2e;
 }
 
 html { background: var(--page-background); }
 body { background: var(--page-background) !important; color: var(--page-foreground) !important; transition: background-color 180ms ease, color 180ms ease; }
-
-[class*="bg-[#2c3e50]"] { background-color: var(--page-background) !important; }
-[class*="text-[#ecf0f1]"] { color: var(--page-foreground) !important; }
-[class*="text-[#3498db]"], [class*="hover:text-[#3498db]"] { color: var(--page-accent); }
-[class*="border-[#ecf0f1]"] { border-color: var(--page-foreground) !important; }
-[class*="bg-[#ecf0f1]"] { background-color: var(--page-foreground) !important; }
-[class*="text-[#2c3e50]"] { color: var(--page-background) !important; }
-[class*="border-white"], [class*="border-b-white"] { border-color: var(--page-border) !important; }
-[class*="text-white"] { color: var(--page-foreground); }
-[class*="bg-white"] { background-color: color-mix(in srgb, var(--page-foreground) 10%, transparent); }
-[class*="bg-[#0f1720]"] { background-color: var(--terminal-background) !important; }
-[class*="bg-[#17212b]"], [class*="bg-[#22313f]"] { background-color: var(--terminal-chrome) !important; }
-[class*="text-[#d6e2ea]"] { color: var(--terminal-foreground) !important; }
-[class*="bg-[#0f1720]"] [class*="text-white"],
-[class*="bg-[#0f1720]"] [class*="text-[#d6e2ea]"] { color: var(--terminal-foreground) !important; }
 
 .command-hint { color: var(--page-muted); cursor: pointer; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.75rem; transition: color 150ms ease; }
 .command-hint:hover, .command-hint:focus-visible { color: var(--page-foreground); outline: none; text-decoration: underline; text-underline-offset: 0.25rem; }
