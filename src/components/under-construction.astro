@@ -14,43 +14,43 @@ const {
 
 <section class="px-4 py-20 md:py-28">
   <div class="mx-auto max-w-[850px]">
-    <div class="overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720] shadow-2xl">
-      <div class="flex items-center justify-between border-b border-white/10 bg-[#17212b] px-4 py-3">
+    <div class="overflow-hidden rounded-2xl border border-[var(--page-border)] bg-[var(--terminal-background)] shadow-2xl">
+      <div class="flex items-center justify-between border-b border-[var(--page-border)] bg-[var(--terminal-chrome)] px-4 py-3">
         <div class="flex items-center gap-2" aria-hidden="true">
           <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
-          <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+          <span class="h-3 w-3 rounded-full bg-[var(--terminal-alert)]"></span>
           <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
         </div>
-        <p class="font-mono text-sm text-white/60">tyler@portfolio: ~{path}</p>
-        <span class="font-mono text-xs text-white/40">bash</span>
+        <p class="font-mono text-sm text-[var(--terminal-muted)]">tyler@portfolio: ~{path}</p>
+        <span class="font-mono text-xs text-[var(--terminal-muted)]">bash</span>
       </div>
 
-      <div class="space-y-6 p-6 font-mono text-sm leading-relaxed text-[#d6e2ea] md:p-8 md:text-base">
+      <div class="space-y-6 p-6 font-mono text-sm leading-relaxed text-[var(--terminal-foreground)] md:p-8 md:text-base">
         <div>
-          <p><span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ open {path}</p>
-          <h1 class="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">{title}</h1>
+          <p><span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ open {path}</p>
+          <h1 class="mt-2 text-3xl font-bold tracking-tight text-[var(--terminal-foreground)] md:text-4xl">{title}</h1>
         </div>
 
         <div>
-          <p><span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ git status</p>
-          <p class="mt-2 text-[#febc2e]">On branch: currently-refactoring</p>
-          <p class="text-white/80">Changes not staged for publication.</p>
+          <p><span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ git status</p>
+          <p class="mt-2 text-[var(--terminal-alert)]">On branch: currently-refactoring</p>
+          <p class="text-[var(--terminal-foreground)]/80">Changes not staged for publication.</p>
         </div>
 
         <div>
-          <p><span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ cat progress.log</p>
-          <p class="mt-2 max-w-2xl text-white/80">{message}</p>
+          <p><span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ cat progress.log</p>
+          <p class="mt-2 max-w-2xl text-[var(--terminal-foreground)]/80">{message}</p>
         </div>
 
         <div>
-          <p><span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ <span class="animate-pulse text-white">█</span></p>
+          <p><span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ <span class="animate-pulse text-[var(--terminal-foreground)]">█</span></p>
         </div>
       </div>
     </div>
 
     <a
       href="/"
-      class="mt-8 inline-block font-medium text-[#ecf0f1] underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+      class="mt-8 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 transition-colors hover:text-[var(--page-foreground)]"
     >
       Return home →
     </a>
