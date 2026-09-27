@@ -1,73 +1,73 @@
 <section class="px-4 py-20">
   <div class="mx-auto max-w-[1100px]">
-    <div class="overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720] shadow-2xl">
+    <div class="overflow-hidden rounded-2xl border border-[var(--page-border)] bg-[var(--terminal-background)] shadow-2xl">
       
-      <div class="flex items-center justify-between border-b border-white/10 bg-[#17212b] px-4 py-3">
+      <div class="flex items-center justify-between border-b border-[var(--page-border)] bg-[var(--terminal-chrome)] px-4 py-3">
         <div class="flex items-center gap-2">
           <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
-          <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+          <span class="h-3 w-3 rounded-full bg-[var(--terminal-alert)]"></span>
           <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
         </div>
 
-        <p class="font-mono text-sm text-white/60">
+        <p class="font-mono text-sm text-[var(--terminal-muted)]">
           tyler@portfolio: ~/about
         </p>
 
-        <span class="font-mono text-xs text-white/40">
+        <span class="font-mono text-xs text-[var(--terminal-muted)]">
           bash
         </span>
       </div>
 
-      <div class="space-y-6 p-6 font-mono text-sm leading-relaxed text-[#d6e2ea] md:p-8 md:text-base">
+      <div class="space-y-6 p-6 font-mono text-sm leading-relaxed text-[var(--terminal-foreground)] md:p-8 md:text-base">
         <div>
           <p>
-            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ whoami
+            <span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ whoami
           </p>
-          <p class="mt-1 text-white">
+          <p class="mt-1 text-[var(--terminal-foreground)]">
             Tyler Dalton
           </p>
         </div>
 
         <div>
           <p>
-            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ cat profile.txt
+            <span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ cat profile.txt
           </p>
 
-          <p class="mt-1 max-w-3xl text-white/80">
+          <p class="mt-1 max-w-3xl text-[var(--terminal-foreground)]/80">
             Cyber/Electronic Operations & Warfare + Network/Systems Administration student at the University of Cincinnati focused on secure infrastructure, automation, and platform engineering.
           </p>
         </div>
 
         <div>
           <p>
-            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ status
+            <span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ status
           </p>
 
           <div class="mt-2 grid gap-x-8 gap-y-1 md:grid-cols-[140px_1fr]">
-            <span class="text-white/45">education</span>
+            <span class="text-[var(--terminal-muted)]">education</span>
             <span>University of Cincinnati</span>
 
-            <span class="text-white/45">major</span>
+            <span class="text-[var(--terminal-muted)]">major</span>
             <span>Cybersecurity + Network/Systems Administration</span>
 
-            <span class="text-white/45">location</span>
+            <span class="text-[var(--terminal-muted)]">location</span>
             <span>Cincinnati, Ohio</span>
 
-            <span class="text-white/45">focus</span>
+            <span class="text-[var(--terminal-muted)]">focus</span>
             <span>Kubernetes / Infrastructure / Automation</span>
 
-            <span class="text-white/45">availability</span>
+            <span class="text-[var(--terminal-muted)]">availability</span>
             <span>Spring & Summer 2027</span>
           </div>
         </div>
 
         <div>
           <p>
-            <span class="text-[#3498db]">tyler@portfolio</span>:<span class="text-[#8fb3c9]">~</span>$ currently building
+            <span class="text-[var(--terminal-prompt)]">tyler@portfolio</span>:<span class="text-[var(--terminal-path)]">~</span>$ currently building
           </p>
 
-          <p class="mt-1 text-white/80">
-            <span id="terminal-output">olympus kubernetes cluster</span><span id="terminal-cursor" class="text-white">█</span>
+          <p class="mt-1 text-[var(--terminal-foreground)]/80">
+            <span id="terminal-output">olympus kubernetes cluster</span><span id="terminal-cursor" class="text-[var(--terminal-foreground)]">█</span>
           </p>
         </div>
       </div>
