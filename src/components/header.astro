@@ -10,33 +10,33 @@ const navItems = [
 ];
 ---
 
-<header class="bg-[#2c3e50] text-[#ecf0f1]">
+<header class="bg-[var(--page-background)] text-[var(--page-foreground)]">
     <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-1">
         <h1 class="m-0">
             <a 
                 href="/"
-                class="text-3xl font-bold tracking-tight text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]">
+                class="text-3xl font-bold tracking-tight text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]">
                 Tyler Dalton
             </a>
         </h1>
         <button 
             id="nav-toggle"
             type="button" 
-            class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-white/10 md:hidden"
+            class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] md:hidden"
             aria-label="Open menu"
             aria-expanded="false"
             aria-controls="mobile-nav">
             <span 
               id="nav-bar-1"
-              class="h-0.5 w-7 bg-[#ecf0f1] transition-transform duration-300"
+              class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"
             ></span>
             <span 
               id="nav-bar-2" 
-              class="h-0.5 w-7 bg-[#ecf0f1] transition-opacity duration-300"
+              class="h-0.5 w-7 bg-[var(--page-foreground)] transition-opacity duration-300"
             ></span>
             <span 
               id="nav-bar-3" 
-              class="h-0.5 w-7 bg-[#ecf0f1] transition-transform duration-300"
+              class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"
             ></span>
         </button>
         <nav class="hidden md:block">
@@ -49,12 +49,12 @@ const navItems = [
                     : currentPath.startsWith(item.href);
                     
                     return (
-                        <li class="relative pl-6 first:pl-0 before:absolute before:left-0 before:text-[#ecf0f1]/50 before:content-['|'] first:before:hidden">
+                        <li class="relative pl-6 first:pl-0 before:absolute before:left-0 before:text-[var(--page-muted)] before:content-['|'] first:before:hidden">
                             <a href={item.href}
                             aria-current={isActive ? "page" : undefined}
                             class:list={[
-                            "text-xl text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
-                            { "font-bold !text-[#3498db]": isActive }
+                            "text-xl text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]",
+                            { "font-bold !text-[var(--page-accent)]": isActive }
                         ]}
                             >
                             {item.label}
@@ -67,7 +67,7 @@ const navItems = [
         </nav>
         <nav
           id="mobile-nav"
-          class="hidden w-full border-t border-white/20 md:hidden"
+          class="hidden w-full border-t border-[var(--page-border)] md:hidden"
           aria-label="Mobile"
         >
             <ul class="flex list-none flex-col gap-0 p-3">
@@ -83,8 +83,8 @@ const navItems = [
                                 <a href={item.href}
                                     aria-current={isActive ? "page" : undefined}
                                     class:list={[
-                                        "block py-3 text-lg text-[#ecf0f1] no-underline transition-colors duration-150 hover:text-[#3498db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3498db]",
-                                        { "font-bold !text-[#3498db]": isActive }
+                                        "block py-3 text-lg text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]",
+                                        { "font-bold !text-[var(--page-accent)]": isActive }
                                     ]}
                                 >
                                     {item.label}
