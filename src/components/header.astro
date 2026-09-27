@@ -39,7 +39,6 @@ const navItems = [
               class="h-0.5 w-7 bg-[#ecf0f1] transition-transform duration-300"
             ></span>
         </button>
-        <div class="flex items-center gap-3">
         <nav class="hidden md:block">
             <ul class="flex list-none items-center gap-6 p-3">
             {
@@ -66,10 +65,6 @@ const navItems = [
             }
             </ul>
         </nav>
-        <button id="command-palette-trigger" class="command-trigger hidden md:block" type="button" aria-haspopup="dialog" aria-controls="command-palette">
-          Commands <kbd>⌘K</kbd>
-        </button>
-        </div>
         <nav
           id="mobile-nav"
           class="hidden w-full border-t border-white/20 md:hidden"
@@ -104,7 +99,7 @@ const navItems = [
     <dialog id="command-palette" class="command-palette" aria-labelledby="command-palette-title">
       <div class="command-palette__header" id="command-palette-title">Command palette</div>
       <button id="theme-command" class="command-palette__action" type="button">
-        <span id="theme-command-label">Switch to dark theme</span>
+        <span id="theme-command-label">Switch to light theme</span>
         <span class="command-palette__shortcut">Enter</span>
       </button>
     </dialog>
@@ -127,7 +122,7 @@ const navItems = [
 
     const openCommandPalette = () => {
       if (!commandPalette?.open) {
-        const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+        const theme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
         setTheme(theme);
         commandPalette?.showModal();
         themeCommand?.focus();
