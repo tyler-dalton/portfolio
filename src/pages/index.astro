@@ -13,7 +13,7 @@ import SelectedWork from "../components/project-card.astro";
         <img
           src="/media/headshot.jpg"
           alt="Professional headshot of Tyler Dalton"
-          class="h-[260px] w-[260px] rounded-full border-3 border-white/15 object-cover shadow-[0_18px_40px_rgba(0,0,0,0.18)] md:h-[340px] md:w-[340px]"
+          class="h-[260px] w-[260px] rounded-full border-3 border-[var(--page-border)] object-cover shadow-[0_18px_40px_rgba(0,0,0,0.18)] md:h-[340px] md:w-[340px]"
         />
       </div>
       <!-- Introduction -->
@@ -21,19 +21,19 @@ import SelectedWork from "../components/project-card.astro";
         <h1 class="mb-3 text-5xl font-bold tracking-tight md:text-6xl">
           Hi, I'm Tyler Dalton.
         </h1>
-        <p class="max-w-xl text-xl leading-relaxed text-[#ecf0f1]/90 md:text-2xl">
+        <p class="max-w-xl text-xl leading-relaxed text-[var(--page-foreground)]/90 md:text-2xl">
           Cybersecurity + Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.
         </p>
         <div class="mt-6 flex flex-wrap gap-4">
           <a
             href="/projects"
-            class="inline-block rounded-full bg-[#ecf0f1] px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[#2c3e50] no-underline transition-all duration-200 hover:-translate-y-0.5"
+            class="inline-block rounded-full bg-[var(--page-foreground)] px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[var(--page-background)] no-underline transition-all duration-200 hover:-translate-y-0.5"
           >
             View My Work
           </a>
           <a
             href="/contact"
-            class="inline-block rounded-full border border-[#ecf0f1]/60 px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[#ecf0f1] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10"
+            class="inline-block rounded-full border border-[var(--page-foreground)]/60 px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[var(--page-foreground)] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)]"
           >
             Contact Me
           </a>
@@ -66,7 +66,7 @@ import SelectedWork from "../components/project-card.astro";
             href="https://github.com/tyler-dalton"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-[#ecf0f1]/60 transition-colors hover:text-[#ecf0f1]"
+            class="text-sm text-[var(--page-muted)] transition-colors hover:text-[var(--page-foreground)]"
           >
             @tyler-dalton ↗
           </a>
@@ -89,7 +89,7 @@ import SelectedWork from "../components/project-card.astro";
 
         <div
           id="contribution-tooltip"
-          class="pointer-events-none fixed z-50 hidden rounded-md border border-white/15 bg-[#22313f] px-2.5 py-1.5 text-xs text-[#ecf0f1] shadow-lg"
+          class="pointer-events-none fixed z-50 hidden rounded-md border border-[var(--page-border)] bg-[var(--terminal-chrome)] px-2.5 py-1.5 text-xs text-[var(--terminal-foreground)] shadow-lg"
           role="tooltip"
         ></div>
       </div>
