@@ -1,0 +1,15 @@
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page-background: #ecf0f1;
+  --page-foreground: #2c3e50;
+  --page-accent: #3498db;
+  --page-muted: #60717f;
+  --page-border: rgba(44, 62, 80, 0.2);
+  --terminal-background: #2c3e50;
+  --terminal-chrome: #22313f;
+  --terminal-foreground: #ecf0f1;
+  --terminal-muted: rgba(236, 240, 241, 0.6);
+  --terminal-prompt: #ecf0f1;
+  --terminal-path: #b7c5ce;
+  --terminal-alert: #febc2e;
+}
