@@ -1,141 +1,48 @@
 ---
 const currentPath = Astro.url.pathname;
-
 const navItems = [
-    {label: "Home", href: "/" },
-    {label: "Projects", href: "/projects"},
-    {label: "Resume", href: "/resume"},
-    {label: "Personal", href: "/personal"},
-    {label: "Contact", href: "/contact"}
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "Resume", href: "/resume" },
+  { label: "Personal", href: "/personal" },
+  { label: "Contact", href: "/contact" },
 ];
 ---
 
 <header class="bg-[var(--page-background)] text-[var(--page-foreground)]">
-    <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-1">
-        <h1 class="m-0">
-            <a
-                href="/"
-                class="text-3xl font-bold tracking-tight text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]">
-                Tyler Dalton
-            </a>
-        </h1>
-        <button
-            id="nav-toggle"
-            type="button"
-            class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] md:hidden"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="mobile-nav">
-            <span
-              id="nav-bar-1"
-              class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"
-            ></span>
-            <span
-              id="nav-bar-2"
-              class="h-0.5 w-7 bg-[var(--page-foreground)] transition-opacity duration-300"
-            ></span>
-            <span
-              id="nav-bar-3"
-              class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"
-            ></span>
-        </button>
-        <nav class="hidden md:block">
-            <ul class="flex list-none items-center gap-6 p-3">
-            {
-                navItems.map((item) => {
-                    const isActive =
-                    item.href === "/"
-                    ? currentPath === "/"
-                    : currentPath.startsWith(item.href);
-
-                    return (
-                        <li class="relative pl-6 first:pl-0 before:absolute before:left-0 before:text-[var(--page-muted)] before:content-['|'] first:before:hidden">
-                            <a href={item.href}
-                            aria-current={isActive ? "page" : undefined}
-                            class:list={[
-                            "text-xl text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]",
-                            { "font-bold !text-[var(--page-accent)]": isActive }
-                        ]}
-                            >
-                            {item.label}
-                            </a>
-                        </li>
-                    )
-                })
-            }
-            </ul>
-        </nav>
-        <nav
-          id="mobile-nav"
-          class="hidden w-full border-t border-[var(--page-border)] md:hidden"
-          aria-label="Mobile"
-        >
-            <ul class="flex list-none flex-col gap-0 p-3">
-                {
-                    navItems.map((item) => {
-                        const isActive =
-                        item.href === "/"
-                        ? currentPath === "/"
-                        : currentPath.startsWith(item.href);
-
-                        return (
-                            <li>
-                                <a href={item.href}
-                                    aria-current={isActive ? "page" : undefined}
-                                    class:list={[
-                                        "block py-3 text-lg text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]",
-                                        { "font-bold !text-[var(--page-accent)]": isActive }
-                                    ]}
-                                >
-                                    {item.label}
-                                </a>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </nav>
-    </div>
-
-    <dialog
-      id="command-palette"
-      class="command-palette"
-      aria-label="Command palette"
-      aria-modal="true"
-    >
-      <div class="command-palette__search-wrap">
-        <label for="palette-input" class="sr-only">Search commands</label>
-        <input
-          id="palette-input"
-          type="text"
-          class="command-palette__input"
-          placeholder="Search commands..."
-          autocomplete="off"
-          spellcheck="false"
-          role="combobox"
-          aria-expanded="true"
-          aria-autocomplete="list"
-          aria-controls="palette-results"
-          aria-haspopup="listbox"
-        />
-      </div>
-      <ul
-        id="palette-results"
-        class="command-palette__results"
-        role="listbox"
-        aria-label="Commands"
-      >
+  <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-1">
+    <h1 class="m-0">
+      <a href="/" class="text-3xl font-bold tracking-tight text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]">Tyler Dalton</a>
+    </h1>
+    <button id="nav-toggle" type="button" class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span id="nav-bar-1" class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"></span>
+      <span id="nav-bar-2" class="h-0.5 w-7 bg-[var(--page-foreground)] transition-opacity duration-300"></span>
+      <span id="nav-bar-3" class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"></span>
+    </button>
+    <nav class="hidden md:block">
+      <ul class="flex list-none items-center gap-6 p-3">
+        {navItems.map((item) => {
+          const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
+          return <li class="relative pl-6 first:pl-0 before:absolute before:left-0 before:text-[var(--page-muted)] before:content-['|'] first:before:hidden"><a href={item.href} aria-current={isActive ? "page" : undefined} class:list={["text-xl text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]", { "font-bold !text-[var(--page-accent)]": isActive }]}>{item.label}</a></li>;
+        })}
       </ul>
-    </dialog>
+    </nav>
+    <nav id="mobile-nav" class="hidden w-full border-t border-[var(--page-border)] md:hidden" aria-label="Mobile">
+      <ul class="flex list-none flex-col gap-0 p-3">
+        {navItems.map((item) => {
+          const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
+          return <li><a href={item.href} aria-current={isActive ? "page" : undefined} class:list={["block py-3 text-lg text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]", { "font-bold !text-[var(--page-accent)]": isActive }]}>{item.label}</a></li>;
+        })}
+      </ul>
+    </nav>
+  </div>
 
-    <script>
-    // ── Mobile nav ──────────────────────────────────────────────────────────
+  <script>
     const toggle = document.getElementById("nav-toggle");
     const mobileNav = document.getElementById("mobile-nav");
     const bar1 = document.getElementById("nav-bar-1");
     const bar2 = document.getElementById("nav-bar-2");
     const bar3 = document.getElementById("nav-bar-3");
-
     if (toggle && mobileNav) {
       const closeMenu = () => {
         mobileNav.classList.add("hidden");
@@ -153,341 +60,11 @@ const navItems = [
         bar2?.classList.add("opacity-0");
         bar3?.classList.add("-translate-y-2", "-rotate-45");
       };
-      toggle.addEventListener("click", () => {
-        toggle.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu();
+      toggle.addEventListener("click", () => toggle.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu());
+      mobileNav.addEventListener("click", (event) => {
+        if (event.target instanceof Element && event.target.closest("a")) closeMenu();
       });
-      mobileNav.addEventListener("click", (e) => {
-        if (e.target instanceof Element && e.target.closest("a")) closeMenu();
-      });
-      window.addEventListener("resize", () => {
-        if (window.innerWidth >= 768) closeMenu();
-      });
+      window.addEventListener("resize", () => { if (window.innerWidth >= 768) closeMenu(); });
     }
-
-    // ── Command palette ─────────────────────────────────────────────────────
-    const palette = document.getElementById("command-palette") as HTMLDialogElement | null;
-    const input = document.getElementById("palette-input") as HTMLInputElement | null;
-    const resultsList = document.getElementById("palette-results");
-
-    if (palette && input && resultsList) {
-      // ── Command definitions ───────────────────────────────────────────────
-      const setNormalTheme = (theme: "light" | "dark") => {
-        const m = (window as any).__matrix;
-        if (m && m.isActive()) m.deactivate();
-        document.documentElement.dataset.theme = theme;
-        try { localStorage.setItem("theme", theme); } catch {}
-        closePalette();
-      };
-
-      interface Command {
-        id: string;
-        label: string;
-        description: string | null;
-        keywords: string[];
-        showByDefault: boolean;
-        requiresMatrix: boolean;
-        requiresNoMatrix: boolean;
-        action: () => void;
-      }
-
-      const COMMANDS: Command[] = [
-        {
-          id: "theme-dark",
-          label: "Switch to dark theme",
-          description: null,
-          keywords: ["dark", "theme", "night", "mode"],
-          showByDefault: true,
-          requiresMatrix: false,
-          requiresNoMatrix: false,
-          action: () => setNormalTheme("dark"),
-        },
-        {
-          id: "theme-light",
-          label: "Switch to light theme",
-          description: null,
-          keywords: ["light", "theme", "day", "mode"],
-          showByDefault: true,
-          requiresMatrix: false,
-          requiresNoMatrix: false,
-          action: () => setNormalTheme("light"),
-        },
-        {
-          id: "go-resume",
-          label: "Go to resume",
-          description: "Open the resume page",
-          keywords: ["resume", "cv", "experience", "education", "work history", "work"],
-          showByDefault: true,
-          requiresMatrix: false,
-          requiresNoMatrix: false,
-          action: () => {
-            closePalette();
-            if (window.location.pathname !== "/resume") window.location.assign("/resume");
-          },
-        },
-        {
-          id: "matrix-enter",
-          label: "Follow the white rabbit",
-          description: "Enter Matrix mode",
-          keywords: ["matrix", "wake up", "white rabbit", "follow the white rabbit", "rabbit", "neo"],
-          showByDefault: false,   // hidden in default state until discovered
-          requiresMatrix: false,
-          requiresNoMatrix: true,
-          action: () => {
-            closePalette();
-            const m = (window as any).__matrix;
-            if (m) requestAnimationFrame(() => void m.activate());
-          },
-        },
-        {
-          id: "matrix-exit",
-          label: "Exit Matrix mode",
-          description: "Return to normal theme",
-          keywords: ["exit", "matrix", "leave", "normal", "return"],
-          showByDefault: true,
-          requiresMatrix: true,
-          requiresNoMatrix: false,
-          action: () => {
-            closePalette();
-            (window as any).__matrix?.deactivate();
-          },
-        },
-        {
-          id: "matrix-pause",
-          label: "Pause rain",
-          description: "Pause the Matrix rain animation",
-          keywords: ["pause", "rain", "stop", "animation", "matrix"],
-          showByDefault: true,
-          requiresMatrix: true,
-          requiresNoMatrix: false,
-          action: () => {
-            (window as any).__matrix?.pause();
-            closePalette();
-          },
-        },
-        {
-          id: "matrix-resume",
-          label: "Resume rain",
-          description: "Resume the Matrix rain animation",
-          keywords: ["resume", "rain", "start", "animation", "play", "matrix"],
-          showByDefault: true,
-          requiresMatrix: true,
-          requiresNoMatrix: false,
-          action: () => {
-            (window as any).__matrix?.resume();
-            closePalette();
-          },
-        },
-      ];
-
-      // Magic words that surface the matrix-enter command
-      const MAGIC_WORDS = ["matrix", "wake up", "white rabbit", "follow the white rabbit", "rabbit", "neo"];
-
-      function scoreCommand(cmd: Command, query: string): number {
-        const isActive = (window as any).__matrix?.isActive() ?? false;
-        const isDiscovered = (window as any).__matrix?.isDiscovered() ?? false;
-        const isPaused = (window as any).__matrix?.isPaused() ?? false;
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        if (cmd.requiresMatrix && !isActive) return 0;
-        if (cmd.requiresNoMatrix && isActive) return 0;
-        if ((cmd.id === "matrix-pause" || cmd.id === "matrix-resume") && reducedMotion) return 0;
-        if (cmd.id === "matrix-pause" && isPaused) return 0;
-        if (cmd.id === "matrix-resume" && !isPaused) return 0;
-
-        // matrix-enter: hidden by default; revealed by magic words or post-discovery
-        if (cmd.id === "matrix-enter") {
-          if (isDiscovered) {
-            if (!query) return 1;
-          } else {
-            if (!query) return 0;
-            const q = query.toLowerCase().trim();
-            const matches = MAGIC_WORDS.some(w => w.includes(q) || q.includes(w.split(" ")[0]));
-            return matches ? 9 : 0;
-          }
-        }
-
-        if (!query) return cmd.showByDefault ? 1 : 0;
-
-        const q = query.toLowerCase().trim();
-        const label = cmd.label.toLowerCase();
-        const desc = (cmd.description ?? "").toLowerCase();
-        const kws = cmd.keywords.join(" ").toLowerCase();
-
-        if (label === q || kws === q) return 10;
-        if (label.startsWith(q)) return 8;
-        if (kws.includes(q)) return 7;
-        if (label.includes(q)) return 6;
-        if (desc.includes(q)) return 5;
-        const words = q.split(/\s+/);
-        const matchCount = words.filter(w => kws.includes(w) || label.includes(w)).length;
-        if (matchCount > 0) return matchCount * 2;
-        return 0;
-      }
-
-      function getVisibleCommands(query: string): Command[] {
-        return COMMANDS
-          .map(cmd => ({ cmd, score: scoreCommand(cmd, query) }))
-          .filter(({ score }) => score > 0)
-          .sort((a, b) => b.score - a.score)
-          .map(({ cmd }) => cmd)
-          .slice(0, 8);
-      }
-
-      let activeIndex = -1;
-      let previouslyFocused: HTMLElement | null = null;
-
-      function renderResults(query: string) {
-        const commands = getVisibleCommands(query);
-        activeIndex = -1;
-        resultsList!.innerHTML = "";
-
-        if (commands.length === 0) {
-          const empty = document.createElement("li");
-          empty.className = "command-palette__empty";
-          empty.textContent = "No commands found";
-          empty.setAttribute("role", "option");
-          empty.setAttribute("aria-selected", "false");
-          resultsList!.appendChild(empty);
-          input!.removeAttribute("aria-activedescendant");
-          return;
-        }
-
-        commands.forEach((cmd, i) => {
-          const li = document.createElement("li");
-          li.className = "command-palette__action";
-          li.setAttribute("role", "option");
-          li.setAttribute("aria-selected", "false");
-          li.setAttribute("data-index", String(i));
-          li.id = `palette-option-${cmd.id}`;
-          li.tabIndex = -1;
-
-          const labelSpan = document.createElement("span");
-          labelSpan.className = "command-palette__action-label";
-          labelSpan.textContent = cmd.label;
-          li.appendChild(labelSpan);
-
-          if (cmd.description) {
-            const descSpan = document.createElement("span");
-            descSpan.className = "command-palette__shortcut";
-            descSpan.textContent = cmd.description;
-            li.appendChild(descSpan);
-          }
-
-          li.addEventListener("click", () => cmd.action());
-          li.addEventListener("mouseenter", () => setActive(i));
-          resultsList!.appendChild(li);
-        });
-
-        setActive(0);
-      }
-
-      function setActive(index: number) {
-        const items = resultsList!.querySelectorAll<HTMLElement>("[data-index]");
-        items.forEach((el, i) => {
-          const active = i === index;
-          el.setAttribute("aria-selected", String(active));
-          el.classList.toggle("command-palette__action--active", active);
-        });
-
-        activeIndex = index;
-        const activeItem = items[index];
-        if (activeItem) {
-          input!.setAttribute("aria-activedescendant", activeItem.id);
-        } else {
-          input!.removeAttribute("aria-activedescendant");
-        }
-      }
-
-      function activateCurrent() {
-        const items = resultsList!.querySelectorAll("[data-index]");
-        const el = items[activeIndex] as HTMLElement | undefined;
-        if (el) el.click();
-      }
-
-      function openPalette(query?: string) {
-        const q = query ?? "";
-
-        if (palette!.open) {
-          if (query !== undefined) {
-            input!.value = q;
-            renderResults(q);
-          }
-          input!.focus();
-          return;
-        }
-
-        previouslyFocused = document.activeElement instanceof HTMLElement
-          ? document.activeElement
-          : null;
-        input!.value = q;
-        palette!.showModal();
-        renderResults(q);
-        input!.focus();
-      }
-
-      function closePalette() {
-        if (!palette!.open) return;
-
-        palette!.close();
-        input!.value = "";
-        input!.removeAttribute("aria-activedescendant");
-
-        const focusTarget = previouslyFocused;
-        previouslyFocused = null;
-        queueMicrotask(() => focusTarget?.focus({ preventScroll: true }));
-      }
-
-      // Input events
-      input.addEventListener("input", () => renderResults(input!.value));
-
-      input.addEventListener("keydown", (e) => {
-        const items = resultsList!.querySelectorAll("[data-index]");
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          setActive(Math.min(activeIndex + 1, items.length - 1));
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          setActive(Math.max(activeIndex - 1, 0));
-        } else if (e.key === "Home") {
-          e.preventDefault();
-          setActive(items.length > 0 ? 0 : -1);
-        } else if (e.key === "End") {
-          e.preventDefault();
-          setActive(items.length - 1);
-        } else if (e.key === "Enter") {
-          e.preventDefault();
-          activateCurrent();
-        } else if (e.key === "Escape") {
-          e.preventDefault();
-          closePalette();
-        }
-      });
-
-      palette.addEventListener("click", (e) => {
-        if (e.target === palette) closePalette();
-      });
-
-      palette.addEventListener("cancel", (e) => {
-        e.preventDefault();
-        closePalette();
-      });
-
-      // Global keyboard: Cmd/Ctrl+K, and Escape (captured before matrix-mode)
-      window.addEventListener("keydown", (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-          e.preventDefault();
-          palette!.open ? closePalette() : openPalette();
-        }
-        if (e.key === "Escape" && palette!.open) {
-          e.stopImmediatePropagation();
-          closePalette();
-        }
-      }, true);
-
-      (window as any).__openCommandPalette = openPalette;
-      (window as any).__openPaletteWithQuery = openPalette;
-
-      document.getElementById("command-palette-trigger")?.addEventListener("click", () => openPalette());
-    }
-    </script>
+  </script>
 </header>
