@@ -21,7 +21,7 @@ import SelectedWork from "../components/project-card.astro";
         <h1 class="mb-3 text-5xl font-bold tracking-tight md:text-6xl">
           Hi, I'm Tyler Dalton.
         </h1>
-        <p class="max-w-xl text-xl leading-relaxed text-[var(--page-foreground)]/90 md:text-2xl">
+        <p class="max-w-xl text-xl leading-relaxed text-[var(--page-secondary)] md:text-2xl">
           Cybersecurity + Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.
         </p>
         <div class="mt-6 flex flex-wrap gap-4">
@@ -33,25 +33,24 @@ import SelectedWork from "../components/project-card.astro";
           </a>
           <a
             href="/contact"
-            class="inline-block rounded-full border border-[var(--page-foreground)]/60 px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[var(--page-foreground)] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)]"
+            class="inline-block rounded-full border border-[var(--page-border)] px-[1.6em] py-[0.65em] font-semibold tracking-[0.2em] text-[var(--page-foreground)] no-underline transition-all duration-200 hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)]"
           >
             Contact Me
           </a>
         </div>
       </div>
     </div>
+    <div class="mt-14 text-center md:mt-16">
+      <button
+        id="command-palette-trigger"
+        type="button"
+        class="command-hint"
+        aria-label="Open command palette"
+      >
+        Check out my command palette (<kbd>⌘ K / Ctrl + K</kbd>)
+      </button>
+    </div>
   </section>
-  <div class="px-4 pb-2 text-center">
-    <button
-      id="command-palette-trigger"
-      class="command-hint"
-      type="button"
-      aria-haspopup="dialog"
-      aria-controls="command-palette"
-    >
-      Check out my command palette <kbd>(⌘ K / Ctrl + K)</kbd>
-    </button>
-  </div>
   <!-- Importing About Terminal from Components -->
   <AboutTerminal />
   <!-- Selected Projects import from components -->
