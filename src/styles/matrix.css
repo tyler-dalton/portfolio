@@ -17,8 +17,7 @@
   --terminal-alert: #b8ff6e;
 
   /* Selection */
-  --matrix-selection-bg: rgba(57, 255, 110, 0.22);
-}
+  --matrix-selection-bg: rgba(57, 255, 110, 0.22); }
 
 /* ── Matrix canvas ─────────────────────────────────────────────────────────── */
 .matrix-canvas {
