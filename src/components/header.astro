@@ -212,6 +212,19 @@ const navItems = [
           action: () => setNormalTheme("light"),
         },
         {
+          id: "go-resume",
+          label: "Go to resume",
+          description: "Open the resume page",
+          keywords: ["resume", "cv", "experience", "education", "work history", "work"],
+          showByDefault: true,
+          requiresMatrix: false,
+          requiresNoMatrix: false,
+          action: () => {
+            closePalette();
+            if (window.location.pathname !== "/resume") window.location.assign("/resume");
+          },
+        },
+        {
           id: "matrix-enter",
           label: "Follow the white rabbit",
           description: "Enter Matrix mode",
