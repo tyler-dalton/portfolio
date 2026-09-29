@@ -1,0 +1,17 @@
+:root {
+  color-scheme: dark;
+  --page-background: #2c3e50;
+  --page-foreground: #ecf0f1;
+  --page-accent: #3498db;
+  --page-muted: #b7c5ce;
+  --page-border: rgba(236, 240, 241, 0.2);
+  --page-secondary: color-mix(in srgb, var(--page-foreground) 78%, transparent);
+  --terminal-background: #0f1720;
+  --terminal-chrome: #17212b;
+  --terminal-foreground: #ecf0f1;
+  --terminal-muted: rgba(236, 240, 241, 0.55);
+  --terminal-secondary: color-mix(in srgb, var(--terminal-foreground) 80%, transparent);
+  --terminal-prompt: #3498db;
+  --terminal-path: #8fb3c9;
+  --terminal-alert: #febc2e;
+}
