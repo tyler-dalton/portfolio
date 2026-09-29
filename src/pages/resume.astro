@@ -1,12 +1,111 @@
 ---
 import Layout from "../layouts/layout.astro";
-import { resume } from "../data/resume";
+import {
+  resume,
+  type ResumeEntry,
+  type ResumeLink,
+  type ResumeSection,
+} from "../data/resume";
 import "../styles/resume.css";
 ---
 
 <Layout title="Tyler Dalton | Resume">
-  <div class="resume-page"><div class="resume-shell">
-    <aside class="resume-intro"><h2 class="resume-title">My Resume</h2><div class="resume-actions"><a class="resume-download" href={resume.pdfHref} target="_blank" rel="noopener">Download PDF</a><div class="resume-links"><p class="resume-links-title">Relevant links</p>{resume.contact.links.map((link) => <a class="resume-link" href={link.href} target="_blank" rel="noopener">{link.label}</a>)}<a class="resume-link" href={`mailto:${resume.contact.email}`}>{resume.contact.email}</a></div></div></aside>
-    <section class="resume-sections" aria-label="Resume sections">{resume.sections.map((section) => <details class="resume-section" open={section.open}><summary class="resume-summary"><span class="resume-section-title">{section.title}</span><span class="resume-chevron" aria-hidden="true"></span></summary><div class="resume-panel">{section.entries?.map((entry) => <article class="resume-entry"><div class="resume-entry-heading"><h3>{entry.organization}</h3>{entry.location && <span class="resume-location">{entry.location}</span>}</div><div class="resume-role-row"><span class="resume-role">{entry.role}{!entry.details && entry.link && <> · <a class="resume-entry-link" href={entry.link.href} target={entry.link.href.startsWith("http") ? "_blank" : undefined} rel={entry.link.href.startsWith("http") ? "noopener" : undefined}>{entry.link.label}</a></>}</span>{entry.dates && <span class="resume-dates">{entry.dates}</span>}</div>{entry.details?.map((detail, index) => <p class="resume-detail">{detail}{index === entry.details!.length - 1 && entry.link && <> · <a class="resume-entry-link" href={entry.link.href}>{entry.link.label}</a></>}</p>)}{entry.bullets && <ul class="resume-bullets">{entry.bullets.map((bullet) => <li>{bullet}</li>)}</ul>}</article>)}{section.skills && <div class="resume-skills">{section.skills.map((skill) => <div class="resume-skill"><h3>{skill.label}</h3><p>{skill.values}</p></div>)}</div>}{section.note && <p class="resume-note">{section.note}</p>}</div></details>)}</section>
-  </div></div>
+  <div class="resume-page">
+    <div class="resume-shell">
+      <aside class="resume-intro">
+        <h2 class="resume-title">My Resume</h2>
+
+        <div class="resume-actions">
+          <a class="resume-download" href={resume.pdfHref} target="_blank" rel="noopener">
+            Download PDF
+          </a>
+
+          <div class="resume-links">
+            <p class="resume-links-title">Relevant links</p>
+            {resume.contact.links.map((link: ResumeLink) => (
+              <a class="resume-link" href={link.href} target="_blank" rel="noopener">
+                {link.label}
+              </a>
+            ))}
+            <a class="resume-link" href={`mailto:${resume.contact.email}`}>
+              {resume.contact.email}
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <section class="resume-sections" aria-label="Resume sections">
+        {resume.sections.map((section: ResumeSection) => (
+          <details class="resume-section" open={section.open}>
+            <summary class="resume-summary">
+              <span class="resume-section-title">{section.title}</span>
+              <span class="resume-chevron" aria-hidden="true"></span>
+            </summary>
+
+            <div class="resume-panel">
+              {section.entries?.map((entry: ResumeEntry) => (
+                <article class="resume-entry">
+                  <div class="resume-entry-heading">
+                    <h3>{entry.organization}</h3>
+                    {entry.location && <span class="resume-location">{entry.location}</span>}
+                  </div>
+
+                  <div class="resume-role-row">
+                    <span class="resume-role">
+                      {entry.role}
+                      {!entry.details && entry.link && (
+                        <>
+                          · <a
+                            class="resume-entry-link"
+                            href={entry.link.href}
+                            target={entry.link.href.startsWith("http") ? "_blank" : undefined}
+                            rel={entry.link.href.startsWith("http") ? "noopener" : undefined}
+                          >
+                            {entry.link.label}
+                          </a>
+                        </>
+                      )}
+                    </span>
+                    {entry.dates && <span class="resume-dates">{entry.dates}</span>}
+                  </div>
+
+                  {entry.details?.map((detail: string, index: number) => (
+                    <p class="resume-detail">
+                      {detail}
+                      {index === entry.details!.length - 1 && entry.link && (
+                        <>
+                          · <a class="resume-entry-link" href={entry.link.href}>
+                            {entry.link.label}
+                          </a>
+                        </>
+                      )}
+                    </p>
+                  ))}
+
+                  {entry.bullets && (
+                    <ul class="resume-bullets">
+                      {entry.bullets.map((bullet: string) => <li>{bullet}</li>)}
+                    </ul>
+                  )}
+                </article>
+              ))}
+
+              {section.skills && (
+                <div class="resume-skills">
+                  {section.skills.map((skill: { label: string; values: string }) => (
+                    <div class="resume-skill">
+                      <h3>{skill.label}</h3>
+                      <p>{skill.values}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {section.note && <p class="resume-note">{section.note}</p>}
+            </div>
+          </details>
+        ))}
+      </section>
+    </div>
+  </div>
 </Layout>
