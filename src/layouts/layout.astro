@@ -1,5 +1,6 @@
 ---
 import Header from "../components/header.astro";
+import CommandPalette from "../components/command-palette.astro";
 import Footer from "../components/footer.astro";
 import "../styles/global.css";
 
@@ -68,6 +69,7 @@ const { title = "Tyler Dalton" } = Astro.props;
     </div>
 
     <Header />
+    <CommandPalette />
 
     <main>
       <slot />
