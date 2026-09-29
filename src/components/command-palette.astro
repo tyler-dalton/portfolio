@@ -1,0 +1,214 @@
+<dialog id="command-palette" class="command-palette" aria-label="Command palette" aria-modal="true">
+  <div class="command-palette__search-wrap">
+    <label for="palette-input" class="sr-only">Search commands</label>
+    <input id="palette-input" type="text" class="command-palette__input" placeholder="Search commands..." autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-controls="palette-results" aria-haspopup="listbox" />
+  </div>
+  <ul id="palette-results" class="command-palette__results" role="listbox" aria-label="Commands"></ul>
+</dialog>
+
+<script>
+  const palette = document.getElementById("command-palette") as HTMLDialogElement | null;
+  const input = document.getElementById("palette-input") as HTMLInputElement | null;
+  const resultsList = document.getElementById("palette-results");
+
+  if (palette && input && resultsList) {
+    interface Command {
+      id: string;
+      label: string;
+      description: string | null;
+      keywords: string[];
+      showByDefault: boolean;
+      requiresMatrix: boolean;
+      requiresNoMatrix: boolean;
+      action: () => void;
+    }
+
+    let activeIndex = -1;
+    let previouslyFocused: HTMLElement | null = null;
+    const closePalette = () => {
+      if (!palette.open) return;
+      palette.close();
+      input.value = "";
+      input.removeAttribute("aria-activedescendant");
+      const focusTarget = previouslyFocused;
+      previouslyFocused = null;
+      queueMicrotask(() => focusTarget?.focus({ preventScroll: true }));
+    };
+    const setNormalTheme = (theme: "light" | "dark") => {
+      const matrix = (window as any).__matrix;
+      if (matrix?.isActive()) matrix.deactivate();
+      document.documentElement.dataset.theme = theme;
+      try { localStorage.setItem("theme", theme); } catch {}
+      closePalette();
+    };
+
+    const commands: Command[] = [
+      { id: "theme-dark",
+        label: "Switch to dark theme",
+        description: null,
+        keywords: ["dark", "theme", "night", "mode"],
+        showByDefault: true,
+        requiresMatrix: false, requiresNoMatrix: false,
+        action: () => setNormalTheme("dark") },
+      { id: "theme-light",
+        label: "Switch to light theme",
+        description: null,
+        keywords: ["light", "theme", "day", "mode"],
+        showByDefault: true,
+        requiresMatrix: false, requiresNoMatrix: false,
+        action: () => setNormalTheme("light") },
+      { id: "go-resume",
+        label: "Go to resume",
+        description: "Open the resume page",
+        keywords: ["resume", "cv", "experience", "education", "work history", "work"],
+        showByDefault: true,
+        requiresMatrix: false, requiresNoMatrix: false,
+        action: () => { closePalette();
+                        if (window.location.pathname !== "/resume")
+                        window.location.assign("/resume"); } },
+      { id: "matrix-enter",
+        label: "Follow the white rabbit",
+        description: "Enter Matrix mode",
+        keywords: ["matrix", "wake up", "white rabbit", "follow the white rabbit", "rabbit", "neo"],
+        showByDefault: false,
+        requiresMatrix: false, requiresNoMatrix: true,
+        action: () => { closePalette();
+                        const matrix = (window as any).__matrix;
+                        if (matrix) requestAnimationFrame(() => void matrix.activate()); } },
+      { id: "matrix-exit",
+        label: "Exit Matrix mode",
+        description: "Return to normal theme",
+        keywords: ["exit", "matrix", "leave", "normal", "return"],
+        showByDefault: true,
+        requiresMatrix: true, requiresNoMatrix: false,
+        action: () => { closePalette();
+                        (window as any).__matrix?.deactivate(); } },
+      { id: "matrix-pause",
+        label: "Pause rain",
+        description: "Pause the Matrix rain animation",
+        keywords: ["pause", "rain", "stop", "animation", "matrix"],
+        showByDefault: true,
+        requiresMatrix: true, requiresNoMatrix: false,
+        action: () => { (window as any).__matrix?.pause(); closePalette(); } },
+      { id: "matrix-resume",
+        label: "Resume rain",
+        description: "Resume the Matrix rain animation",
+        keywords: ["resume", "rain", "start", "animation", "play", "matrix"],
+        showByDefault: true,
+        requiresMatrix: true,
+        requiresNoMatrix: false,
+        action: () => { (window as any).__matrix?.resume(); closePalette(); } },
+    ];
+    const magicWords = ["matrix", "wake up", "white rabbit", "follow the white rabbit", "rabbit", "neo"];
+    const scoreCommand = (command: Command, query: string) => {
+      const matrix = (window as any).__matrix;
+      if (command.requiresMatrix && !matrix?.isActive())
+          return 0;
+      if (command.requiresNoMatrix && matrix?.isActive())
+          return 0;
+      if ((command.id === "matrix-pause" || command.id === "matrix-resume") && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return 0;
+      if (command.id === "matrix-pause" && matrix?.isPaused())
+          return 0;
+      if (command.id === "matrix-resume" && !matrix?.isPaused())
+          return 0;
+      if (command.id === "matrix-enter") {
+        if (matrix?.isDiscovered()) return query ? 1 : 1;
+        const normalized = query.toLowerCase().trim();
+        return normalized
+        && magicWords.some((word) => word.includes(normalized) || normalized.includes(word.split(" ")[0])) ? 9 : 0; }
+      if (!query)return command.showByDefault ? 1 : 0;
+
+      const normalized = query.toLowerCase().trim();
+      const label = command.label.toLowerCase();
+      const description = (command.description ?? "").toLowerCase();
+      const keywords = command.keywords.join(" ").toLowerCase();
+
+      if (label === normalized || keywords === normalized)
+          return 10;
+      if (label.startsWith(normalized))
+          return 8;
+      if (keywords.includes(normalized))
+          return 7;
+      if (label.includes(normalized))
+          return 6;
+      if (description.includes(normalized))
+          return 5;
+      return normalized.split(/\s+/).filter((word) => keywords.includes(word) || label.includes(word)).length * 2;
+    };
+    const setActive = (index: number) => {
+      const items = resultsList.querySelectorAll<HTMLElement>("[data-index]");
+      items.forEach((item, itemIndex) => {
+        const active = itemIndex === index;
+        item.setAttribute("aria-selected", String(active));
+        item.classList.toggle("command-palette__action--active", active);
+      });
+      activeIndex = index;
+      const activeItem = items[index];
+      if (activeItem) input.setAttribute("aria-activedescendant", activeItem.id);
+      else input.removeAttribute("aria-activedescendant");
+    };
+    const renderResults = (query: string) => {
+      const visibleCommands = commands.map((command) => ({ command, score: scoreCommand(command, query) })).filter(({ score }) => score > 0).sort((a, b) => b.score - a.score).map(({ command }) => command).slice(0, 8);
+      activeIndex = -1;
+      resultsList.innerHTML = "";
+      if (!visibleCommands.length) {
+        const empty = document.createElement("li");
+        empty.className = "command-palette__empty";
+        empty.textContent = "No commands found";
+        empty.setAttribute("role", "option");
+        resultsList.appendChild(empty);
+        input.removeAttribute("aria-activedescendant");
+        return;
+      }
+      visibleCommands.forEach((command, index) => {
+        const item = document.createElement("li");
+        item.className = "command-palette__action";
+        item.id = `palette-option-${command.id}`;
+        item.tabIndex = -1;
+        item.setAttribute("role", "option");
+        item.setAttribute("data-index", String(index));
+        item.innerHTML = `<span class="command-palette__action-label"></span>`;
+        item.querySelector(".command-palette__action-label")!.textContent = command.label;
+        if (command.description) {
+          const description = document.createElement("span");
+          description.className = "command-palette__shortcut";
+          description.textContent = command.description;
+          item.appendChild(description);
+        }
+        item.addEventListener("click", command.action);
+        item.addEventListener("mouseenter", () => setActive(index));
+        resultsList.appendChild(item);
+      });
+      setActive(0);
+    };
+    const openPalette = (query = "") => {
+      if (!palette.open) {
+        previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        palette.showModal();
+      }
+      input.value = query;
+      renderResults(query);
+      input.focus();
+    };
+    input.addEventListener("input", () => renderResults(input.value));
+    input.addEventListener("keydown", (event) => {
+      const items = resultsList.querySelectorAll("[data-index]");
+      if (event.key === "ArrowDown") { event.preventDefault(); setActive(Math.min(activeIndex + 1, items.length - 1)); }
+      else if (event.key === "ArrowUp") { event.preventDefault(); setActive(Math.max(activeIndex - 1, 0)); }
+      else if (event.key === "Home") { event.preventDefault(); setActive(items.length ? 0 : -1); }
+      else if (event.key === "End") { event.preventDefault(); setActive(items.length - 1); }
+      else if (event.key === "Enter") { event.preventDefault(); (items[activeIndex] as HTMLElement | undefined)?.click(); }
+      else if (event.key === "Escape") { event.preventDefault(); closePalette(); }
+    });
+    palette.addEventListener("click", (event) => { if (event.target === palette) closePalette(); });
+    palette.addEventListener("cancel", (event) => { event.preventDefault(); closePalette(); });
+    window.addEventListener("keydown", (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); palette.open ? closePalette() : openPalette(); }
+      if (event.key === "Escape" && palette.open) { event.stopImmediatePropagation(); closePalette(); }
+    }, true);
+    (window as any).__openCommandPalette = openPalette;
+    (window as any).__openPaletteWithQuery = openPalette;
+    document.getElementById("command-palette-trigger")?.addEventListener("click", () => openPalette());
+  }
+</script>
