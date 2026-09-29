@@ -13,5 +13,4 @@
   --terminal-secondary: color-mix(in srgb, var(--terminal-foreground) 80%, transparent);
   --terminal-prompt: #3498db;
   --terminal-path: #8fb3c9;
-  --terminal-alert: #febc2e;
-}
+  --terminal-alert: #febc2e; }
