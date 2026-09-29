@@ -1,6 +1,6 @@
 ---
 import Header from "../components/header.astro";
-import Footer from "../components/footer.astro"
+import Footer from "../components/footer.astro";
 import "../styles/global.css";
 
 const { title = "Tyler Dalton" } = Astro.props;
@@ -14,17 +14,93 @@ const { title = "Tyler Dalton" } = Astro.props;
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
-      const savedTheme = localStorage.getItem("theme");
-      document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
+      (function () {
+        try {
+          var ss = sessionStorage.getItem("matrix-session");
+          if (ss === "1") {
+            document.documentElement.dataset.theme = "matrix";
+            return;
+          }
+          var saved = localStorage.getItem("theme");
+          document.documentElement.dataset.theme = saved === "light" ? "light" : "dark";
+        } catch (e) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
     </script>
   </head>
 
   <body class="bg-[var(--page-background)] text-[var(--page-foreground)]">
+    <!-- Inert until Matrix mode starts. Keeping one mount point avoids duplicate canvases. -->
+    <canvas
+      id="matrix-canvas"
+      class="matrix-canvas"
+      aria-hidden="true"
+      role="presentation"
+    ></canvas>
+
+    <div
+      id="matrix-live"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only"
+    ></div>
+
+    <aside
+      id="matrix-rabbit-hint"
+      class="matrix-rabbit-hint"
+      aria-label="Site easter egg hint"
+      hidden
+    >
+      <p><span>Got some time?</span> Follow the white rabbit.</p>
+      <button id="matrix-rabbit-hint-dismiss" type="button" aria-label="Dismiss hint">×</button>
+    </aside>
+
+    <div
+      id="matrix-access-notice"
+      class="matrix-access-notice"
+      aria-hidden="true"
+      hidden
+    >
+      <p id="matrix-access-title" class="matrix-access-notice__title">ACCESS GRANTED</p>
+      <p id="matrix-access-detail" class="matrix-access-notice__detail">SYSTEM OVERRIDE // UNRESTRICTED ACCESS</p>
+    </div>
+
     <Header />
 
     <main>
       <slot />
     </main>
+
     <Footer />
+
+    <!-- Matrix controls (hidden until activated) -->
+    <div
+      id="matrix-controls"
+      aria-hidden="true"
+      hidden
+    >
+      <button
+        id="matrix-pause-btn"
+        type="button"
+        class="matrix-ctrl-btn"
+        aria-label="Pause matrix rain animation"
+      >Pause rain</button>
+      <button
+        id="matrix-exit-btn"
+        type="button"
+        class="matrix-ctrl-btn"
+        aria-label="Exit Matrix mode and return to normal theme"
+      >Exit Matrix</button>
+    </div>
+
+    <!-- Astro bundles this; Vite resolves the relative .ts import -->
+    <script>
+      import { initMatrix } from "../scripts/matrix-mode";
+      initMatrix().catch((error) => {
+        console.error("[matrix] initialization failed", error);
+      });
+    </script>
   </body>
 </html>
