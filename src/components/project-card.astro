@@ -8,7 +8,7 @@ const projects = [
     subtitle: "Standardized Kubernetes observability platform across RKE2 & OpenShift",
 
     description: [
-      "Built a standardized Helm-based monitoring platform around Prometheus, Grafana, Thanos and the Kubernetes monitoring ecosystem. The platform was designed to support multiple Kubernetes distributions from a common deployment strategy.",
+      "Built a standardized Helm-based monitoring platform around Prometheus, Grafana, Thanos and the Kubernetes monitoring ecosystem. The platform was designed to support multiple Kubernetes distributions from a common deployment stragegy.",
 
       "The project ultimately reached a classified, air-gapped environment at Wright-Patterson Air Force Base during the final week of my internship.",
     ],
@@ -32,8 +32,8 @@ const projects = [
     subtitle: "Computer networking, brought into the classroom, with real Cisco equipment",
 
     description: [
-      "Designed and organized portable Cisco networking lab kits to replace simulated Packet Tracer exercises with hands-on configuration experience.", 
-      
+      "Designed and organized portable Cisco networking lab kits to replace simulated Packet Tracer exercises with hands-on configuration experience.",
+
       "Each deployment bag contains the routing, switching, cabling, and endpoint hardware needed for students to build, configure, and troubleshoot real network topologies.",
     ],
 
@@ -54,7 +54,7 @@ const projects = [
       <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
         Selected Work
       </h2>
-      <a 
+      <a
         href="/projects"
         class="hidden text-sm text-[var(--page-muted)] transition-colors hover:text-[var(--page-foreground)] md:block"
       >
@@ -77,14 +77,14 @@ const projects = [
                 {project.organization}
               </p>
             </div>
-            <p class="mt-2 text-lg text-[var(--page-foreground)]/70">
+            <p class="mt-2 text-lg text-[var(--page-secondary)]">
               {project.subtitle}
             </p>
             {
               project.description.map((paragraph, index) => (
                 <p
                   class:list={[
-                    "max-w-3xl text-lg leading-relaxed text-[var(--page-foreground)]/75",
+                    "max-w-3xl text-lg leading-relaxed text-[var(--page-secondary)]",
                     index === 0 ? "mt-5" : "mt-4",
                   ]}
                 >
@@ -97,9 +97,9 @@ const projects = [
             </div>
             {
               project.href && (
-                <a 
-                  href={project.href} 
-                  class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 transition-colors hover:text-[var(--page-foreground)]"
+                <a
+                  href={project.href}
+                  class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 transition-colors hover:text-[var(--page-accent)]"
                 >
                   View project →
                 </a>
