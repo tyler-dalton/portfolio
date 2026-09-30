@@ -6036,14 +6036,30 @@
             width="10"
             height="10"
             rx="2"
-            fill="#405467"
+            fill="#1a4a6b"
             data-date="2026-09-29"
+            data-count="1"
+            tabindex="0"
+            role="img"
+            aria-label="2026-09-29: 1 contribution"
+          >
+            <title>2026-09-29: 1 contribution</title>
+          </rect>
+        
+          <rect
+            x="710"
+            y="63"
+            width="10"
+            height="10"
+            rx="2"
+            fill="#405467"
+            data-date="2026-09-30"
             data-count="0"
             tabindex="0"
             role="img"
-            aria-label="2026-09-29: 0 contributions"
+            aria-label="2026-09-30: 0 contributions"
           >
-            <title>2026-09-29: 0 contributions</title>
+            <title>2026-09-30: 0 contributions</title>
           </rect>
         
 
