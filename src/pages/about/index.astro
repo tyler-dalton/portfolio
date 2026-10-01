@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/layout.astro";
+import SectionHub from "../../components/section-hub.astro";
+---
+<Layout title="Tyler Dalton | About">
+  <SectionHub title="The person behind the systems."
+    intro="Context beyond a résumé: the interests, direction, and current focus that shape the work."
+    links={[
+      { label: "Personal",
+      href: "/about/personal",
+      description: "The parts of life that do not fit neatly in a job description." },
+
+      { label: "Now",
+      href: "/about/now",
+      description: "A short, current snapshot of focus and momentum." }]} />
+</Layout>
