@@ -72,6 +72,16 @@ export const projects: Project[] = [
     technologies: ["Astro", "TypeScript", "Tailwind CSS", "GitHub Actions"],
     featured: false,
     categories: ["development"] },
+  { slug: "homelab",
+    number: "05",
+    period: "Ongoing",
+    title: "Personal Homelab",
+    subtitle: "Self-hosted infrastructure built for learning and experimentation",
+    description: ["A multi-node lab that give me full ownership of the infrastructure stack. Bare metal virtualizing Proxmox with a deny-all firewall approach provided by OPNsense.",
+      "Built a long-term, flexible, and isolated sandbox environment for experimenting with new technologies, designing infrastructure from scratch, and solving the kinds of operational problems you don't see in guided labs."],
+    technologies: ["Proxmox VE", "OPNsense", "Terraform", "Docker"],
+    featured: false,
+    categories: ["infrastructure", "development"]},
   
 ];
 
