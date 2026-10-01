@@ -7,6 +7,84 @@ body {
   color: var(--page-foreground) !important;
   transition: background-color 180ms ease, color 180ms ease; }
 
+/* ── Hierarchical navigation ─────────────────────────────────────────────── */
+.site-header { position: relative; z-index: 20; }
+.site-nav-item { position: relative; }
+.site-nav-item:not(:first-child)::before {
+  position: absolute;
+  top: 50%;
+  left: -0.9rem;
+  color: var(--page-muted);
+  content: "|";
+  font-size: 1.25rem;
+  line-height: 1;
+  transform:
+  translateY(-50%); }
+
+.site-nav-link {
+  color: var(--page-foreground);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 150ms ease; }
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible,
+.site-nav-link--active { color: var(--page-accent); outline: none; }
+
+.site-nav-link--active { font-weight: 700; }
+
+.site-nav-caret {
+  display: inline-block;
+  margin-left: 0.35rem;
+  font-size: 0.58em;
+  vertical-align: 0.15em; }
+
+.site-nav-menu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: -1rem; z-index: 30;
+  display: grid;
+  min-width: 12rem;
+  padding: 0.5rem;
+  border: 1px solid var(--page-border);
+  border-radius: 0.75rem;
+  background:
+  color-mix(in srgb, var(--page-background) 96%, transparent);
+  box-shadow: 0 1rem 2.5rem rgba(15, 23, 32, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-0.35rem);
+  transition: opacity 150ms ease, transform 150ms ease;
+  backdrop-filter: blur(10px); }
+
+.site-nav-menu::before {
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  left: 0;
+  height: 0.5rem;
+  content: ""; }
+.site-nav-item:hover .site-nav-menu,
+.site-nav-item:focus-within .site-nav-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0); }
+
+.site-nav-menu-link {
+  display: block;
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.45rem;
+  color: var(--page-foreground);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease; }
+  
+.site-nav-menu-link:hover,
+.site-nav-menu-link:focus-visible {
+  background: color-mix(in srgb, var(--page-accent) 14%, transparent);
+  color: var(--page-accent);
+  outline: none; }
+
 /* ── Command palette ─────────────────────────────────────────────────────── */
 .command-hint {
   color: var(--page-muted);
@@ -102,6 +180,15 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.75rem;
   white-space: nowrap; }
+
+.command-palette__discovery {
+  margin: 0;
+  border-top: 1px solid var(--page-border);
+  color: var(--page-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  padding: 0.8rem 1.25rem; }
 
 /* ── ARIA live region ────────────────────────────────────────────────────── */
 .sr-only {
