@@ -24,7 +24,7 @@ const projects = projectsForView("featured");
           <h3 class="text-3xl font-bold">{project.title}</h3>
           {project.organization && <p class="font-mono text-sm text-[var(--page-muted)]">{project.organization}</p>}
         </div>
-        <p class="mt-2 text-lg text-[var(--page-secondary)]">{project.subtitle}</p>
+        {project.subtitle && <p class="mt-2 text-lg text-[var(--page-secondary)]">{project.subtitle}</p>}
         {project.description.map((paragraph, index) =>
         <p class:list={["max-w-3xl text-lg leading-relaxed text-[var(--page-secondary)]", index === 0 ? "mt-5" : "mt-4"]}>
           {paragraph}</p>)}
