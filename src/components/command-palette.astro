@@ -190,7 +190,10 @@
         showByDefault: false,
         requiresMatrix: false,
         requiresNoMatrix: true,
-        action: () => { closePalette(); const matrix = (window as any).__matrix; if (matrix) requestAnimationFrame(() => void matrix.activate()); } },
+        action: () => {
+          closePalette();
+          const matrix = (window as any).__matrix;
+          if (matrix) requestAnimationFrame(() => void matrix.activate()); } },
       { id: "matrix-exit",
         label: "Exit Matrix mode",
         description: "Return to normal theme",
@@ -198,7 +201,9 @@
         showByDefault: true,
         requiresMatrix: true,
         requiresNoMatrix: false,
-        action: () => { closePalette(); (window as any).__matrix?.deactivate(); } },
+        action: () => {
+          closePalette();
+          (window as any).__matrix?.deactivate(); } },
       { id: "matrix-pause",
         label: "Pause rain",
         description: "Pause the Matrix rain animation",
@@ -206,7 +211,9 @@
         showByDefault: true,
         requiresMatrix: true,
         requiresNoMatrix: false,
-        action: () => { (window as any).__matrix?.pause(); closePalette(); } },
+        action: () => {
+          (window as any).__matrix?.pause();
+          closePalette(); } },
       { id: "matrix-resume",
         label: "Resume rain",
         description: "Resume the Matrix rain animation",
@@ -214,7 +221,9 @@
         showByDefault: true,
         requiresMatrix: true,
         requiresNoMatrix: false,
-        action: () => { (window as any).__matrix?.resume(); closePalette(); } },];
+        action: () => {
+          (window as any).__matrix?.resume();
+          closePalette(); } },];
 
     const magicWords = ["matrix", "wake up", "white rabbit", "follow the white rabbit", "rabbit", "neo"];
     const scoreCommand = (command: Command, query: string) => {
@@ -268,7 +277,7 @@
         else input.removeAttribute("aria-activedescendant"); };
     const renderResults = (query: string) => {
       const visibleCommands = commands.map((command) =>
-      ({ command, score: scoreCommand(command, query) })).filter(({ score }) => score > 0).sort ((a, b) => b.score - a.score).map (({ command }) => command).slice(0, 8); discovery.hidden = Boolean(query.trim() && query.trim().toLowerCase() !== "help");
+      ({ command, score: scoreCommand(command, query) })).filter(({ score }) => score > 0).sort ((a, b) => b.score - a.score).map (({ command }) => command).slice(0, 8);discovery.hidden = Boolean(query.trim() && query.trim().toLowerCase() !== "help");
       activeIndex = -1;
       resultsList.innerHTML = "";
       if (!visibleCommands.length) {
@@ -329,6 +338,7 @@
 
     palette.addEventListener("click", (event) => { if (event.target === palette) closePalette(); });
     palette.addEventListener("cancel", (event) => { event.preventDefault(); closePalette(); });
+
     window.addEventListener("keydown", (event) => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
       palette.open ? closePalette() : openPalette(); }
@@ -336,9 +346,9 @@
         event.stopImmediatePropagation();
         closePalette(); } },
       true);
+
     (window as any).__openCommandPalette = openPalette;
     (window as any).__openPaletteWithQuery = openPalette;
 
-    document.getElementById("command-palette-trigger")?.addEventListener("click", () => openPalette());
-  }
+    document.getElementById("command-palette-trigger")?.addEventListener("click", () => openPalette());}
 </script>
