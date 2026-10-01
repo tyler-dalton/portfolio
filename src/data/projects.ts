@@ -137,7 +137,17 @@ export const projects: Project[] = [
     featured: false,
     categories: ["development"]
   },
-  
+  { slug: "homelab-nist-assessment",
+    number: "11",
+    period: "Winter 2026",
+    title: "Homelab NIST CSF Assessment",
+    subtitle: "Turning a personal lab into a measurable NIST-CSF aligned environment.",
+    description: ["A structured cybersecurity assessment of my homelab using the NIST 800-53 Cybersecurity Framework (CSF). This assessment was designed to move beyond \"it seems secure\" and evaluate the environment against defined security controls to provide measurable insights into the security posture of my personal lab environment. Existing architecture, controls, operational practices, and known weaknesses are mapped against the framework to establish a documented view of the lab's current security score.",
+      "The assessment converts findings into actionable infrastructure work rather than ending with a compliance-style checklist. Gaps are evaluated by a risk analysis matrix to prioritize improvements across network segmentation, firewall rules, access management, hardening, recovery, and documentation. For the sake of the integrity of my homelab, no... there is not any links!"],
+    technologies: ["NIST 800-53 CSF", "OPNsense firewall", "Cybersecurity Analysis"],
+    featured: false,
+    categories: ["cybersecurity", "infrastructure"]
+  }
 ];
 
 export const projectsForView = (view: ProjectView) =>
