@@ -62,6 +62,16 @@ export const projects: Project[] = [
     technologies: ["Kubernetes", "DevOps", "Helm", "Argo CD"],
     featured: true,
     categories: ["infrastructure", "development"] },
+  { slug: "personal-portfolio",
+    number: "04",
+    period: "Ongoing",
+    title: "Personal Portfolio",
+    subtitle: "Personal portfolio intentionally curated over hours of work",
+    description: ["A custom-built home for my projects, experience, and technical work. Designed to evolve alongside me rather than exist as a static credibility piece.",
+      "Focusing on creating a maintainable architecture while leaving room for personality and experimentation."],
+    technologies: ["Astro", "TypeScript", "Tailwind CSS", "GitHub Actions"],
+    featured: false,
+    categories: ["development"] },
   
 ];
 
