@@ -118,7 +118,7 @@ export const projects: Project[] = [
   { slug: "phishnet",
     number: "09",
     period: "Fall 2025",
-    title: "PhishNet, the corporate phishing platform",
+    title: "PhishNet Corporate Phishing Platform",
     subtitle: "Interactive phishing awareness built around recognizing the attack, not memorizing a lesson.",
     description: ["Managed a team of 5 other students to develop and deploy a corporate phishing awareness platform. A cybersecurity education project designed to make phishing awareness more practical than traditional slide-based trainings. The platform includes capabilities for simulating phishing attacks, tracking user responses, and providing interactive feedback.",
       "Developed by a five-person team, carried the responsibility of spanning project direction and project coordination, ensuring that the platform met educational objectives and provided a realistic phishing simulation experience. The project required translating cybersecurity concepts into an approachable user experience while balancing technical accuracy with material understandable to users without a background in security."],
