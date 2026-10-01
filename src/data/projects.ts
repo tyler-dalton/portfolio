@@ -91,6 +91,16 @@ export const projects: Project[] = [
     technologies: ["MCP", "RAG", "Hermes Agent harness", "Chroma", "VLAN segmentation"],
     featured: false,
     categories: ["infrastructure", "development"] },
+  { slug: "dotfiles",
+    number: "07",
+    period: "Ongoing",
+    title: "Linux Dotfiles Configuration",
+    subtitle: "A reproducible Linux environment built around the way I actually work.",
+    description: ["A version-controlled workstation configuration built to turn a fresh Linux flash into a familiar development environment without manually reproducing hours upon hours of preferences. GNU Stow manages the configuration layer while Bash is broken into modular aliases, functions, completions, and CLI tools that can evolve independently.",
+      "The project treats workstation configuration like maintained software rather than a collection of ad-hoc tweaks. ShellCheck CI validates shell conditions and ensures code quality. Bootstrap tooling handles repeatable setup, and Git provides a complete history and source of truth in changes across the terminal, shell, editor, CLI tooling, and system workflow."],
+    technologies: ["Kubuntu Linux", "Git", "GNU Stow", "bash", "ShellCheck"],
+    featured: false,
+    categories: ["development"] },
   
 ];
 
