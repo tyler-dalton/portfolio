@@ -23,8 +23,9 @@ const socialImageURL = new URL(image, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Canonical URL -->
+    <!-- Canonical states -->
     <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- FOR THE CRAWLERS!!! -->
     <meta property="og:type" content="website" />
