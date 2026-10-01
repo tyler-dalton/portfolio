@@ -6,7 +6,7 @@ export type Project = {
   number: string;
   period: string;
   title: string;
-  organization: string;
+  organization?: string;
   subtitle: string;
   description: string[];
   technologies: string[];
@@ -52,6 +52,17 @@ export const projects: Project[] = [
     technologies: ["Cisco IOS", "Project Management", "Routing & Switching"],
     featured: true,
     categories: ["infrastructure"] },
+  { slug: "k8s-cluster",
+    number: "03",
+    period: "Ongoing",
+    title: "Enterprise-grade Kubernetes Cluster",
+    subtitle: "Highly available and secure Kubernetes cluster for enterprise workloads",
+    description: ["Currently designing and deploying a Kubernetes cluster with intentions to mimic enterprise environments as closely as possible. Continuously evolving environment for learning how containerized systems work beyond the happy path-deploying services.",
+      "Leveraging the opportunity to experiment with the side of Kubernetes that established clusters already have - the setup. Using high availability, shared storage, GitOps and modern DevOps practices as management techniques." ],
+    technologies: ["Kubernetes", "DevOps", "Helm", "Argo CD"],
+    featured: true,
+    categories: ["infrastructure", "development"] },
+  
 ];
 
 export const projectsForView = (view: ProjectView) =>
