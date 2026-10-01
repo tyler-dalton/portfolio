@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/layout.astro";
+---
+<Layout title="Tyler Dalton | GitHub Activity">
+  <section class="px-4 py-16 md:py-24">
+    <div class="mx-auto max-w-[1100px]">
+      <h1 class="text-4xl font-bold tracking-tight md:text-6xl">
+        GitHub activity
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
+        A year of public contribution activity. The graph refreshes from GitHub as part of the portfolio’s regular update process.
+      </p><div class="mt-12 overflow-x-auto rounded-xl border border-[var(--page-border)] bg-[color-mix(in_srgb,var(--page-foreground)_4%,transparent)] p-5">
+        <img src="/github/contributions.svg" alt="Tyler Dalton's GitHub contributions over the last year" class="block min-w-[735px]" loading="lazy" />
+      </div>
+      <a href="https://github.com/tyler-dalton"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)]">
+        Visit @tyler-dalton on GitHub ↗
+      </a>
+    </div>
+  </section>
+</Layout>
