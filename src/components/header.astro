@@ -1,42 +1,83 @@
 ---
+import { isNavigationActive, navigation } from "../data/navigation";
 const currentPath = Astro.url.pathname;
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "Resume", href: "/resume" },
-  { label: "Personal", href: "/personal" },
-  { label: "Contact", href: "/contact" },
-];
 ---
-
-<header class="bg-[var(--page-background)] text-[var(--page-foreground)]">
-  <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-1">
+<header class="site-header bg-[var(--page-background)] text-[var(--page-foreground)]">
+  <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-4 py-2">
     <h1 class="m-0">
-      <a href="/" class="text-3xl font-bold tracking-tight text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]">Tyler Dalton</a>
+      <a href="/"
+      class="text-3xl font-bold tracking-tight text-[var(--page-foreground)] no-underline transition-colors
+      hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-[var(--page-accent)]">
+      Tyler Dalton</a>
     </h1>
-    <button id="nav-toggle" type="button" class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-      <span id="nav-bar-1" class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"></span>
-      <span id="nav-bar-2" class="h-0.5 w-7 bg-[var(--page-foreground)] transition-opacity duration-300"></span>
-      <span id="nav-bar-3" class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300"></span>
+    <button id="nav-toggle"
+      type="button"
+      class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors
+      hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav">
+      <span id="nav-bar-1"
+        class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300">
+      </span>
+      <span id="nav-bar-2"
+        class="h-0.5 w-7 bg-[var(--page-foreground)] transition-opacity duration-300">
+      </span>
+      <span id="nav-bar-3"
+        class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300">
+      </span>
     </button>
-    <nav class="hidden md:block">
-      <ul class="flex list-none items-center gap-6 p-3">
-        {navItems.map((item) => {
-          const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
-          return <li class="relative pl-6 first:pl-0 before:absolute before:left-0 before:text-[var(--page-muted)] before:content-['|'] first:before:hidden"><a href={item.href} aria-current={isActive ? "page" : undefined} class:list={["text-xl text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]", { "font-bold !text-[var(--page-accent)]": isActive }]}>{item.label}</a></li>;
-        })}
+    <nav class="hidden md:block"
+    aria-label="Primary navigation">
+      <ul
+        class="flex list-none items-center gap-6 p-3">{navigation.map((item) =>
+          <li class="site-nav-item">
+            <a href={item.href} aria-current={isNavigationActive(currentPath, item.href) ? "page" : undefined}
+            class:list={["site-nav-link", { "site-nav-link--active": isNavigationActive(currentPath, item.href) }]}>
+            {item.label}{item.children &&
+              <span
+              class="site-nav-caret"
+              aria-hidden="true">
+                ▼
+              </span>}
+            </a>{item.children &&
+            <div
+              class="site-nav-menu">{item.children.map((child) =>
+              <a href={child.href}
+                aria-current={currentPath === child.href ? "page" : undefined}
+                class="site-nav-menu-link">
+                <span>{child.label}</span>
+              </a>)}
+            </div>}
+          </li>)}
       </ul>
     </nav>
-    <nav id="mobile-nav" class="hidden w-full border-t border-[var(--page-border)] md:hidden" aria-label="Mobile">
-      <ul class="flex list-none flex-col gap-0 p-3">
-        {navItems.map((item) => {
-          const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
-          return <li><a href={item.href} aria-current={isActive ? "page" : undefined} class:list={["block py-3 text-lg text-[var(--page-foreground)] no-underline transition-colors duration-150 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]", { "font-bold !text-[var(--page-accent)]": isActive }]}>{item.label}</a></li>;
-        })}
+    <nav id="mobile-nav"
+      class="hidden w-full border-t border-[var(--page-border)] md:hidden"
+      aria-label="Mobile navigation">
+      <ul class="list-none p-3">
+        {navigation.map((item) => <li class="border-b border-[var(--page-border)] last:border-b-0">
+          <a href={item.href}
+            aria-current={isNavigationActive(currentPath, item.href) ? "page" : undefined}
+            class:list={["block py-3 text-lg no-underline transition-colors hover:text-[var(--page-accent)]",
+            { "font-bold text-[var(--page-accent)]": isNavigationActive(currentPath, item.href) }]}>
+            {item.label}
+          </a>
+          {item.children && <ul
+            class="mb-2 ml-4 list-none border-l border-[var(--page-border)] pl-4">{item.children.map((child) =>
+              <li>
+                <a href={child.href} aria-current={currentPath === child.href ? "page" : undefined}
+                class:list={["block py-2 text-sm no-underline transition-colors hover:text-[var(--page-accent)]",
+                currentPath === child.href ? "font-bold text-[var(--page-accent)]" : "text-[var(--page-secondary)]"]}>
+                {child.label}
+                </a>
+              </li>)}
+          </ul>}
+        </li>)}
       </ul>
     </nav>
   </div>
-
   <script>
     const toggle = document.getElementById("nav-toggle");
     const mobileNav = document.getElementById("mobile-nav");
@@ -50,21 +91,17 @@ const navItems = [
         toggle.setAttribute("aria-label", "Open menu");
         bar1?.classList.remove("translate-y-2", "rotate-45");
         bar2?.classList.remove("opacity-0");
-        bar3?.classList.remove("-translate-y-2", "-rotate-45");
-      };
+        bar3?.classList.remove("-translate-y-2", "-rotate-45"); };
+
       const openMenu = () => {
         mobileNav.classList.remove("hidden");
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "Close menu");
         bar1?.classList.add("translate-y-2", "rotate-45");
-        bar2?.classList.add("opacity-0");
-        bar3?.classList.add("-translate-y-2", "-rotate-45");
-      };
+        bar2?.classList.add("opacity-0"); bar3?.classList.add("-translate-y-2", "-rotate-45"); };
+
       toggle.addEventListener("click", () => toggle.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu());
-      mobileNav.addEventListener("click", (event) => {
-        if (event.target instanceof Element && event.target.closest("a")) closeMenu();
-      });
-      window.addEventListener("resize", () => { if (window.innerWidth >= 768) closeMenu(); });
-    }
+      mobileNav.addEventListener("click", (event) => { if (event.target instanceof Element && event.target.closest("a")) closeMenu(); });
+      window.addEventListener("resize", () => { if (window.innerWidth >= 768) closeMenu(); }); }
   </script>
 </header>
