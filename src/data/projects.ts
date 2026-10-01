@@ -121,10 +121,21 @@ export const projects: Project[] = [
     title: "PhishNet, the corporate phishing platform",
     subtitle: "Interactive phishing awareness built around recognizing the attack, not memorizing a lesson.",
     description: ["Managed a team of 5 other students to develop and deploy a corporate phishing awareness platform. A cybersecurity education project designed to make phishing awareness more practical than traditional slide-based trainings. The platform includes capabilities for simulating phishing attacks, tracking user responses, and providing interactive feedback.",
-      "Developed by a five-person team, carried the responsibility of spanning project direction and project coordination, ensuring that the platform met educational objectives and provided a realistic phishing simulation experience. The project required translating cybersecurity concepts into an approachable user experience while balancing technical accuracy with materal understandable to users without a background in security."],
+      "Developed by a five-person team, carried the responsibility of spanning project direction and project coordination, ensuring that the platform met educational objectives and provided a realistic phishing simulation experience. The project required translating cybersecurity concepts into an approachable user experience while balancing technical accuracy with material understandable to users without a background in security."],
     technologies: ["Cybersecurity", "Phishing Analysis", "Team Management", "Replit"],
     featured: false,
     categories: ["cybersecurity", "development"]
+  },
+  { slug: "digital-nfc-card",
+    number: "10",
+    period: "Fall 2026",
+    title: "Digital NFC business card",
+    subtitle: "A physical handshake into a digital identity.",
+    description: ["A programmable NFC business card that replaces the usual exchange of paper with a direct path into my digital footprint. A tap from your phone opens a purpose-built mobile landing page where someone can immediately find the information that matters after meeting me, rather than digging for it later.",
+      "The project connects a physical object to a web experience designed specifically for extremely quick contact information exchange immediately after meeting someone. Portfolio links, professional profiles such as LinkedIN and GitHub, and downloadable contact data are prioritized around one simple goal: turning a brief in-person introduction into a frictionless way to reconnect. If you ever find me, ask to try it out!"],
+    technologies: ["NFC", "Web Development", "vCard", "Mobile landing page"],
+    featured: false,
+    categories: ["development"]
   },
   
 ];
