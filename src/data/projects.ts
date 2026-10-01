@@ -5,13 +5,28 @@ export type Project = {
   slug: string;
   number: string;
   period: string;
+
   title: string;
+  subtitle?: string;
   organization?: string;
-  subtitle: string;
-  description: string[];
+
+  summary: string;
+  overview: string;
+
+  challenge: string;
+  context: string;
+  approach: string;
+  architecture: string;
+  decisions: string[];
+  obstacles: string[];
+  outcomes: string[];
+  lessons: string[];
+
   technologies: string[];
-  featured: boolean;
-  categories: ProjectCategory[] };
+  categories: ProjectCategory[];
+
+  featuredHome: boolean;
+  featuredProject: boolean};
 
 export const projectViews: { id: ProjectView; label: string; href: string }[] = [
   { id: "featured",
@@ -41,7 +56,8 @@ export const projects: Project[] = [
     description: ["Built a standardized Helm-based monitoring platform around Prometheus, Grafana, Thanos, and the Kubernetes monitoring ecosystem. The platform was designed to support multiple Kubernetes distributions from a common deployment strategy.",
       "The project ultimately reached a classified, air-gapped environment at Wright-Patterson Air Force Base during the final week of my internship."],
     technologies: ["Kubernetes", "Helm", "Prometheus", "Grafana", "OpenShift", "RKE2"],
-    featured: true,
+    featuredHome: true,
+    featuredProject: true,
     categories: ["infrastructure", "development"] },
   { slug: "networking-deployment-bags",
     number: "02",
@@ -52,7 +68,8 @@ export const projects: Project[] = [
     description: ["Designed and organized portable Cisco networking lab kits to replace simulated Packet Tracer exercises with hands-on configuration experience.",
       "Each deployment bag contains the routing, switching, cabling, and endpoint hardware needed for students to build, configure, and troubleshoot real network topologies."],
     technologies: ["Cisco IOS", "Project Management", "Microsoft Project"],
-    featured: true,
+    featuredHome: true,
+    featuredProject: true,
     categories: ["infrastructure"] },
   { slug: "k8s-cluster",
     number: "03",
@@ -62,7 +79,8 @@ export const projects: Project[] = [
     description: ["Currently designing and deploying a Kubernetes cluster with intentions to mimic enterprise environments as closely as possible. Continuously evolving environment for learning how containerized systems work beyond the happy path-deploying services.",
       "Leveraging the opportunity to experiment with the side of Kubernetes that established clusters already have - the setup. Using high availability, shared storage, GitOps and modern DevOps practices as management techniques." ],
     technologies: ["Kubernetes", "DevOps", "Helm", "Argo CD"],
-    featured: true,
+    featuredHome: true,
+    featuredProject: true,
     categories: ["infrastructure"] },
   { slug: "personal-portfolio",
     number: "04",
@@ -72,28 +90,31 @@ export const projects: Project[] = [
     description: ["A custom-built home for my projects, experience, and technical work. Designed to evolve alongside me rather than exist as a static credibility piece.",
       "Focusing on creating a maintainable architecture while leaving room for personality and experimentation."],
     technologies: ["Astro", "TypeScript", "Tailwind CSS", "GitHub Actions"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: true,
     categories: ["development"] },
-  { slug: "homelab",
-    number: "05",
-    period: "Ongoing",
-    title: "Personal Homelab",
-    subtitle: "Self-hosted infrastructure built for learning and experimentation",
-    description: ["A multi-node lab that give me full ownership of the infrastructure stack. Bare metal virtualizing Proxmox with a deny-all firewall approach provided by OPNsense.",
-      "Built a long-term, flexible, and isolated sandbox environment for experimenting with new technologies, designing infrastructure from scratch, and solving the kinds of operational problems you don't see in guided labs."],
-    technologies: ["Proxmox VE", "OPNsense", "Terraform", "Docker"],
-    featured: false,
-    categories: ["infrastructure"]},
   { slug: "pantheon-agents",
-    number: "06",
+    number: "05",
     period: "Ongoing",
     title: "Pantheon Agentic Environment",
     subtitle: "A governed environment for autonomous agents",
     description: ["An agentic environment designed around specialized AI workers that share context, collaborate through deployed workflows, and operate against a common knowledge base rather than functioning as isolated assistants. Deployed MCP context server using RAG for agentic querying.",
       "Built to explore the harder problems behind autonomous solutions. Balancing what workflows can be completely automated with those that require human oversight. Leveraging an AI harness to provision automated workflows & agent coordination. Each agent is 100% isolated to an individual VM with strict firewall rules only allowing traffic nessacary to complete the desired tasks."],
     technologies: ["MCP", "RAG", "Hermes Agent harness", "Chroma", "VLAN segmentation"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: true,
     categories: ["infrastructure", "development"] },
+  { slug: "homelab",
+    number: "06",
+    period: "Ongoing",
+    title: "Personal Homelab",
+    subtitle: "Self-hosted infrastructure built for learning and experimentation",
+    description: ["A multi-node lab that give me full ownership of the infrastructure stack. Bare metal virtualizing Proxmox with a deny-all firewall approach provided by OPNsense.",
+      "Built a long-term, flexible, and isolated sandbox environment for experimenting with new technologies, designing infrastructure from scratch, and solving the kinds of operational problems you don't see in guided labs."],
+    technologies: ["Proxmox VE", "OPNsense", "Terraform", "Docker"],
+    featuredHome: false,
+    featuredProject: false,
+    categories: ["infrastructure"]},
   { slug: "dotfiles",
     number: "07",
     period: "Ongoing",
@@ -102,7 +123,8 @@ export const projects: Project[] = [
     description: ["A version-controlled workstation configuration built to turn a fresh Linux flash into a familiar development environment without manually reproducing hours upon hours of preferences. GNU Stow manages the configuration layer while Bash is broken into modular aliases, functions, completions, and CLI tools that can evolve independently.",
       "The project treats workstation configuration like maintained software rather than a collection of ad-hoc tweaks. ShellCheck CI validates shell conditions and ensures code quality. Bootstrap tooling handles repeatable setup, and Git provides a complete history and source of truth in changes across the terminal, shell, editor, CLI tooling, and system workflow."],
     technologies: ["Git", "GNU Stow", "bash", "ShellCheck"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: false,
     categories: ["development"] },
   { slug: "1050-github",
     number: "08",
@@ -113,7 +135,8 @@ export const projects: Project[] = [
     description: ["Rebuilding course material around GitHub so students learn foundations IT concepts and the technical workflows used to manage real projects. Repositories are group-based, and comprise two modules worth of content. Teaches students about proper GitOps workflows, version control, and markdown formatting during their first semesters as an IT student.",
       "The environment is structured around teams that own their own private repositories. Each repository consists of controlled permissions, repeatable templated workflows, and observable contribution history. The system provides a practical introduction to commits, branches, pull requests, documentation, collaboration, markdown formatting, and accountability through the mechanics of completing the course itself."],
     technologies: ["GitHub", "Git", "Markdown", "GitHub Organizations"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: false,
     categories: ["development"] },
   { slug: "phishnet",
     number: "09",
@@ -123,7 +146,8 @@ export const projects: Project[] = [
     description: ["Managed a team of 5 other students to develop and deploy a corporate phishing awareness platform. A cybersecurity education project designed to make phishing awareness more practical than traditional slide-based trainings. The platform includes capabilities for simulating phishing attacks, tracking user responses, and providing interactive feedback.",
       "Developed by a five-person team, carried the responsibility of spanning project direction and project coordination, ensuring that the platform met educational objectives and provided a realistic phishing simulation experience. The project required translating cybersecurity concepts into an approachable user experience while balancing technical accuracy with material understandable to users without a background in security."],
     technologies: ["Cybersecurity", "Phishing Analysis", "Team Management", "Replit"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: false,
     categories: ["cybersecurity", "development"]
   },
   { slug: "digital-nfc-card",
@@ -134,7 +158,8 @@ export const projects: Project[] = [
     description: ["A programmable NFC business card that replaces the usual exchange of paper with a direct path into my digital footprint. A tap from your phone opens a purpose-built mobile landing page where someone can immediately find the information that matters after meeting me, rather than digging for it later.",
       "The project connects a physical object to a web experience designed specifically for extremely quick contact information exchange immediately after meeting someone. Portfolio links, professional profiles such as LinkedIN and GitHub, and downloadable contact data are prioritized around one simple goal: turning a brief in-person introduction into a frictionless way to reconnect. If you ever find me, ask to try it out!"],
     technologies: ["NFC", "Web Development", "vCard", "Mobile landing page"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: false,
     categories: ["development"]
   },
   { slug: "homelab-nist-assessment",
@@ -145,7 +170,8 @@ export const projects: Project[] = [
     description: ["A structured cybersecurity assessment of my homelab using the NIST 800-53 Cybersecurity Framework (CSF). This assessment was designed to move beyond \"it seems secure\" and evaluate the environment against defined security controls to provide measurable insights into the security posture of my personal lab environment. Existing architecture, controls, operational practices, and known weaknesses are mapped against the framework to establish a documented view of the lab's current security score.",
       "The assessment converts findings into actionable infrastructure work rather than ending with a compliance-style checklist. Gaps are evaluated by a risk analysis matrix to prioritize improvements across network segmentation, firewall rules, access management, hardening, recovery, and documentation. For the sake of the integrity of my homelab, no... there is not any links!"],
     technologies: ["NIST 800-53 CSF", "OPNsense firewall", "Cybersecurity Analysis"],
-    featured: false,
+    featuredHome: false,
+    featuredProject: false,
     categories: ["cybersecurity", "infrastructure"]
   }
 ];
