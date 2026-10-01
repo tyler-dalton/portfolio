@@ -1,0 +1,33 @@
+---
+interface Link { label: string; href: string; description: string }
+interface Props { title: string; intro: string; links: Link[] }
+const { title, intro, links } = Astro.props;
+---
+<section class="px-4 py-16 md:py-24">
+  <div class="mx-auto max-w-[1100px]">
+    <h1 class="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
+      {title}
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
+      {intro}
+    </p>
+    <div class="mt-12 grid gap-4 md:grid-cols-2">
+      {links.map((link, index) =>
+      <a href={link.href}
+      class="group rounded-xl border border-[var(--page-border)] p-6 no-underline transition-colors hover:border-[var(--page-accent)] hover:bg-[color-mix(in_srgb,var(--page-accent)_7%,transparent)]">
+        <p class="font-mono text-xs text-[var(--page-muted)]">
+          {String(index + 1).padStart(2, "0")}
+        </p>
+        <h2 class="mt-7 text-2xl font-semibold text-[var(--page-foreground)]">
+          {link.label}
+          <span class="ml-2 inline-block transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </h2>
+        <p class="mt-2 leading-relaxed text-[var(--page-secondary)]">
+          {link.description}
+        </p>
+      </a>)}
+    </div>
+  </div>
+</section>
