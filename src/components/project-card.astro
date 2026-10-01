@@ -1,113 +1,41 @@
 ---
-const projects = [
-  {
-    number: "01",
-    period: "Summer 2026",
-    title: "Panoptes",
-    organization: "Awetomaton",
-    subtitle: "Standardized Kubernetes observability platform across RKE2 & OpenShift",
-
-    description: [
-      "Built a standardized Helm-based monitoring platform around Prometheus, Grafana, Thanos and the Kubernetes monitoring ecosystem. The platform was designed to support multiple Kubernetes distributions from a common deployment stragegy.",
-
-      "The project ultimately reached a classified, air-gapped environment at Wright-Patterson Air Force Base during the final week of my internship.",
-    ],
-
-    technologies: [
-      "Kubernetes",
-      "Helm",
-      "Prometheus",
-      "Grafana",
-      "Openshift",
-      "RKE2",
-    ],
-
-    href: "/projects",
-  },
-  {
-    number: "02",
-    period: "Fall 2026",
-    title: "Computer Networking Deployment Bags",
-    organization: "University of Cincinnati",
-    subtitle: "Computer networking, brought into the classroom, with real Cisco equipment",
-
-    description: [
-      "Designed and organized portable Cisco networking lab kits to replace simulated Packet Tracer exercises with hands-on configuration experience.",
-
-      "Each deployment bag contains the routing, switching, cabling, and endpoint hardware needed for students to build, configure, and troubleshoot real network topologies.",
-    ],
-
-    technologies: [
-      "Cisco IOS",
-      "Project Management",
-      "Routing & Switching",
-    ],
-
-    href: "/projects",
-  },
-];
+import { projectsForView } from "../data/projects";
+const projects = projectsForView("featured");
 ---
-
 <section class="px-4 py-20">
   <div class="mx-auto max-w-[1100px]">
     <div class="flex items-end justify-between border-b border-[var(--page-border)] pb-4">
       <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
         Selected Work
       </h2>
-      <a
-        href="/projects"
-        class="hidden text-sm text-[var(--page-muted)] transition-colors hover:text-[var(--page-foreground)] md:block"
-      >
-        View all projects →
+      <a href="/work/projects"
+        class="hidden text-sm text-[var(--page-muted)] transition-colors hover:text-[var(--page-foreground)] md:block">
+          View all projects →
       </a>
     </div>
-    {
-      projects.map((project) => (
-        <article class="grid gap-6 border-b border-[var(--page-border)] py-10 md:grid-cols-[180px_1fr]">
-          <div class="font-mono text-sm text-[var(--page-muted)]">
-            <p>{project.number}</p>
-            <p class="mt-1">{project.period}</p>
+    {projects.map((project) =>
+    <article class="grid gap-6 border-b border-[var(--page-border)] py-10 md:grid-cols-[180px_1fr]">
+      <div class="font-mono text-sm text-[var(--page-muted)]">
+        <p>{project.number}</p>
+        <p class="mt-1">{project.period}</p>
+      </div>
+      <div>
+        <div class="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+          <h3 class="text-3xl font-bold">{project.title}</h3>
+          <p class="font-mono text-sm text-[var(--page-muted)]">{project.organization}</p>
+        </div>
+        <p class="mt-2 text-lg text-[var(--page-secondary)]">{project.subtitle}</p>
+        {project.description.map((paragraph, index) =>
+        <p class:list={["max-w-3xl text-lg leading-relaxed text-[var(--page-secondary)]", index === 0 ? "mt-5" : "mt-4"]}>
+          {paragraph}</p>)}
+          <div class="mt-6 font-mono text-sm text-[var(--page-muted)]">
+            {project.technologies.join(" / ")}
           </div>
-          <div>
-            <div class="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
-              <h3 class="text-3xl font-bold">
-                {project.title}
-              </h3>
-              <p class="font-mono text-sm text-[var(--page-muted)]">
-                {project.organization}
-              </p>
-            </div>
-            <p class="mt-2 text-lg text-[var(--page-secondary)]">
-              {project.subtitle}
-            </p>
-            {
-              project.description.map((paragraph, index) => (
-                <p
-                  class:list={[
-                    "max-w-3xl text-lg leading-relaxed text-[var(--page-secondary)]",
-                    index === 0 ? "mt-5" : "mt-4",
-                  ]}
-                >
-                  {paragraph}
-                </p>
-              ))
-            }
-            <div class="mt-6 font-mono text-sm text-[var(--page-muted)]">
-              {project.technologies.join(" / ")}
-            </div>
-            {
-              project.href && (
-                <a
-                  href={project.href}
-                  class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 transition-colors hover:text-[var(--page-accent)]"
-                >
-                  View project →
-                </a>
-              )
-            }
-          </div>
-        </article>
-      ))
-    }
+          <a href="/work/projects/featured"
+            class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 transition-colors hover:text-[var(--page-accent)]">
+          View project →
+          </a>
+      </div>
+    </article>)}
   </div>
 </section>
