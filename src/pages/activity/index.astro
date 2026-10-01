@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/layout.astro";
+import SectionHub from "../../components/section-hub.astro";
+---
+<Layout title="Tyler Dalton | Activity">
+  <SectionHub
+    title="A record of work in motion."
+    intro="Updates, contribution history, and context for what is being built over time."
+    links={[
+      { label: "GitHub",
+      href: "/activity/github",
+      description: "Contribution activity and open-source presence." },
+
+      { label: "Timeline",
+      href: "/activity/timeline",
+      description: "Milestones and projects in chronological context." },
+
+      { label: "Changelog",
+      href: "/activity/changelog",
+      description: "Notes on changes to this portfolio." }]} />
+</Layout>
