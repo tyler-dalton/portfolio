@@ -5,6 +5,7 @@ import Footer from "../components/footer.astro";
 import "../styles/global.css";
 
 const { title = "Tyler Dalton",
+        socialTitle = title,
         description = "Cybersecurity and Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.",
         image = "/og-image.png", } = Astro.props;
 
@@ -24,7 +25,7 @@ const socialImageURL = new URL(image, Astro.site);
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tyler Dalton" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
@@ -33,7 +34,7 @@ const socialImageURL = new URL(image, Astro.site);
     <meta property="og:image:alt" content="Tyler Dalton portfolio"/>
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageURL} />
     <meta name="twitter:image:alt" content="Tyler Dalton portfolio" />
