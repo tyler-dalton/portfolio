@@ -13,14 +13,14 @@ export type Project = {
   summary: string;
   overview: string;
 
-  challenge: string;
-  context: string;
-  approach: string;
-  architecture: string;
-  decisions: string[];
-  obstacles: string[];
-  outcomes: string[];
-  lessons: string[];
+  challenge?: string;
+  context?: string;
+  approach?: string;
+  architecture?: string;
+  decisions?: string[];
+  obstacles?: string[];
+  outcomes?: string[];
+  lessons?: string[];
 
   technologies: string[];
   categories: ProjectCategory[];
@@ -53,6 +53,8 @@ export const projects: Project[] = [
     title: "Panoptes",
     organization: "Awetomaton",
     subtitle: "Standardized Kubernetes observability platform across RKE2 & OpenShift",
+    summary: "A portable Kubernetes observability platform built to deliver a consistent monitoring stack across RKE2, OpenShift, and other Kubernetes distributions.",
+    overview: ""
     description: ["Built a standardized Helm-based monitoring platform around Prometheus, Grafana, Thanos, and the Kubernetes monitoring ecosystem. The platform was designed to support multiple Kubernetes distributions from a common deployment strategy.",
       "The project ultimately reached a classified, air-gapped environment at Wright-Patterson Air Force Base during the final week of my internship."],
     technologies: ["Kubernetes", "Helm", "Prometheus", "Grafana", "OpenShift", "RKE2"],
