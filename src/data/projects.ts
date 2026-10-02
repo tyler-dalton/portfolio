@@ -3,12 +3,18 @@ export type ProjectView = "featured" | "all" | ProjectCategory | "cybersecurity"
 
 export type Project = {
   slug: string;
-  number: string;
-  period: string;
-
   title: string;
   subtitle?: string;
   organization?: string;
+  role?: string;
+
+  period: string;
+  start: string; // YYYY-MM
+  end?: string; // YYYY-MM
+  status?: "complete" | "ongoing" | "archived";
+
+  categories: ProjectCategory[];
+  technologies: string[];
 
   summary: string;
   overview: string;
@@ -22,11 +28,12 @@ export type Project = {
   outcomes?: string[];
   lessons?: string[];
 
-  technologies: string[];
-  categories: ProjectCategory[];
+  repo?: string;
+  links?: string[];
 
   featuredHome: boolean;
-  featuredProject: boolean};
+  featuredProject: boolean;
+  featuredTimeline: boolean;};
 
 export const projectViews: { id: ProjectView; label: string; href: string }[] = [
   { id: "featured",
