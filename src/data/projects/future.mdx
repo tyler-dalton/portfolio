@@ -44,13 +44,13 @@ media:
         Buc-ee the Beaver statue outside Buc-ee's in Huber Heights, Ohio.
       caption: "Essential team-building exercise: field trip for lunch at Buc-ee's."
 
-      src: /media/panoptes/awetomaton-biking.webp
+    - src: /media/panoptes/awetomaton-biking.webp
       alt: >
         Awetomaton team members with mountain bikes and helmets outdoors at a
         park in Beavercreek, Ohio before a group ride.
       caption: Helmets on, and zero casualties. Successful, yet challenging mountain bike trail ride.
 
-      src: /media/panoptes/awetomaton-first-day.webp
+    - src: /media/panoptes/awetomaton-first-day.webp
       alt: >
         Six Awetomaton interns standing side by side in front of the Awetomaton
         wall logo on their first day of the internship program.
@@ -69,13 +69,16 @@ show:
 
 Panoptes was developed during my Summer 2026 internship at Awetomaton to standardize how Kubernetes environments were
 monitored across different distributions and deployment targets. Working in unison with my partner Colin Kremer,
-we took a journey through the *entire development process*. We had the opportunity to sit down with senior engineers
-to gather insights to the biggest pain points in the current implemented solutions, and what improvements could
-increase QOL for them and their teams. The platform packages Prometheus, Grafana, Thanos, and supporting
-monitoring components behind a reusable Helm-based deployment strategy, allowing the same core observability architecture
-to move between RKE2 and OpenShift while accommodating environment-specific requirements. The development of the project
-was done with four main languages: YAML, Go, Mustache, and JSON. The project progressed from development and testing
-environments to deployment in a classified, air-gapped environment at Wright-Patterson Air Force Base.
+we took a journey through the *entire development process*. We had the opportunity to sit down with senior engineers to
+gather insights to the biggest pain points in the current implemented solutions, and what improvements could be made to
+increase QOL for them and their teams.
+
+The platform packages Prometheus, Grafana, Thanos, and supporting monitoring components behind a reusable Helm-based
+deployment strategy, allowing the same core observability architecture to move between RKE2 and OpenShift while
+accommodating environment-specific requirements.
+
+The development of the project was achieved with four main languages: YAML, Go, Mustache, and JSON. The project progressed
+from development and testing environments to deployment in a classified, air-gapped environment at Wright-Patterson Air Force Base.
 
 ## Challenge
 
@@ -96,87 +99,147 @@ Common observability solutions become important for engineering teams because it
 members to understand. For example, management can look the same data through switching context between different teams.
 If a member needs to switch teams, they can gain understanding of the cluster with a seamless transition, no additional onboarding required.
 
-One large 
+One additional large motivator for this approach we the need to surface problem states of the cluster
+that are not immediately visible through existing monitoring solutions. Current monitoring tools that the teams were
+using were effective, but they often let environment-specific issues slip through the cracks. Building a centralized
+proprietary observability platform allowed the design and implementation of the product to become extremely granular.
+As a member of the development team, I had the ability to define what scrapers were incorporated, all the way down to
+a central color coordination theme depicting different states and severities within the cluster.
 
 ## Approach
 
 I approached Panoptes as a platform rather than a collection of monitoring applications.
 Helm provided the primary packaging and configuration layer, with reusable templates and environment-specific values
-separating common behavior from deployment-specific requirements. Monitoring components were integrated around
-Prometheus for metrics collection, Grafana for visualization, and Thanos for extending the metrics architecture.
+separating common behavior from deployment-specific requirements.
 The deployment strategy was repeatedly validated against both RKE2 and OpenShift so distribution-specific behavior
 could be handled without fragmenting the project into independent implementations.
 
+Iterative development was one factor that was crucial to refining the platform and ensuring it met the diverse needs
+of different teams. Consistent communication with the senior engineers and direct superiors helped steer the project
+towards meaningful improvements, while deterring solutions that were misaligned, ineffective, or unfeasible given the scope of the project.
+
 ## Architecture
 
-Panoptes uses Helm as the abstraction layer around a Kubernetes-native observability stack.
-Prometheus provides metrics collection and monitoring, Grafana provides dashboards and visualization, and Thanos extends
-the Prometheus architecture for scalable metrics handling. Shared chart logic defines the common platform while
-configuration and deployment overlays account for differences between RKE2, OpenShift, and individual target environments.
-The resulting architecture allows the same source-controlled platform to be packaged and deployed across connected and
-air-gapped Kubernetes environments.
+Panoptes uses Helm as the abstraction layer around a Kubernetes-native observability stack. Helm is a tooling framework
+designed specifically for Kubernetes management. Many DevOps teams leverage Helm due to the consistency, reusability,
+and manageability it brings to Kubernetes deployments. Deploying Helm charts and developing Helm charts are two distinct skills,
+each with its own set of best practices and challenges. On the platform team, no one had ever built their own Helm chart.
+This presented a fun, but challenging learning experience. I had limited knowledge about the companies workflows, and
+others at the company had limited experience with developing Helm charts.
+
+The stack consisted of multiple open-source software (OSS) applications bundled together into a cohesive upstream chart,
+conceptually known as an umbrella chart. The individual OSS applications integrated were as follows:
+
+### TLDR:
+
+| Component | Role in the stack |
+|---|---|
+| kube-prometheus-stack | Core metrics collection and alerting |
+| grafana-operator | Manages Grafana resources declaratively |
+| thanos | Enables aggregation, scaling, and long-term retention (LTS) |
+
+### Hierarchical View
+
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+subgraph PAN["Panoptes Helm"]
+
+  subgraph PRO["kube-prometheus-stack"]
+    direction TB
+    PRO1["Prometheus"]
+    PRO2["Alertmanager"]
+    PRO3["kube-apiserver<br/>kube-state-metrics<br/>kubelet"]
+    PRO4["node-exporter"]
+  end
+  subgraph GO["grafana-operator"]
+    direction TB
+    GO1["Grafana"]
+    GO2["Grafana CRDs"]
+    GO3["Dashboards CR"]
+    GO4["Datasources CR"]
+  end
+  subgraph THAN["thanos"]
+    direction TB
+    THAN1["Thanos Sidecar"]
+    THAN2["Thanos Querier"]
+    THAN3["Thanos Store Gateway"]
+    THAN4["Thanos Compactor"]
+  end
+end
+
+classDef component fill:#121a24,stroke:#21658d,stroke-width:1.5px,color:#e6edf3;
+class PRO1,PRO2,PRO3,PRO4,GO1,GO2,GO3,GO4,THAN1,THAN2,THAN3,THAN4 component;
+
+style PAN fill:#0d141c,stroke:#4b9fd1,stroke-width:2px,color:#f4f8ff
+style PRO fill:#101b27,stroke:#2d7199,stroke-width:1.5px,color:#dcecff
+style GO fill:#101b27,stroke:#2d7199,stroke-width:1.5px,color:#dcecff
+style THAN fill:#101b27,stroke:#2d7199,stroke-width:1.5px,color:#dcecff
+```
+visuals provided by mermaid.
+
+Conceptually, these are all the components that fit into the Panoptes Helm chart. Prometheus provides metrics collection
+and monitoring, Grafana provides dashboards and visualization, and Thanos extends the Prometheus architecture for scalable metrics handling.
+Each component was not thrown in "just to add another feature", but rather intentionally designed to fulfill a distinct
+purpose within Panoptes.
+
+### Dependency Grid
+
+```txt
+Panoptes Helm
+├── kube-prometheus-stack
+│   ├── Prometheus
+│   ├── Alertmanager
+│   ├── node-exporter
+│   └── kube-state-metrics
+├── Grafana Operator
+│   ├── Grafana
+│   ├── Datasources CR
+│   ├── Dashboards CR
+│   └── CRDs
+└── Thanos
+    ├── Sidecar
+    ├── Query
+    ├── Store Gateway
+    └── Compactor
+```
+
+Shared chart logic defines the common platform while configuration and deployment overlays account for differences between
+RKE2, OpenShift, and individual target environments. The resulting architecture allows the same source-controlled platform
+to be packaged and deployed across connected and air-gapped Kubernetes environments.
 
 ## Decisions
 
-- Used Helm as the primary abstraction layer so one platform could support
-multiple Kubernetes distributions without maintaining independent deployments.
-
-- Separated common platform behavior from environment-specific configuration to
-keep RKE2 and OpenShift differences from fragmenting the codebase.
-
-- Built around established Kubernetes monitoring components rather than
-developing proprietary replacements for metrics collection and visualization.
-
-- Designed portability and offline deployment into the platform so restricted
-environments could use the same core architecture as connected clusters.
-
-- Treated dashboards, monitoring configuration, and deployment behavior as
-source-controlled infrastructure rather than manually configured cluster state.
+- Used Helm as the primary abstraction layer so one platform could support multiple Kubernetes distributions without maintaining independent deployments.
+- Separated common platform behavior from environment-specific configuration to keep RKE2 and OpenShift differences from fragmenting the codebase.
+- Built around established Kubernetes monitoring components rather than developing proprietary replacements for metrics collection and visualization.
+- Developed resources to be generated automatically to streamline engineering workflows and reduce manual intervention come deployment.
+- Designed portability and offline deployment into the platform so restricted environments could use the same core architecture as connected clusters.
+- Treated dashboards, monitoring configuration, and deployment behavior as source-controlled infrastructure rather than manually configured cluster state.
 
 ## Obstacles
 
-- Supporting RKE2 and OpenShift exposed differences in platform behavior,
-security constraints, and Kubernetes resources that could not always be abstracted away.
-
-- Air-gapped deployment removed assumptions about public registries, package retrieval,
-and external network access that are normally taken for granted during Kubernetes deployments.
-
-- Maintaining reusable Helm templates while still allowing substantial environment-specific
-behavior required carefully separating defaults, overrides, and distribution-specific configuration.
-
-- Observability components have significant dependencies on one another, so
-changes had to be evaluated as changes to the platform rather than isolated application upgrades.
+- Supporting RKE2 and OpenShift exposed differences in platform behavior, security constraints, and Kubernetes resources that could not always be abstracted away.
+- Air-gapped deployment removed assumptions about public registries, package retrieval, and external network access that are normally taken for granted during Kubernetes deployments.
+- Maintaining reusable Helm templates while still allowing substantial environment-specific behavior required carefully separating defaults, overrides, and distribution-specific configuration.
+- Observability components have significant dependencies on one another, so changes had to be evaluated as changes to the platform rather than isolated application upgrades.
 
 ## Outcomes
 
-- Produced a reusable observability platform capable of supporting both RKE2 and
-OpenShift from a common deployment strategy.
-
-- Standardized deployment of Prometheus, Grafana, Thanos, and supporting Kubernetes
-monitoring components through source-controlled configuration.
-
-- Reduced the need for environment-specific monitoring implementations by moving
-distribution differences behind reusable configuration and deployment patterns.
-
-- Successfully progressed the platform into a classified, air-gapped environment
-at Wright-Patterson Air Force Base during the final week of the internship.
-
-- Created a foundation that could be extended with additional monitoring capabilities,
-dashboards, alerts, and deployment targets without redesigning the entire platform.
+- Produced a reusable observability platform capable of supporting both RKE2 and OpenShift from a common deployment strategy.
+- Standardized deployment of Prometheus, Grafana, Thanos, and supporting Kubernetes monitoring components through source-controlled configuration.
+- Reduced the need for environment-specific monitoring implementations by moving distribution differences behind reusable configuration and deployment patterns.
+- Successfully progressed the platform into a classified, air-gapped environment at Wright-Patterson Air Force Base during the final week of the internship.
+- Created a foundation that could be extended with additional monitoring capabilities, dashboards, alerts, and deployment targets without redesigning the entire platform.
+- **Cut engineering effort by over 85%**
 
 ## Lessons
 
-- Portability is not the same as pretending every Kubernetes distribution behaves
-identically; good platform abstractions preserve common behavior while explicitly accommodating meaningful differences.
-
-- Air-gapped infrastructure changes architectural assumptions early in the design process,
-particularly around artifacts, dependencies, registries, and repeatability.
-
-- Helm becomes significantly more maintainable when templates represent reusable
-platform behavior and values represent environmental differences.
-
-- Observability is most useful when treated as infrastructure with a lifecycle of
-its own rather than as tooling installed after an application is deployed.
-
-- Building for a real deployment target exposed integration and operational problems
-that would have remained invisible in a development-only implementation.
+- Portability is not the same as pretending every Kubernetes distribution behaves identically; good platform abstractions preserve common behavior while explicitly accommodating meaningful differences.
+- Air-gapped infrastructure changes architectural assumptions early in the design process, particularly around artifacts, dependencies, registries, and repeatability.
+- Helm becomes significantly more maintainable when templates represent reusable platform behavior and values represent environmental differences.
+- Observability is most useful when treated as infrastructure with a lifecycle of its own rather than as tooling installed after an application is deployed.
+- Building for a real deployment target exposed integration and operational problems that would have remained invisible in a development-only implementation.
