@@ -1,5 +1,5 @@
 export type ProjectCategory = "infrastructure" | "development" | "cybersecurity";
-export type ProjectView = "featured" | "all" | ProjectCategory | "cybersecurity";
+export type ProjectView = "featured" | "all" | "cybersecurity" | "misc" | ProjectCategory;
 
 export type Project = {
   slug: string;
@@ -33,7 +33,7 @@ export type Project = {
 
   featuredHome: boolean;
   featuredProject: boolean;
-  featuredTimeline: boolean;};
+  featuredTimeline: boolean};
 
 export const projectViews: { id: ProjectView; label: string; href: string }[] = [
   { id: "featured",
@@ -50,8 +50,10 @@ export const projectViews: { id: ProjectView; label: string; href: string }[] = 
     href: "/work/projects/development" },
   { id: "cybersecurity",
     label: "Cybersecurity",
-    href: "/work/projects/cybersecurity" }
-];
+    href: "/work/projects/cybersecurity" },
+  { id: "misc",
+    label: "Miscellaneous",
+    href: "/work/projects/misc" }];
 
 export const projects: Project[] = [
   { slug: "panoptes",
