@@ -67,68 +67,42 @@ show:
 
 ## Overview
 
-Panoptes was developed during my Summer 2026 internship at Awetomaton to standardize how Kubernetes environments were
-monitored across different distributions and deployment targets. Working in unison with my partner Colin Kremer,
-we took a journey through the *entire development process*. We had the opportunity to sit down with senior engineers to
-gather insights to the biggest pain points in the current implemented solutions, and what improvements could be made to
-increase QOL for them and their teams.
+Panoptes was developed during my Summer 2026 internship at Awetomaton to standardize how Kubernetes environments were monitored across different distributions and deployment targets. Before Panoptes, monitoring deployments consisted of environment-specific approaches that introduced inconsistent behavior and additional maintenance overhead.
 
-The platform packages Prometheus, Grafana, Thanos, and supporting monitoring components behind a reusable Helm-based
-deployment strategy, allowing the same core observability architecture to move between RKE2 and OpenShift while
+Working alongside my project partner, Colin Kremer, I was involved *throughout the full development lifecycle*. From requirements gathering and architecture discussions to implementation, testing, and deployment.
+
+We met with senior engineers to understand the limitations of existing monitoring solutions, gather insights into the biggest pain points, and what improvements could be made to increase engineer quality of life. Identifying recurring operational pain points led us to determine where a more consistent and maintainable approach could improve their workflows.
+
+The resulting platform packages Prometheus, Grafana, Thanos, and supporting monitoring components behind a reusable Helm-based
+deployment strategy. This allows the same core observability architecture to operate across RKE2 and OpenShift while
 accommodating environment-specific requirements.
 
-The development of the project was achieved with four main languages: YAML, Go, Mustache, and JSON. The project progressed
-from development and testing environments to deployment in a classified, air-gapped environment at Wright-Patterson Air Force Base.
+Panoptes was primarily developed using YAML, Go, Mustache, and JSON, with an emphasis on reusable configuration and deployment automation. The project progressed
+from local development and testing environments through production-oriented validation and was **ultimately deployed into a classified, air-gapped environment at Wright-Patterson Air Force Base.**
 
 ## Challenge
 
-Kubernetes monitoring becomes difficult to standardize when the target environments do not share the same distribution
-or security constraints. One large factor that is quite apparent in the defense industry is that
-**production environments are air-gapped**, in other words, lack internet connectivity. The challenge was
-to create one maintainable observability platform that could preserve a common architecture
-across RKE2 and OpenShift without pretending the environments were identical.
+Kubernetes monitoring becomes difficult to standardize when the target environments do not share the same distribution or security constraints. One large factor that is quite apparent in the defense industry is that **production environments are air-gapped**, in other words, lack internet connectivity. The challenge was to create one maintainable observability platform that could preserve a common architecture across RKE2 and OpenShift without pretending the environments were identical.
 
 ## Context
 
-The project began as an internship effort to improve the repeatability and portability of Kubernetes observability deployments.
-Rather than maintaining separate monitoring implementations for each environment, Panoptes needed to provide a common
-deployment model that could be configured for different clusters and eventually operate in environments with strict
-network isolation and no direct access to public registries or external services.
+The project began as an internship effort to improve the repeatability and portability of Kubernetes observability deployments. Rather than maintaining separate monitoring implementations for each environment, Panoptes needed to provide a common deployment model that could be configured for different clusters and eventually operate in environments with strict network isolation and no direct access to public registries or external services.
 
-Common observability solutions become important for engineering teams because it creates *one common language* for all
-members to understand. For example, management can look the same data through switching context between different teams.
-If a member needs to switch teams, they can gain understanding of the cluster with a seamless transition, no additional onboarding required.
+Common observability solutions become important for engineering teams because it creates *one common language* for all members to understand. For example, management can look at the same data through the lens of different teams without switching context between different teams. If a member needs to switch teams, they can gain an understanding of the cluster with a seamless transition, no additional onboarding required.
 
-One additional large motivator for this approach we the need to surface problem states of the cluster
-that are not immediately visible through existing monitoring solutions. Current monitoring tools that the teams were
-using were effective, but they often let environment-specific issues slip through the cracks. Building a centralized
-proprietary observability platform allowed the design and implementation of the product to become extremely granular.
-As a member of the development team, I had the ability to define what scrapers were incorporated, all the way down to
-a central color coordination theme depicting different states and severities within the cluster.
+One additional large motivator for this approach we the need to surface problem states of the cluster that are not immediately visible through existing monitoring solutions. Current monitoring tools that the teams were using were effective, but they often let environment-specific issues slip through the cracks. Building a centralized proprietary observability platform allowed the design and implementation of the product to become extremely granular. As a member of the development team, I had the ability to define what scrapers were incorporated, all the way down to a central color coordination theme depicting different states and severities within the cluster.
 
 ## Approach
 
-I approached Panoptes as a platform rather than a collection of monitoring applications.
-Helm provided the primary packaging and configuration layer, with reusable templates and environment-specific values
-separating common behavior from deployment-specific requirements.
-The deployment strategy was repeatedly validated against both RKE2 and OpenShift so distribution-specific behavior
-could be handled without fragmenting the project into independent implementations.
+I approached Panoptes as a platform rather than a collection of monitoring applications. Helm provided the primary packaging and configuration layer, with reusable templates and environment-specific values separating common behavior from deployment-specific requirements. The deployment strategy was repeatedly validated against both RKE2 and OpenShift so distribution-specific behavior could be handled without fragmenting the project into independent implementations.
 
-Iterative development was one factor that was crucial to refining the platform and ensuring it met the diverse needs
-of different teams. Consistent communication with the senior engineers and direct superiors helped steer the project
-towards meaningful improvements, while deterring solutions that were misaligned, ineffective, or unfeasible given the scope of the project.
+Iterative development was one factor that was crucial to refining the platform and ensuring it met the diverse needs of different teams. Consistent communication with the senior engineers and direct superiors helped steer the project towards meaningful improvements, while deterring solutions that were misaligned, ineffective, or unfeasible given the scope of the project.
 
 ## Architecture
 
-Panoptes uses Helm as the abstraction layer around a Kubernetes-native observability stack. Helm is a tooling framework
-designed specifically for Kubernetes management. Many DevOps teams leverage Helm due to the consistency, reusability,
-and manageability it brings to Kubernetes deployments. Deploying Helm charts and developing Helm charts are two distinct skills,
-each with its own set of best practices and challenges. On the platform team, no one had ever built their own Helm chart.
-This presented a fun, but challenging learning experience. I had limited knowledge about the companies workflows, and
-others at the company had limited experience with developing Helm charts.
+Panoptes uses Helm as the abstraction layer around a Kubernetes-native observability stack. Helm is a tooling framework designed specifically for Kubernetes management. Many DevOps teams leverage Helm due to the consistency, reusability, and manageability it brings to Kubernetes deployments. Deploying Helm charts and developing Helm charts are two distinct skills, each with its own set of best practices and challenges. On the platform team, no one had ever built their own Helm chart. This presented a fun, but challenging learning experience. I had limited knowledge about the companies workflows, and others at the company had limited experience with developing Helm charts.
 
-The stack consisted of multiple open-source software (OSS) applications bundled together into a cohesive upstream chart,
-conceptually known as an umbrella chart. The individual OSS applications integrated were as follows:
+The stack consisted of multiple open-source software (OSS) applications bundled together into a cohesive upstream chart, conceptually known as an umbrella chart. The individual OSS applications integrated were as follows:
 
 ### TLDR:
 
@@ -181,10 +155,7 @@ style THAN fill:#101b27,stroke:#2d7199,stroke-width:1.5px,color:#dcecff
 ```
 visuals provided by mermaid.
 
-Conceptually, these are all the components that fit into the Panoptes Helm chart. Prometheus provides metrics collection
-and monitoring, Grafana provides dashboards and visualization, and Thanos extends the Prometheus architecture for scalable metrics handling.
-Each component was not thrown in "just to add another feature", but rather intentionally designed to fulfill a distinct
-purpose within Panoptes.
+Conceptually, these are all the components that fit into the Panoptes Helm chart. Prometheus provides metrics collection and monitoring, Grafana provides dashboards and visualization, and Thanos extends the Prometheus architecture for scalable metrics handling. Each component was not thrown in "just to add another feature", but rather intentionally designed to fulfill a distinct purpose within Panoptes.
 
 ### Dependency Grid
 
@@ -207,9 +178,7 @@ Panoptes Helm
     └── Compactor
 ```
 
-Shared chart logic defines the common platform while configuration and deployment overlays account for differences between
-RKE2, OpenShift, and individual target environments. The resulting architecture allows the same source-controlled platform
-to be packaged and deployed across connected and air-gapped Kubernetes environments.
+Shared chart logic defines the common platform while configuration and deployment overlays account for differences between RKE2, OpenShift, and individual target environments. The resulting architecture allows the same source-controlled platform to be packaged and deployed across connected and air-gapped Kubernetes environments.
 
 ## Decisions
 
