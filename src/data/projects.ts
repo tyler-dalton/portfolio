@@ -9,9 +9,9 @@ export type Project = {
   role?: string;
 
   period: string;
-  start: string; // YYYY-MM
-  end?: string; // YYYY-MM
-  status?: "complete" | "building" | "archived" | "maintained";
+  start: string; // MM-YYYY
+  end?: string; // MM-YYYY
+  status?: "completed" | "building" | "archived" | "maintained";
 
   categories: ProjectCategory[];
   technologies: string[];
@@ -56,6 +56,7 @@ export const projectViews: { id: ProjectView; label: string; href: string }[] = 
     href: "/work/projects/misc" }];
 
 export const projects: Project[] = [
+  // TODO: Add OSS contributions
   { slug: "panoptes",
     number: "01",
     period: "Summer 2026",

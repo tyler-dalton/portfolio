@@ -74,14 +74,16 @@ to gather insights to the biggest pain points in the current implemented solutio
 increase QOL for them and their teams. The platform packages Prometheus, Grafana, Thanos, and supporting
 monitoring components behind a reusable Helm-based deployment strategy, allowing the same core observability architecture
 to move between RKE2 and OpenShift while accommodating environment-specific requirements. The development of the project
-was done with four main languages: YAML, Go, Mustache, and JSON. The project progressed from development and testing environments to deployment in a classified, air-gapped environment at Wright-Patterson Air Force Base.
+was done with four main languages: YAML, Go, Mustache, and JSON. The project progressed from development and testing
+environments to deployment in a classified, air-gapped environment at Wright-Patterson Air Force Base.
 
 ## Challenge
 
-Kubernetes monitoring becomes difficult to standardize when the target environments do not share the same distribution,
-networking assumptions, security constraints, or access to external resources. The challenge was to create one
-maintainable observability platform that could preserve a common architecture across RKE2 and OpenShift without pretending
-the environments were identical.
+Kubernetes monitoring becomes difficult to standardize when the target environments do not share the same distribution
+or security constraints. One large factor that is quite apparent in the defense industry is that
+**production environments are air-gapped**, in other words, lack internet connectivity. The challenge was
+to create one maintainable observability platform that could preserve a common architecture
+across RKE2 and OpenShift without pretending the environments were identical.
 
 ## Context
 
@@ -89,6 +91,12 @@ The project began as an internship effort to improve the repeatability and porta
 Rather than maintaining separate monitoring implementations for each environment, Panoptes needed to provide a common
 deployment model that could be configured for different clusters and eventually operate in environments with strict
 network isolation and no direct access to public registries or external services.
+
+Common observability solutions become important for engineering teams because it creates *one common language* for all
+members to understand. For example, management can look the same data through switching context between different teams.
+If a member needs to switch teams, they can gain understanding of the cluster with a seamless transition, no additional onboarding required.
+
+One large 
 
 ## Approach
 
