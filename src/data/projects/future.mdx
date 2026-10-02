@@ -1,0 +1,174 @@
+---
+slug: panoptes
+title: Panoptes
+subtitle: Standardized Kubernetes observability platform
+organization: Awetomaton
+role: Platform Engineer
+location: Beavercreek, Ohio
+
+period: Summer 2026
+start: 05-2026
+end: 08-2026
+status: completed
+
+categories:
+  - infrastructure
+  - development
+
+technologies:
+  - Kubernetes
+  - Agile development
+  - Helm
+  - UI/UX
+  - Prometheus
+  - Grafana
+  - OpenShift
+  - Rancher (RKE2)
+
+summary: >
+  A portable Kubernetes observability platform built to deliver a consistent
+  monitoring stack across RKE2 and OpenShift ending in a successful deployment
+  into a classified, air-gapped environment.
+
+links:
+  - label: View the LinkedIn post
+    url: https://www.linkedin.com/feed/update/urn:li:activity:7494381133749452801/
+
+media:
+  hero: /media/panoptes/panoptes.svg
+
+  gallery:
+    - src: /media/panoptes/awetomaton-bucees.webp
+      alt: >
+        Awetomaton interns and team members holding lunch around the bronze
+        Buc-ee the Beaver statue outside Buc-ee's in Huber Heights, Ohio.
+      caption: "Essential team-building exercise: field trip for lunch at Buc-ee's."
+
+      src: /media/panoptes/awetomaton-biking.webp
+      alt: >
+        Awetomaton team members with mountain bikes and helmets outdoors at a
+        park in Beavercreek, Ohio before a group ride.
+      caption: Helmets on, and zero casualties. Successful, yet challenging mountain bike trail ride.
+
+      src: /media/panoptes/awetomaton-first-day.webp
+      alt: >
+        Six Awetomaton interns standing side by side in front of the Awetomaton
+        wall logo on their first day of the internship program.
+      caption: >
+        First day jitters! Fresh hair, clean shirts, and no idea what was in store
+        for us this summer.
+
+show:
+  home: true
+  projectFeature: true
+  resume: true
+  timeline: true
+---
+
+## Overview
+
+Panoptes was developed during my Summer 2026 internship at Awetomaton to standardize how Kubernetes environments were
+monitored across different distributions and deployment targets. Working in unison with my partner Colin Kremer,
+we took a journey through the *entire development process*. We had the opportunity to sit down with senior engineers
+to gather insights to the biggest pain points in the current implemented solutions, and what improvements could
+increase QOL for them and their teams. The platform packages Prometheus, Grafana, Thanos, and supporting
+monitoring components behind a reusable Helm-based deployment strategy, allowing the same core observability architecture
+to move between RKE2 and OpenShift while accommodating environment-specific requirements. The development of the project
+was done with four main languages: YAML, Go, Mustache, and JSON. The project progressed from development and testing environments to deployment in a classified, air-gapped environment at Wright-Patterson Air Force Base.
+
+## Challenge
+
+Kubernetes monitoring becomes difficult to standardize when the target environments do not share the same distribution,
+networking assumptions, security constraints, or access to external resources. The challenge was to create one
+maintainable observability platform that could preserve a common architecture across RKE2 and OpenShift without pretending
+the environments were identical.
+
+## Context
+
+The project began as an internship effort to improve the repeatability and portability of Kubernetes observability deployments.
+Rather than maintaining separate monitoring implementations for each environment, Panoptes needed to provide a common
+deployment model that could be configured for different clusters and eventually operate in environments with strict
+network isolation and no direct access to public registries or external services.
+
+## Approach
+
+I approached Panoptes as a platform rather than a collection of monitoring applications.
+Helm provided the primary packaging and configuration layer, with reusable templates and environment-specific values
+separating common behavior from deployment-specific requirements. Monitoring components were integrated around
+Prometheus for metrics collection, Grafana for visualization, and Thanos for extending the metrics architecture.
+The deployment strategy was repeatedly validated against both RKE2 and OpenShift so distribution-specific behavior
+could be handled without fragmenting the project into independent implementations.
+
+## Architecture
+
+Panoptes uses Helm as the abstraction layer around a Kubernetes-native observability stack.
+Prometheus provides metrics collection and monitoring, Grafana provides dashboards and visualization, and Thanos extends
+the Prometheus architecture for scalable metrics handling. Shared chart logic defines the common platform while
+configuration and deployment overlays account for differences between RKE2, OpenShift, and individual target environments.
+The resulting architecture allows the same source-controlled platform to be packaged and deployed across connected and
+air-gapped Kubernetes environments.
+
+## Decisions
+
+- Used Helm as the primary abstraction layer so one platform could support
+multiple Kubernetes distributions without maintaining independent deployments.
+
+- Separated common platform behavior from environment-specific configuration to
+keep RKE2 and OpenShift differences from fragmenting the codebase.
+
+- Built around established Kubernetes monitoring components rather than
+developing proprietary replacements for metrics collection and visualization.
+
+- Designed portability and offline deployment into the platform so restricted
+environments could use the same core architecture as connected clusters.
+
+- Treated dashboards, monitoring configuration, and deployment behavior as
+source-controlled infrastructure rather than manually configured cluster state.
+
+## Obstacles
+
+- Supporting RKE2 and OpenShift exposed differences in platform behavior,
+security constraints, and Kubernetes resources that could not always be abstracted away.
+
+- Air-gapped deployment removed assumptions about public registries, package retrieval,
+and external network access that are normally taken for granted during Kubernetes deployments.
+
+- Maintaining reusable Helm templates while still allowing substantial environment-specific
+behavior required carefully separating defaults, overrides, and distribution-specific configuration.
+
+- Observability components have significant dependencies on one another, so
+changes had to be evaluated as changes to the platform rather than isolated application upgrades.
+
+## Outcomes
+
+- Produced a reusable observability platform capable of supporting both RKE2 and
+OpenShift from a common deployment strategy.
+
+- Standardized deployment of Prometheus, Grafana, Thanos, and supporting Kubernetes
+monitoring components through source-controlled configuration.
+
+- Reduced the need for environment-specific monitoring implementations by moving
+distribution differences behind reusable configuration and deployment patterns.
+
+- Successfully progressed the platform into a classified, air-gapped environment
+at Wright-Patterson Air Force Base during the final week of the internship.
+
+- Created a foundation that could be extended with additional monitoring capabilities,
+dashboards, alerts, and deployment targets without redesigning the entire platform.
+
+## Lessons
+
+- Portability is not the same as pretending every Kubernetes distribution behaves
+identically; good platform abstractions preserve common behavior while explicitly accommodating meaningful differences.
+
+- Air-gapped infrastructure changes architectural assumptions early in the design process,
+particularly around artifacts, dependencies, registries, and repeatability.
+
+- Helm becomes significantly more maintainable when templates represent reusable
+platform behavior and values represent environmental differences.
+
+- Observability is most useful when treated as infrastructure with a lifecycle of
+its own rather than as tooling installed after an application is deployed.
+
+- Building for a real deployment target exposed integration and operational problems
+that would have remained invisible in a development-only implementation.
