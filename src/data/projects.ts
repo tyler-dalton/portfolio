@@ -11,7 +11,7 @@ export type Project = {
   period: string;
   start: string; // YYYY-MM
   end?: string; // YYYY-MM
-  status?: "complete" | "ongoing" | "archived";
+  status?: "complete" | "building" | "archived" | "maintained";
 
   categories: ProjectCategory[];
   technologies: string[];
@@ -31,9 +31,9 @@ export type Project = {
   repo?: string;
   links?: string[];
 
-  featuredHome: boolean;
-  featuredProject: boolean;
-  featuredTimeline: boolean};
+  showHome: boolean;
+  showProject: boolean;
+  showTimeline: boolean};
 
 export const projectViews: { id: ProjectView; label: string; href: string }[] = [
   { id: "featured",
