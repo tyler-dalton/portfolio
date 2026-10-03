@@ -1,0 +1,62 @@
+---
+const stages = [
+  {
+    title: "Kubernetes environment",
+    accent: "border-sky-500",
+    nodes: ["Cluster + workloads", "Exporters + Kubernetes metrics"],
+    flow: "Metrics are collected in-cluster",
+  },
+  {
+    title: "Metrics layer",
+    accent: "border-red-500",
+    nodes: ["Prometheus", "Alertmanager"],
+    flow: "Prometheus supplies live metrics and alerts",
+  },
+  {
+    title: "Thanos layer",
+    accent: "border-violet-500",
+    nodes: ["Sidecar", "Query", "Store Gateway", "Compactor"],
+    flow: "Extends Prometheus with federation and long-term access",
+  },
+  {
+    title: "Long-term storage",
+    accent: "border-amber-500",
+    nodes: ["S3 bucket", "TSDB blocks", "Historical data"],
+    flow: "Stores and serves durable metric history",
+  },
+  {
+    title: "Visualization layer",
+    accent: "border-emerald-500",
+    nodes: ["Grafana", "Dashboards", "Datasources"],
+    flow: "Combines live and historical data for operators",
+  },
+];
+---
+
+<section class="relative left-1/2 my-10 w-[calc(100vw-2rem)] max-w-[1100px] -translate-x-1/2 rounded-xl border border-[var(--page-border)] bg-[color-mix(in_srgb,var(--page-foreground)_4%,transparent)] p-5 sm:p-8" aria-label="Panoptes operational architecture">
+  <ol class="grid gap-3 lg:grid-cols-5 lg:gap-2" role="list">
+    {stages.map((stage, index) => (
+      <li class="relative min-w-0">
+        <article class:list={["h-full rounded-lg border-l-4 border border-[var(--page-border)] bg-[var(--page-background)] p-4", stage.accent]}>
+          <p class="font-mono text-xs text-[var(--page-muted)]">Stage {index + 1}</p>
+          <h5 class="mt-2 text-base font-semibold text-[var(--page-foreground)]">{stage.title}</h5>
+          <ul class="mt-4 space-y-2" role="list">
+            {stage.nodes.map((node) => (
+              <li class="rounded border border-[var(--page-border)] px-3 py-2 text-sm leading-snug text-[var(--page-secondary)]">{node}</li>
+            ))}
+          </ul>
+          <p class="mt-4 text-sm leading-relaxed text-[var(--page-muted)]">{stage.flow}</p>
+        </article>
+        {index < stages.length - 1 && (
+          <div class="flex h-8 items-center justify-center text-xl text-[var(--page-muted)] lg:absolute lg:-right-3 lg:top-1/2 lg:z-10 lg:h-auto lg:-translate-y-1/2 lg:bg-[var(--page-background)] lg:px-1" aria-hidden="true"><span class="lg:hidden">↓</span><span class="hidden lg:inline">→</span></div>
+        )}
+      </li>
+    ))}
+  </ol>
+
+  <div class="mt-8 grid gap-3 border-t border-[var(--page-border)] pt-6 text-sm text-[var(--page-secondary)] md:grid-cols-3">
+    <p><span class="font-semibold text-[var(--page-foreground)]">Live path:</span> Prometheus feeds Grafana directly for current cluster state.</p>
+    <p><span class="font-semibold text-[var(--page-foreground)]">Durable path:</span> Sidecar and Compactor write blocks to S3; Store Gateway reads them back.</p>
+    <p><span class="font-semibold text-[var(--page-foreground)]">Unified query:</span> Thanos Query combines live Prometheus and historical S3-backed data.</p>
+  </div>
+</section>
