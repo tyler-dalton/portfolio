@@ -73,7 +73,7 @@
         label: "Change to dark theme",
         description: null,
         keywords: ["dark", "theme", "night", "mode"],
-        showByDefault: false,
+        showByDefault: true,
         requiresMatrix: false,
         requiresNoMatrix: false,
         action: () => setNormalTheme("dark") },
@@ -239,7 +239,7 @@
       const matrix = (window as any).__matrix;
       const currentTheme = document.documentElement.dataset.theme ?? "dark";
 
-      if (command.id === "theme-dark" && currentTheme === "dark")
+      if (command.id === `theme-${currentTheme}`)
         return 0;
       if (command.requiresMatrix && !matrix?.isActive())
         return 0;
