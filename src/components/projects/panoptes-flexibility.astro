@@ -1,0 +1,17 @@
+---
+const diagram = String.raw`                    Panoptes
+                       |
+             Shared Helm Templates
+                       |
+              Shared Chart Logic
+                       |
+          +------------+------------+
+          |                         |
+     RKE2 Values              OpenShift Values
+          |                         |
+   Environment A              Environment B
+          |                         |
+ Connected / Air-gap       Connected / Air-gap`;
+---
+
+<pre class="my-8 overflow-x-auto rounded-lg border border-[var(--page-border)] bg-[color-mix(in_srgb,var(--page-foreground)_6%,transparent)] p-5 font-mono text-[13px] leading-[1.5] tracking-normal text-[var(--page-secondary)] sm:text-sm" aria-label="Panoptes flexible deployment architecture"><code>{diagram}</code></pre>
