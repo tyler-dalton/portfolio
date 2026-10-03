@@ -1,6 +1,28 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export type Project = CollectionEntry<"projects">;
+export type ProjectView =
+  | "featured"
+  | "all"
+  | "infrastructure"
+  | "development"
+  | "cybersecurity"
+  | "misc";
+
+export const projectViews: { id: ProjectView; label: string; href: string }[] = [
+  { id: "featured", label: "Featured", href: "/work/projects/featured" },
+  { id: "all", label: "All", href: "/work/projects/all" },
+  { id: "infrastructure", label: "Infrastructure", href: "/work/projects/infrastructure" },
+  { id: "development", label: "Development", href: "/work/projects/development" },
+  { id: "cybersecurity", label: "Cybersecurity", href: "/work/projects/cybersecurity" },
+  { id: "misc", label: "Miscellaneous", href: "/work/projects/misc" },
+];
+
+function sortProjects(projects: Project[]): Project[] {
+  return projects.sort((a, b) =>
+    b.data.start.getTime() - a.data.start.getTime() || a.id.localeCompare(b.id),
+  );
+}
 
 export async function getHomepageProjects(): Promise<Project[]> {
   const projects = (await getCollection("projects"))
@@ -17,4 +39,15 @@ export async function getHomepageProjects(): Promise<Project[]> {
   }
 
   return projects;
+}
+
+export async function getProjectsForView(view: ProjectView): Promise<Project[]> {
+  const projects = await getCollection("projects");
+
+  return sortProjects(projects.filter((project) => {
+    if (view === "all") return true;
+    if (view === "featured") return project.data.show.projectFeature;
+
+    return project.data.categories.includes(view);
+  }));
 }
