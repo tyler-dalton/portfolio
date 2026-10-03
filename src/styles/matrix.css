@@ -89,6 +89,7 @@
   z-index: 2; }
 
 [data-theme="matrix"] header {
+  z-index: 20;
   background: rgba(5, 14, 6, 0.92) !important;
   border-bottom: 1px solid var(--page-border);
   backdrop-filter: blur(2px); }
