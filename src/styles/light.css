@@ -2,7 +2,7 @@
   color-scheme: light;
   --page-background: #ecf0f1;
   --page-foreground: #2c3e50;
-  --page-secondary: color-min(in srgb, var(--page-foreground) 78%, transparent);
+  --page-secondary: color-mix(in srgb, var(--page-foreground) 78%, transparent)
   --page-accent: #3498db;
   --page-muted: #60717f;
   --page-border: rgba(44, 62, 80, 0.2);
