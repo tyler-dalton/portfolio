@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data, id } = project;
+---
+
+<article class="grid gap-6 border-b border-[var(--page-border)] py-10 md:grid-cols-[180px_1fr]">
+  <div class="font-mono text-sm text-[var(--page-muted)]">
+    <p>{data.period}</p>
+  </div>
+
+  <div>
+    <div class="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+      <h3 class="text-3xl font-bold">{data.title}</h3>
+      {data.organization && (
+        <p class="font-mono text-sm text-[var(--page-muted)]">{data.organization}</p>
+      )}
+    </div>
+
+    {data.subtitle && (
+      <p class="mt-2 text-lg text-[var(--page-secondary)]">{data.subtitle}</p>
+    )}
+
+    <p class="mt-5 max-w-3xl text-lg leading-relaxed text-[var(--page-secondary)]">
+      {data.summary}
+    </p>
+
+    <p class="mt-6 font-mono text-sm text-[var(--page-muted)]">
+      {data.technologies.join(" / ")}
+    </p>
+
+    <a
+      href={`/work/projects/${id}`}
+      class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 transition-colors hover:text-[var(--page-accent)]"
+    >
+      View the full case study →
+    </a>
+  </div>
+</article>

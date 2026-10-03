@@ -1,0 +1,21 @@
+---
+import { getHomepageProjects } from "../../lib/projects";
+import ProjectCard from "./card.astro";
+
+const projects = await getHomepageProjects();
+---
+
+<section class="px-4 py-20" aria-labelledby="selected-work-heading">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="flex items-end justify-between border-b border-[var(--page-border)] pb-4">
+      <h2 id="selected-work-heading" class="text-3xl font-bold tracking-tight md:text-4xl">
+        Selected Work
+      </h2>
+      <a href="/work/projects" class="hidden text-sm text-[var(--page-muted)] hover:text-[var(--page-foreground)] md:block">
+        View all projects →
+      </a>
+    </div>
+
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</section>

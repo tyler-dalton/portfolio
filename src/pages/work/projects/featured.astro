@@ -1,5 +1,9 @@
 ---
 import Layout from "../../../layouts/layout.astro";
-import ProjectIndex from "../../../components/project-index.astro";
+import ProjectIndex from "../../../components/projects/project-index.astro";
 ---
-<Layout title="Tyler Dalton | Featured Projects"><ProjectIndex view="featured" /></Layout>
+<Layout title="Tyler Dalton | Featured Projects"
+        socialTitle="Featured Projects - Tyler Dalton"
+        description="A selection of featured projects undertaken by Tyler Dalton.">
+  <ProjectIndex view="featured" />
+</Layout>
