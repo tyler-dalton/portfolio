@@ -3,6 +3,7 @@
   /* Surfaces */
   --page-background: #050e06;
   --page-foreground: #d4f5d4;
+  --page-secondary: color-mix(in srgb, var(--page-foreground) 78%, transparent)
   --page-accent: #39ff6e;
   --page-muted: #5a8c5a;
   --page-border: rgba(57, 255, 110, 0.18);
