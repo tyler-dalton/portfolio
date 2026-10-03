@@ -9,6 +9,19 @@ const currentPath = Astro.url.pathname;
       class="text-3xl font-bold tracking-tight text-[var(--page-foreground)] no-underline transition-colors hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]">
       Tyler Dalton</a>
     </h1>
+    <div class="flex items-center gap-1 md:hidden">
+      <button
+        type="button"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-[var(--page-foreground)] transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+        data-theme-toggle
+        aria-label="Switch to light theme"
+        title="Switch to light theme"
+      >
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"></path>
+        </svg>
+      </button>
     <button id="nav-toggle"
       type="button"
       class="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] md:hidden"
@@ -25,8 +38,9 @@ const currentPath = Astro.url.pathname;
         class="h-0.5 w-7 bg-[var(--page-foreground)] transition-transform duration-300">
       </span>
     </button>
-    <nav class="hidden md:block"
-    aria-label="Primary navigation">
+    </div>
+    <div class="hidden items-center gap-1 md:flex">
+      <nav aria-label="Primary navigation">
       <ul
         class="flex list-none items-center gap-6 p-3">{navigation.map((item) =>
           <li class="site-nav-item">
@@ -49,7 +63,21 @@ const currentPath = Astro.url.pathname;
             </div>}
           </li>)}
       </ul>
-    </nav>
+      </nav>
+      <button
+        id="theme-toggle"
+        type="button"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[var(--page-foreground)] transition-colors hover:bg-[color-mix(in_srgb,var(--page-foreground)_10%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+        data-theme-toggle
+        aria-label="Switch to light theme"
+        title="Switch to light theme"
+      >
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"></path>
+        </svg>
+      </button>
+    </div>
     <nav id="mobile-nav"
       class="hidden w-full border-t border-[var(--page-border)] md:hidden"
       aria-label="Mobile navigation">
@@ -81,6 +109,27 @@ const currentPath = Astro.url.pathname;
     const bar1 = document.getElementById("nav-bar-1");
     const bar2 = document.getElementById("nav-bar-2");
     const bar3 = document.getElementById("nav-bar-3");
+    const themeToggles = document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]");
+    const updateThemeToggle = () => {
+      const theme = document.documentElement.dataset.theme;
+      const label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
+      themeToggles.forEach((themeToggle) => {
+        themeToggle.setAttribute("aria-label", label);
+        themeToggle.title = label;
+      });
+    };
+    updateThemeToggle();
+    themeToggles.forEach((themeToggle) => {
+      themeToggle.addEventListener("focus", updateThemeToggle);
+      themeToggle.addEventListener("click", () => {
+      const matrix = (window as any).__matrix;
+      if (matrix?.isActive()) matrix.deactivate();
+      const theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+      document.documentElement.dataset.theme = theme;
+      try { localStorage.setItem("theme", theme); } catch {}
+      updateThemeToggle();
+      });
+    });
     if (toggle && mobileNav) {
       const closeMenu = () => {
         mobileNav.classList.add("hidden");
