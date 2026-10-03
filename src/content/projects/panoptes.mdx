@@ -29,6 +29,17 @@ summary: >
   monitoring stack across RKE2 and OpenShift ending in a successful deployment
   into a classified, air-gapped environment.
 
+stats:
+  - value: "2"
+    label: Kubernetes distributions supported
+    detail: RKE2 and OpenShift from one shared deployment strategy.
+  - value: "85%+"
+    label: Engineering effort reduced
+    detail: Compared with the previous environment-specific process.
+  - value: "1"
+    label: Classified deployment
+    detail: Successfully deployed at Wright-Patterson Air Force Base.
+
 links:
   - label: View the LinkedIn post
     url: https://www.linkedin.com/feed/update/urn:li:activity:7494381133749452801/
@@ -64,6 +75,9 @@ show:
   resume: true
   timeline: true
 ---
+
+import PanoptesArchitecture from "../../components/projects/panoptes-architecture.astro";
+import PanoptesFlexibility from "../../components/projects/panoptes-flexibility.astro";
 
 ## Overview
 
@@ -141,88 +155,13 @@ Panoptes Helm
 
 Conceptually, these are all the components that fit into the Panoptes Helm chart. Prometheus provides metrics collection and monitoring, Grafana provides dashboards and visualization, and Thanos extends the Prometheus architecture for scalable metrics handling. Each component was not thrown in "just to add another feature", but rather intentionally designed to fulfill a distinct purpose within Panoptes.
 
-### Operational Flowchart
-
-```mermaid
-flowchart LR
-
-  subgraph CLUSTER["Kubernetes Environment"]
-    WORK["Cluster + Workloads"]
-    METRIC["Exporters + Kubernetes Metrics"]
-  end
-
-  subgraph SCRAPE["Metrics Layer"]
-    PROM["Prometheus"]
-    ALERT["Alertmanager"]
-  end
-
-  subgraph STORAGE["Thanos Layer"]
-    SIDE["Sidecar"]
-    STORE["Store Gateway"]
-    COMP["Compactor"]
-    QUERY["Query"]
-  end
-
-  subgraph CLOUD["Cloud Integration Layer (AWS)"]
-    S3["S3 Bucket<br/>(Long-Term Storage)"]
-  end
-
-  subgraph VISUAL["Visualization Layer"]
-    DASH["Dashboards"]
-    DATA["Datasources"]
-    GRAF["Grafana"]
-  end
-
-  WORK --> PROM
-  METRIC --> PROM
-
-  PROM --> ALERT
-  PROM --> SIDE
-
-  SIDE -."TSDB Blocks".-> S3
-  SIDE --> QUERY
-  COMP -."Down-samples".-> S3
-
-  S3 -."Historical Data".-> STORE
-  STORE --> QUERY
-
-  QUERY --> GRAF
-  PROM -."Live Data".-> GRAF
-  DASH --> GRAF
-  DATA --> GRAF
-
-  classDef kubernetes fill:#111827,stroke:#3b82f6,color:#e5e7eb,stroke-width:1.5px;
-  classDef metrics fill:#111827,stroke:#ef4444,color:#e5e7eb,stroke-width:1.5px;
-  classDef thanos fill:#111827,stroke:#8b5cf6,color:#e5e7eb,stroke-width:1.5px;
-  classDef aws fill:#111827,stroke:#f59e0b,color:#e5e7eb,stroke-width:1.5px;
-  classDef grafana fill:#111827,stroke:#22c55e,color:#e5e7eb,stroke-width:1.5px;
-
-  class WORK,METRIC kubernetes;
-  class PROM,ALERT metrics;
-  class SIDE,STORE,COMP,QUERY thanos;
-  class S3 aws;
-  class DASH,DATA,GRAF grafana;
-```
+<PanoptesArchitecture />
 
 Operationally, Panoptes centered around Prometheus for in-cluster metrics collection and alerting, while Thanos extended the stack with scalable querying and long-term storage. Metrics blocks were exported to an AWS S3 bucket, allowing historical data to be retained outside the cluster and queried through Thanos alongside more recent Prometheus data.
 
 ### Flexible Architecture
 
-```txt
-                    Panoptes
-                       │
-             Shared Helm Templates
-                       │
-              Shared Chart Logic
-                       │
-          ┌────────────┴────────────┐
-          │                         │
-     RKE2 Values              OpenShift Values
-          │                         │
-   Environment A              Environment B
-          │                         │
- Connected / Air-gap       Connected / Air-gap
-```
+<PanoptesFlexibility />
 
 Shared chart logic defines the common platform while configuration and deployment overlays account for differences between RKE2, OpenShift, and individual target environments. The resulting architecture allows the same source-controlled platform to be packaged and deployed across connected and air-gapped Kubernetes environments.
 
@@ -252,8 +191,6 @@ By moving distribution-specific behavior behind reusable configuration and deplo
 During the final week of the internship, Panoptes progressed beyond development and validation environments and was successfully deployed into a classified, air-gapped environment at Wright-Patterson Air Force Base.
 
 The resulting architecture also established a foundation for future expansion. Additional dashboards, alerts, monitoring capabilities, and deployment targets could be incorporated without redesigning the core platform.
-
-#TODO stat cards: 2 kubernetes distributions supported | 85%+ engineering effort reduced | 1 classified deployment, Wright-Patterson Air Force Base
 
 ## Lessons
 
