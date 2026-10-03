@@ -1,0 +1,104 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Layout from "../../../layouts/layout.astro";
+import ProjectStats from "../../../components/projects/project-stats.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+---
+
+<Layout
+  title={`${data.title} | Tyler Dalton`}
+  socialTitle={`${data.title} - Tyler Dalton`}
+  description={data.summary}
+>
+  <article id="top" class="px-4 py-16 md:py-24">
+    <div class="mx-auto max-w-[1100px]">
+      <header class="border-b border-[var(--page-border)] pb-10">
+        <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_260px] md:items-start">
+          <div>
+            {data.media.hero && (
+              <img
+                src={data.media.hero}
+                alt={`${data.title} project mark`}
+                class="mb-10 h-40 w-auto max-w-full object-contain object-left md:h-48"
+              />
+            )}
+            <p class="font-mono text-sm text-[var(--page-muted)]">{data.period}</p>
+            <h1 class="mt-3 text-4xl font-bold tracking-tight md:text-6xl">{data.title}</h1>
+            {data.subtitle && (
+              <p class="mt-4 text-xl leading-relaxed text-[var(--page-secondary)] md:text-2xl">
+                {data.subtitle}
+              </p>
+            )}
+          </div>
+
+          <dl class="grid gap-5 font-mono text-sm">
+            {data.organization && <div><dt class="text-[var(--page-muted)]">Organization</dt><dd class="mt-1">{data.organization}</dd></div>}
+            {data.role && <div><dt class="text-[var(--page-muted)]">Role</dt><dd class="mt-1">{data.role}</dd></div>}
+            {data.location && <div><dt class="text-[var(--page-muted)]">Location</dt><dd class="mt-1">{data.location}</dd></div>}
+          </dl>
+        </div>
+
+        <p class="mt-10 max-w-3xl text-xl leading-relaxed text-[var(--page-secondary)]">{data.summary}</p>
+
+        {data.links.length > 0 && (
+          <div class="mt-8 flex flex-wrap gap-3">
+            {data.links.map((link) => (
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="rounded-full border border-[var(--page-border)] px-4 py-2 text-sm font-medium no-underline transition-colors hover:border-[var(--page-accent)] hover:text-[var(--page-accent)]">
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="max-w-3xl py-12 text-lg leading-relaxed text-[var(--page-secondary)] [&_a]:text-[var(--page-accent)] [&_a]:underline [&_h2]:mt-14 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-[var(--page-foreground)] [&_h3]:mt-10 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:text-[var(--page-foreground)] [&_li]:my-2 [&_p]:my-5 [&_pre]:my-8 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-[var(--page-border)] [&_pre]:bg-[color-mix(in_srgb,var(--page-foreground)_6%,transparent)] [&_pre]:p-5 [&_pre_code]:font-mono [&_pre_code]:text-sm [&_pre_code]:leading-relaxed [&_pre_code]:whitespace-pre [&_strong]:font-semibold [&_strong]:text-[var(--page-foreground)] [&_table]:my-8 [&_table]:w-full [&_td]:border-b [&_td]:border-[var(--page-border)] [&_td]:p-3 [&_th]:border-b [&_th]:border-[var(--page-border)] [&_th]:p-3 [&_th]:text-left [&_th]:text-[var(--page-foreground)]">
+        <Content />
+      </div>
+
+      <ProjectStats stats={data.stats} />
+
+      <section class="border-t border-[var(--page-border)] py-10" aria-labelledby="technologies-heading">
+        <h2 id="technologies-heading" class="text-2xl font-bold">Technologies</h2>
+        <ul class="mt-5 flex flex-wrap gap-2" role="list">
+          {data.technologies.map((technology) => <li class="rounded-full border border-[var(--page-border)] px-3 py-1.5 font-mono text-sm text-[var(--page-secondary)]">{technology}</li>)}
+        </ul>
+      </section>
+
+      {data.media.gallery.length > 0 && (
+        <section class="border-t border-[var(--page-border)] py-10" aria-labelledby="gallery-heading">
+          <h2 id="gallery-heading" class="text-2xl font-bold">Gallery</h2>
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            {data.media.gallery.map((image) => (
+              <figure>
+                <img src={image.src} alt={image.alt} class="aspect-[4/3] w-full rounded-lg border border-[var(--page-border)] object-cover" loading="lazy" />
+                {image.caption && <figcaption class="mt-3 text-sm leading-relaxed text-[var(--page-muted)]">{image.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <footer class="flex flex-wrap gap-5 border-t border-[var(--page-border)] pt-8">
+        <a href="#top" class="font-medium underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)]">Back to top</a>
+        <a href="/work/projects" class="font-medium underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)]">All projects</a>
+        <a href="/" class="font-medium underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)]">Home</a>
+      </footer>
+    </div>
+  </article>
+</Layout>
