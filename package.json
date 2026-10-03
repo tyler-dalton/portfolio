@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "type": "module",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -12,9 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
     "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.3",
+    "playwright": "^1.63.0",
+    "rehype-mermaid": "^3.0.0",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
