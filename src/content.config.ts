@@ -42,7 +42,11 @@ const projects = defineCollection({
       projectFeature: z.boolean().default(false),
       resume: z.boolean().default(false),
       timeline: z.boolean().default(false),
-    }).default({}),
+    }).default({
+      projectFeature: false,
+      resume: false,
+      timeline: false,
+    }),
   }),
 });
 
