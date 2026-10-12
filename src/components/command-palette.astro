@@ -231,7 +231,15 @@
         requiresNoMatrix: false,
         action: () => {
           (window as any).__matrix?.resume();
-          closePalette(); } },];
+          closePalette(); } },
+      { id: "go-card",
+        label: "Go to digital business card",
+        description: "Save or share Tyler’s contact details",
+        keywords: ["card", "business card", "contact", "vcard", "share", "nfc"],
+        showByDefault: false,
+        requiresMatrix: false,
+        requiresNoMatrix: false,
+        action: goTo("/card"),},];
 
     const magicWords = ["matrix", "wake up", "white rabbit", "follow the white rabbit", "rabbit", "neo"];
     const scoreCommand = (command: Command, query: string) => {
