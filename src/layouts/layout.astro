@@ -4,11 +4,14 @@ import CommandPalette from "../components/command-palette.astro";
 import Footer from "../components/footer.astro";
 import "../styles/global.css";
 
-const { title = "Tyler Dalton",
-        socialTitle = title,
-        description = "Cybersecurity and Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.",
-        image = "/og-img.png",
-        imageAlt = "Tyler Dalton portfolio", } = Astro.props;
+const {
+  title = "Tyler Dalton",
+  socialTitle = title,
+  description = "Cybersecurity and Systems Administration student at the University of Cincinnati focused on secure infrastructure and automation.",
+  image = "/og-img.png",
+  imageAlt = "Tyler Dalton portfolio",
+  showChrome = true,
+} = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
@@ -103,14 +106,14 @@ const socialImageURL = new URL(image, Astro.site);
       <p id="matrix-access-detail" class="matrix-access-notice__detail">SYSTEM OVERRIDE // UNRESTRICTED ACCESS</p>
     </div>
 
-    <Header />
+    {showChrome && <Header />}
     <CommandPalette />
 
     <main>
       <slot />
     </main>
 
-    <Footer />
+    {showChrome && <Footer />}
 
     <!-- Matrix controls (hidden until activated) -->
     <div
