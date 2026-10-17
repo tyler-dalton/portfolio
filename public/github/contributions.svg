@@ -6084,14 +6084,30 @@
             width="10"
             height="10"
             rx="2"
-            fill="#1a4a6b"
+            fill="#1d6fa4"
             data-date="2026-10-16"
-            data-count="4"
+            data-count="17"
             tabindex="0"
             role="img"
-            aria-label="2026-10-16: 4 contributions"
+            aria-label="2026-10-16: 17 contributions"
           >
-            <title>2026-10-16: 4 contributions</title>
+            <title>2026-10-16: 17 contributions</title>
+          </rect>
+        
+          <rect
+            x="710"
+            y="102"
+            width="10"
+            height="10"
+            rx="2"
+            fill="#405467"
+            data-date="2026-10-17"
+            data-count="0"
+            tabindex="0"
+            role="img"
+            aria-label="2026-10-17: 0 contributions"
+          >
+            <title>2026-10-17: 0 contributions</title>
           </rect>
         
 
