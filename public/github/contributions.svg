@@ -6020,14 +6020,30 @@
             width="10"
             height="10"
             rx="2"
-            fill="#1a4a6b"
+            fill="#2196c9"
             data-date="2026-10-19"
-            data-count="1"
+            data-count="43"
             tabindex="0"
             role="img"
-            aria-label="2026-10-19: 1 contribution"
+            aria-label="2026-10-19: 43 contributions"
           >
-            <title>2026-10-19: 1 contribution</title>
+            <title>2026-10-19: 43 contributions</title>
+          </rect>
+        
+          <rect
+            x="710"
+            y="50"
+            width="10"
+            height="10"
+            rx="2"
+            fill="#1d6fa4"
+            data-date="2026-10-20"
+            data-count="17"
+            tabindex="0"
+            role="img"
+            aria-label="2026-10-20: 17 contributions"
+          >
+            <title>2026-10-20: 17 contributions</title>
           </rect>
         
 
