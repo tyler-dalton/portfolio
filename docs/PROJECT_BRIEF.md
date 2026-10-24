@@ -35,7 +35,7 @@ Main structure is defined in `src/data/navigation.ts`:
 | Panoptes | Complete, detailed MDX case study with visual architecture components | Use as structural reference; do not copy claims to other projects |
 | Project count | Only `src/content/projects/panoptes.mdx` found | Other filters may show honest empty state |
 | Resume | Interactive web view generated from `src/data/resume.ts` and PDF download | Data may need owner verification and synchronization |
-| GitHub | Contribution graph page implemented; homepage adds tooltips | Not yet a comprehensive GitHub activity page |
+| GitHub | Shared contribution graph on the homepage and `/activity/github`, plus public non-fork repositories fetched at build with a committed snapshot fallback | Individual commits and pull requests are not listed; a repository description is not a case study |
 | Timeline | `UnderConstruction` component | Needs verified milestones |
 | Changelog | `UnderConstruction` component | Needs a trustworthy curated source |
 | Personal | `UnderConstruction` component | Requires owner-approved personal text |
