@@ -1,0 +1,62 @@
+---
+import type { DatedEntry } from "../../data/activity";
+
+interface Props {
+  entries: DatedEntry[];
+}
+
+const { entries } = Astro.props;
+
+const groups: { year: string; entries: DatedEntry[] }[] = [];
+for (const entry of entries) {
+  const year = entry.date.slice(0, 4);
+  const current = groups.at(-1);
+  if (current?.year === year) current.entries.push(entry);
+  else groups.push({ year, entries: [entry] });
+}
+---
+
+{
+  groups.length === 0 ? (
+    <p class="activity-empty">No milestones are listed yet.</p>
+  ) : (
+    <div class="milestones">
+      {groups.map((group) => (
+        <section class="milestones__group">
+          <header class="milestones__heading">
+            <h2 class="milestones__year">{group.year}</h2>
+          </header>
+          <ol class="milestones__list">
+            {group.entries.map((entry) => (
+              <li class="milestone">
+                <p class="milestone__date">
+                  <time datetime={entry.date}>{entry.dateLabel}</time>
+                </p>
+                <span class="milestone__mark" aria-hidden="true">
+                  <span class="milestone__node" />
+                </span>
+                <div class="milestone__body">
+                  <h3 class="milestone__title">{entry.title}</h3>
+                  {entry.details.map((detail) => (
+                    <p>{detail}</p>
+                  ))}
+                  {entry.href && entry.hrefLabel && (
+                    <a
+                      class="milestone__link"
+                      href={entry.href}
+                      target={entry.external ? "_blank" : undefined}
+                      rel={entry.external ? "noopener noreferrer" : undefined}
+                    >
+                      {entry.hrefLabel}
+                      {entry.external && <span class="sr-only"> (opens in a new tab)</span>}
+                    </a>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+  )
+}

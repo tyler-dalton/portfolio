@@ -1,0 +1,21 @@
+---
+import { formatCount, type ActivityMetric } from "../../lib/github-analytics";
+
+interface Props {
+  metrics: ActivityMetric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+<ol class="activity-metrics">
+  {
+    metrics.map((metric) => (
+      <li>
+        <span class="activity-metric__value">{formatCount(metric.value)}</span>
+        <span class="activity-metric__label">{metric.label}</span>
+        {metric.detail && <span class="activity-metric__detail">{metric.detail}</span>}
+      </li>
+    ))
+  }
+</ol>

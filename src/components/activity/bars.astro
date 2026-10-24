@@ -1,0 +1,27 @@
+---
+import { formatCount, type ActivityBar } from "../../lib/github-analytics";
+
+interface Props {
+  bars: ActivityBar[];
+  label: string;
+}
+
+const { bars, label } = Astro.props;
+---
+
+<ol class="activity-bars" aria-label={label}>
+  {
+    bars.map((bar) => (
+      <li>
+        <span class="activity-bars__label">
+          <span class="full">{bar.label}</span>
+          {bar.shortLabel && <span class="short">{bar.shortLabel}</span>}
+        </span>
+        <span class="activity-track" aria-hidden="true">
+          <span class="activity-fill" style={`width: ${bar.scale}%`} />
+        </span>
+        <span class="activity-bars__value">{formatCount(bar.value)}</span>
+      </li>
+    ))
+  }
+</ol>

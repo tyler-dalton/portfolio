@@ -13,7 +13,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | P0 | Keep homepage GitHub handle and arrow together ([#6](https://github.com/tyler-dalton/portfolio/issues/6)) | Merged ([#36](https://github.com/tyler-dalton/portfolio/pull/36)) | No |
 | P0 | Finish Contact route | Ready | No for already-public methods |
 | P0 | Match the mobile browser top bar to the active theme ([#5](https://github.com/tyler-dalton/portfolio/issues/5)) | In review | No |
-| P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
+| P1 | Make GitHub activity page meaningfully useful | In review | No for verified public GitHub data |
 | P1 | Create reusable Activity/Timeline/Changelog content model ([#10](https://github.com/tyler-dalton/portfolio/issues/10), [#11](https://github.com/tyler-dalton/portfolio/issues/11)) | In review | Confirm personal narrative for timeline |
 | P1 | Publish additional MDX project case studies | Needs facts | Yes |
 | P1 | Fix stale/contradictory career and availability copy | Needs facts | Yes |
@@ -69,7 +69,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** `/contact` no longer shows `UnderConstruction`; works on mobile and all themes; relevant internal routes and keyboard controls work; no made-up address or phone number.
 
 ## P1.1 — Expand GitHub activity
-**Status:** In review. `/activity/github` lists public non-fork repositories, then the contribution graph. Repositories come first because each graph day is keyboard focusable. The list is read from the public GitHub API at build time and falls back to `src/lib/github-repos.ts` when that read fails. The homepage uses the same graph component. Forks, the profile README, and a feed of individual commits are omitted.
+**Status:** In review. `/activity/github` is an analytics page: 30-day contribution figures, month and weekday bars, language share, a commit rail, the contribution graph, and up to six recently active public repositories. Numbers are recomputed from `src/data/github-analytics.json`. Contribution counts and commit counts stay labeled as different units. Streaks use the full graph, with a one-day grace when the latest calendar day is still empty. The homepage uses the same graph component. Do not merge until the owner has reviewed the rendered pages.
 
 **Target:** `src/pages/activity/github.astro`, plus small reusable components if needed.
 
@@ -80,7 +80,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** provides more value than merely repeating the homepage graph, is resilient if GitHub fails and does not treat every commit as substantive engineering activity.
 
 ## P1.2 — Timeline and changelog data foundation
-**Status:** In review. `src/data/activity.ts` holds typed, dated entries. `src/components/dated-entries.astro` renders them on both pages, including an empty state. The timeline lists the published Panoptes case study (May 18 – August 14, 2026) and the resume's personal infrastructure lab (December 2025 – Present). It does not pick between disagreeing job titles, and it does not repeat other resume lines whose titles or dates still disagree. The changelog lists visitor-visible portfolio changes and skips daily contribution-graph commits. Month-only dates sort as the first of that month; the visible label is the claim.
+**Status:** In review. `src/data/activity.ts` holds typed, dated entries. The timeline renders those entries on a vertical spine, grouped by year: the published Panoptes case study (May 18 – August 14, 2026) and the resume's personal infrastructure lab (December 2025 – Present). It does not pick between disagreeing job titles, and it does not repeat other resume lines whose titles or dates still disagree. The changelog still uses `src/components/dated-entries.astro`. It lists visitor-visible portfolio changes and skips daily contribution-graph commits. Month-only dates sort as the first of that month; the visible label is the claim. Do not merge the timeline visual until the owner has reviewed it.
 
 **Targets:** `src/pages/activity/timeline.astro`, `src/pages/activity/changelog.astro`.
 

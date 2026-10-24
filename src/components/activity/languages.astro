@@ -1,0 +1,35 @@
+---
+import type { LanguageShare } from "../../lib/github-analytics";
+
+interface Props {
+  languages: LanguageShare[];
+}
+
+const { languages } = Astro.props;
+
+const mark = (language: LanguageShare, index: number) =>
+  language.name === "Other" ? { "data-other": "" } : { "data-rank": String(index) };
+---
+
+{
+  languages.length === 0 ? (
+    <p class="activity-empty">No language data for these public repositories.</p>
+  ) : (
+    <div class="activity-lang">
+      <div class="activity-lang__strip" aria-hidden="true">
+        {languages.map((language, index) => (
+          <span {...mark(language, index)} style={`width: ${language.percent}%`} />
+        ))}
+      </div>
+      <ol class="activity-lang__list">
+        {languages.map((language, index) => (
+          <li>
+            <span class="activity-lang__swatch" {...mark(language, index)} aria-hidden="true" />
+            <span class="activity-lang__name">{language.name}</span>
+            <span class="activity-lang__percent">{language.percent}%</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}

@@ -1,5 +1,14 @@
 ---
-/** One graph per page. The homepage and GitHub activity page both use this. */
+import { countLabel, formatFull } from "../lib/github-analytics";
+
+interface Props {
+  total: number;
+  from: string;
+  to: string;
+}
+
+const { total, from, to } = Astro.props;
+const label = `${countLabel(total, "contribution")} from ${formatFull(from)} to ${formatFull(to)}`;
 ---
 
 <div data-contribution-root>
@@ -7,11 +16,11 @@
     <div
       data-contribution-graph
       class="block min-w-[735px] [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
-      aria-label="Tyler Dalton's GitHub contributions over the last year"
+      aria-label={label}
     >
       <img
         src="/github/contributions.svg"
-        alt="Tyler Dalton's GitHub contributions over the last year"
+        alt={label}
         class="block h-auto w-full"
         loading="lazy"
       />
@@ -21,10 +30,19 @@
     data-contribution-tooltip
     class="pointer-events-none fixed z-50 hidden rounded-md border border-[var(--page-border)] bg-[var(--terminal-chrome)] px-2.5 py-1.5 text-xs text-[var(--terminal-foreground)] shadow-lg"
     role="tooltip"
-  ></div>
+  >
+  </div>
 </div>
 
 <script>
+  const LEVELS: Record<string, string> = {
+    "#405467": "0",
+    "#1a4a6b": "1",
+    "#1d6fa4": "2",
+    "#2196c9": "3",
+    "#3dc8f5": "4",
+  };
+
   document.querySelectorAll<HTMLElement>("[data-contribution-root]").forEach((root) => {
     const graph = root.querySelector<HTMLElement>("[data-contribution-graph]");
     const tooltip = root.querySelector<HTMLElement>("[data-contribution-tooltip]");
@@ -80,22 +98,34 @@
         const svg = parsed.documentElement;
         if (svg.nodeName.toLowerCase() !== "svg") return;
 
-        graph.replaceChildren(document.importNode(svg, true));
+        svg.removeAttribute("role");
+        svg.removeAttribute("aria-label");
+        svg.setAttribute("aria-hidden", "true");
 
-        graph.querySelectorAll("rect").forEach((square) => {
+        svg.querySelectorAll("rect").forEach((square) => {
+          const level = LEVELS[(square.getAttribute("fill") || "").toLowerCase()];
+          if (level) square.setAttribute("data-level", level);
+
           const title = square.querySelector("title");
-
-          if ((!square.dataset.date || square.dataset.count === undefined) && title?.textContent) {
+          if ((!square.getAttribute("data-date") || square.getAttribute("data-count") === null) && title?.textContent) {
             const match = title.textContent.match(/^(\d{4}-\d{2}-\d{2}): (\d+) contributions?$/);
             if (match) {
-              square.dataset.date = match[1];
-              square.dataset.count = match[2];
+              square.setAttribute("data-date", match[1]);
+              square.setAttribute("data-count", match[2]);
             }
           }
 
-          if (!square.dataset.date || square.dataset.count === undefined) return;
-
           title?.remove();
+          square.removeAttribute("tabindex");
+          square.removeAttribute("role");
+          square.removeAttribute("aria-label");
+          square.setAttribute("aria-hidden", "true");
+        });
+
+        graph.replaceChildren(document.importNode(svg, true));
+
+        graph.querySelectorAll("rect").forEach((square) => {
+          if (!square.dataset.date || square.dataset.count === undefined) return;
           square.addEventListener("pointerenter", (event) => {
             showTooltip(square, event.clientX, event.clientY);
           });
@@ -103,11 +133,6 @@
             positionTooltip(event.clientX, event.clientY);
           });
           square.addEventListener("pointerleave", hideTooltip);
-          square.addEventListener("focus", () => {
-            const rect = square.getBoundingClientRect();
-            showTooltip(square, rect.left + rect.width / 2, rect.top);
-          });
-          square.addEventListener("blur", hideTooltip);
         });
       })
       .catch(() => {});
