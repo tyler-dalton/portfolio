@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-24T03:51:11.927Z",
-  "lastSuccessfulRefresh": "2026-10-24T03:51:11.927Z",
+  "generatedAt": "2026-10-24T11:11:18.337Z",
+  "lastSuccessfulRefresh": "2026-10-24T11:11:18.337Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-10-23",
+  "contributionAsOf": "2026-10-24",
   "commitAsOf": "2026-10-24",
   "source": {
     "contributions": "public/github/contributions.svg",
@@ -22,13 +22,13 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-09-24",
-      "end": "2026-10-23",
+      "start": "2026-09-25",
+      "end": "2026-10-24",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-07-26",
-      "end": "2026-10-23",
+      "start": "2026-07-27",
+      "end": "2026-10-24",
       "days": 90
     },
     "commits": {
@@ -1516,7 +1516,11 @@
     },
     {
       "date": "2026-10-23",
-      "count": 0
+      "count": 120
+    },
+    {
+      "date": "2026-10-24",
+      "count": 35
     }
   ],
   "commits": [
@@ -4757,6 +4761,62 @@
       "date": "2026-10-24"
     },
     {
+      "repo": "dotfiles",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
       "repo": "homelab-infra",
       "date": "2026-10-24"
     },
@@ -4814,6 +4874,126 @@
     },
     {
       "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "portfolio",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "portfolio",
+      "date": "2026-10-24"
+    },
+    {
+      "repo": "portfolio",
       "date": "2026-10-24"
     },
     {
@@ -4898,7 +5078,7 @@
       "url": "https://github.com/tyler-dalton/dotfiles",
       "languages": {
         "Lua": 8068,
-        "Shell": 26285
+        "Shell": 26554
       }
     },
     {
@@ -4906,19 +5086,19 @@
       "url": "https://github.com/tyler-dalton/homelab-infra",
       "languages": {
         "CSS": 16371,
-        "Jinja": 947
+        "Jinja": 6240
       }
     },
     {
       "name": "portfolio",
       "url": "https://github.com/tyler-dalton/portfolio",
       "languages": {
-        "Astro": 96999,
-        "CSS": 60935,
+        "Astro": 104939,
+        "CSS": 74452,
         "HTML": 72080,
-        "JavaScript": 31215,
+        "JavaScript": 38924,
         "MDX": 14349,
-        "TypeScript": 60566
+        "TypeScript": 108330
       }
     }
   ]
