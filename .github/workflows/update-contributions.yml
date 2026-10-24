@@ -32,10 +32,18 @@ jobs:
           GITHUB_USERNAME: tyler-dalton
         run: node scripts/contributions.mjs
 
-      - name: Commit updated graph
+      - name: Generate analytics snapshot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node --experimental-strip-types scripts/analytics.mjs
+
+      - name: Check analytics model
+        run: node --experimental-strip-types --test src/lib/github-analytics.test.ts
+
+      - name: Commit updated graph and analytics
         run: |
-          if [ -z "$(git status --porcelain public/github/contributions.svg)" ]; then
-            echo "Contribution graph has not changed."
+          if [ -z "$(git status --porcelain public/github/contributions.svg src/data/github-analytics.json)" ]; then
+            echo "Contribution graph and analytics snapshot have not changed."
             exit 0
           fi
 
@@ -44,9 +52,14 @@ jobs:
             exit 1
           fi
 
+          if ! grep -q '"contributionDays"' src/data/github-analytics.json; then
+            echo "Refusing to commit an analytics snapshot with no contribution days."
+            exit 1
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add public/github/contributions.svg
-          git commit -m "chore(git contributions): update contribution graph svg"
+          git add public/github/contributions.svg src/data/github-analytics.json
+          git commit -m "chore(git contributions): update contribution graph and analytics snapshot"
           git push
