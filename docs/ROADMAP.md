@@ -10,7 +10,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | Priority | Task | Status | Owner decision? |
 | --- | --- | --- | --- |
 | P0 | Audit content consistency and broken paths | Ready | Only for changes to facts |
-| P0 | Finish Contact route | Ready | No for already-public methods |
+| P0 | Finish Contact route | In review | No for already-public methods |
 | P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
 | P1 | Create reusable Activity/Timeline/Changelog content model | Ready | Confirm personal narrative for timeline |
 | P1 | Publish additional MDX project case studies | Needs facts | Yes |
@@ -33,6 +33,8 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** a single issue/PR documents all inconsistencies; safe technical fixes are made; undecidable facts are presented as exact questions rather than silently rewritten.
 
 ## P0.2 — Replace Contact placeholder
+**Status:** In review. `/contact` lists the public email, GitHub, LinkedIn, `/card`, and vCard. No form and no phone number. The homepage "Contact me" button now opens this page. The footer email remains a `mailto:` link.
+
 **Target:** `src/pages/contact.astro`.
 
 **Steps:** Use existing publicly displayed email, GitHub, LinkedIn, digital card and vCard; design a focused contacts page with semantically labeled links and a useful call-to-action. Prefer mailto links over adding an unneeded server-side form or third-party email service.

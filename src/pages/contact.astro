@@ -1,12 +1,92 @@
 ---
-import UnderConstruction from "../components/under-construction.astro";
 import Layout from "../layouts/layout.astro";
+
+const email = "tldalton54@gmail.com";
+
+const channels = [
+  {
+    label: "GitHub",
+    href: "https://github.com/tyler-dalton",
+    value: "github.com/tyler-dalton",
+    detail: "Public repositories and contribution history.",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/daltontyler/",
+    value: "linkedin.com/in/daltontyler",
+    detail: "Professional profile.",
+    external: true,
+  },
+  {
+    label: "Digital card",
+    href: "/card",
+    value: "tylerdalton.dev/card",
+    detail: "A headerless card with save and share.",
+    external: false,
+  },
+  {
+    label: "vCard",
+    href: "/media/tyler-dalton.vcf",
+    value: "Tyler-Dalton.vcf",
+    detail: "Download a contact card for your address book.",
+    external: false,
+    download: "Tyler-Dalton.vcf",
+  },
+];
 ---
 
-<Layout title="Tyler Dalton | Contact">
-  <UnderConstruction
-    title="Contact"
-    path="/contact"
-    message="The dedicated contact page is in the workshop. In the meantime, the footer has the important parts and is surprisingly responsive."
-  />
+<Layout
+  title="Tyler Dalton | Contact"
+  socialTitle="Contact - Tyler Dalton"
+  description="Email Tyler Dalton, or reach him through GitHub, LinkedIn, and his digital business card."
+>
+  <section class="px-4 py-16 md:py-24">
+    <div class="mx-auto max-w-[1100px]">
+      <h1 class="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">Contact</h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
+        Email is the direct path. GitHub, LinkedIn, and the digital card use the same public endpoints as the rest of this site.
+      </p>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed">
+        <a
+          href={`mailto:${email}`}
+          class="font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+        >
+          {email}
+        </a>
+      </p>
+
+      <div class="mt-8">
+        <a
+          href={`mailto:${email}`}
+          class="inline-flex min-h-11 items-center rounded-full bg-[var(--page-foreground)] px-5 py-2 font-semibold tracking-[0.12em] text-[var(--page-background)] no-underline transition-colors hover:bg-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--page-background)]"
+        >
+          Send email
+        </a>
+      </div>
+
+      <ul class="mt-12 grid list-none gap-4 p-0 md:grid-cols-2">
+        {channels.map((channel) => (
+          <li>
+            <a
+              href={channel.href}
+              download={channel.download}
+              target={channel.external ? "_blank" : undefined}
+              rel={channel.external ? "noopener noreferrer" : undefined}
+              class="group block h-full rounded-xl border border-[var(--page-border)] p-6 no-underline transition-colors hover:border-[var(--page-accent)] hover:bg-[color-mix(in_srgb,var(--page-accent)_7%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+            >
+              <h2 class="text-2xl font-semibold text-[var(--page-foreground)]">
+                {channel.label}{channel.external && <span class="sr-only"> (opens in a new tab)</span>}
+                <span class="ml-2 inline-block whitespace-nowrap transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" aria-hidden="true">
+                  {channel.external ? "↗" : "→"}
+                </span>
+              </h2>
+              <p class="mt-3 break-words font-mono text-sm text-[var(--page-foreground)]">{channel.value}</p>
+              <p class="mt-2 leading-relaxed text-[var(--page-secondary)]">{channel.detail}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Layout>
