@@ -22,7 +22,9 @@ const socialImageURL = new URL(image, Astro.site);
   <head>
     <!-- Document Metadata -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- Default matches the dark --page-background. The bootstrap below replaces it before paint. -->
+    <meta name="theme-color" content="#2c3e50" />
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -54,17 +56,16 @@ const socialImageURL = new URL(image, Astro.site);
 
     <script is:inline>
       (function () {
+        // Match --page-background in dark.css, light.css, and matrix.css.
+        var themeColors = { dark: "#2c3e50", light: "#ecf0f1", matrix: "#050e06" };
+        var theme = "dark";
         try {
-          var ss = sessionStorage.getItem("matrix-session");
-          if (ss === "1") {
-            document.documentElement.dataset.theme = "matrix";
-            return;
-          }
-          var saved = localStorage.getItem("theme");
-          document.documentElement.dataset.theme = saved === "light" ? "light" : "dark";
-        } catch (e) {
-          document.documentElement.dataset.theme = "dark";
-        }
+          if (sessionStorage.getItem("matrix-session") === "1") theme = "matrix";
+          else if (localStorage.getItem("theme") === "light") theme = "light";
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", themeColors[theme]);
       })();
     </script>
   </head>
@@ -138,6 +139,8 @@ const socialImageURL = new URL(image, Astro.site);
     <!-- Astro bundles this; Vite resolves the relative .ts import -->
     <script>
       import { initMatrix } from "../scripts/matrix-mode";
+      import { watchThemeColor } from "../scripts/theme-color";
+      watchThemeColor();
       initMatrix().catch((error) => {
         console.error("[matrix] initialization failed", error);
       });
