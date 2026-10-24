@@ -127,3 +127,11 @@ A change is done only when:
 - New public personal/professional assertions have been approved, not guessed.
 
 **Immediate next work:** follow `docs/ROADMAP.md`. Do not replace the existing site with a new design or generate fictitious project content merely to populate empty views.
+
+## 9. Owner-directed visual quality gate (Activity and UI)
+
+**Read `docs/DESIGN_QUALITY_STANDARD.md` before undertaking any visually significant work.** For Activity or GitHub analytics, also read `docs/ACTIVITY_DESIGN_SPEC.md` and start from the requirements in [issue #45](https://github.com/tyler-dalton/portfolio/issues/45).
+
+An attractive **visualization** is a first-class deliverable when requested; a list of repository cards does not satisfy an analytics-dashboard brief. Follow deliberate design hierarchy, comparable correctly scaled graphics, accurate units, clearly dated data, typographic restraint and the site's existing personality. **Do not ship generic template-looking work or made-up chart metrics.**
+
+For a significant Activity/UI PR, include actual rendered screenshots at desktop and narrow mobile widths, dark/light/Matrix checks, a clear data methodology, and a brief design rationale. The owner must review the visual result before merge; passing `npm run check` alone is not a design sign-off.
