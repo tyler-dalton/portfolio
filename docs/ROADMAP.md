@@ -10,6 +10,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | Priority | Task | Status | Owner decision? |
 | --- | --- | --- | --- |
 | P0 | Audit content consistency and broken paths | Ready | Only for changes to facts |
+| P0 | Keep homepage GitHub handle and arrow together ([#6](https://github.com/tyler-dalton/portfolio/issues/6)) | In review | No |
 | P0 | Finish Contact route | Ready | No for already-public methods |
 | P0 | Match the mobile browser top bar to the active theme ([#5](https://github.com/tyler-dalton/portfolio/issues/5)) | In review | No |
 | P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
@@ -35,6 +36,8 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 
 ## P0.1c — Mobile theme color
 **Status:** In review. The shell now sets `theme-color` from the active theme before first paint and again whenever `data-theme` changes, including Matrix. `viewport-fit=cover` lets that background reach the display edge, and the header pads for `safe-area-inset-top`. A real iPhone Safari check is still required; desktop Chromium can only confirm the meta tag.
+## P0.1b — Homepage GitHub handle wrap
+**Status:** In review. Narrow viewports were splitting `↗` onto its own line beside the GitHub Contributions heading. The handle and arrow now stay on one line, and the pair stacks under the heading below the `sm` breakpoint.
 
 ## P0.2 — Replace Contact placeholder
 **Target:** `src/pages/contact.astro`.
