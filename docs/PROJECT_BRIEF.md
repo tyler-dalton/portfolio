@@ -43,6 +43,7 @@ Main structure is defined in `src/data/navigation.ts`:
 | Contact | Public email, GitHub, LinkedIn, `/card`, and vCard download. No form and no phone number on the page | Homepage "Contact me" points here; footer email stays a mailto link |
 | Card | Implemented digital contact card, VCF download and share fallback | Do not regress its minimal headerless layout |
 | Contribution automation | Daily GitHub Actions cron, `scripts/contributions.mjs` writes SVG | Avoid turning routine SVG updates into changelog entries |
+| Quality checks | `npm run check` builds and runs `scripts/smoke.mjs`. `.github/workflows/ci.yml` runs it on pull requests and pushes to main | Keep the contribution workflow separate; do not claim a lint or typecheck script |
 
 No open PRs or open issues were returned by the connected GitHub search during this snapshot. Do not assume that remains true.
 

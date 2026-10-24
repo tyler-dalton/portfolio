@@ -20,7 +20,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | P2 | Finish About / Now and Personal pages | Needs facts | Yes |
 | P2 | Curated changelog experience | Ready | Confirm whether notable changes should be public |
 | P2 | Accessibility, mobile and theme regression coverage | Ready | No |
-| P3 | Automated quality checks and low-maintenance content updates | Investigation | No for non-destructive workflow changes |
+| P3 | Automated quality checks and low-maintenance content updates ([#14](https://github.com/tyler-dalton/portfolio/issues/14)) | In review | No for non-destructive workflow changes |
 
 ## P0.1 — Content, link and accuracy audit
 **Status:** In review. No career copy was rewritten. Findings below are the owner questions for P1.4.
@@ -123,6 +123,8 @@ Check 320px, 375px, tablet and desktop; light/dark/Matrix; mobile menu; hover/fo
 **Done when:** regressions are fixed and checks are documented in PRs.
 
 ## P3 — Developer experience and automation
+**Status:** In review. `npm run check` builds the site and runs `scripts/smoke.mjs` against `dist`. The script checks key routes, the theme toggle, the command palette, Matrix enter and exit, the mobile menu, and homepage overflow at 320px. `.github/workflows/ci.yml` runs that check on pull requests and pushes to `main`. The contribution-graph workflow is unchanged and still owns `GH_TOKEN`.
+
 Investigate `astro check` / typechecking, focused smoke tests (Playwright is already a dependency), link checking and PR CI. Prefer a very small verification suite over a large test framework. Protect the graph workflow from churn or bad commits but do not break its scheduled job.
 
 **Done when:** PR authors can run documented deterministic checks and CI does not require private services.
