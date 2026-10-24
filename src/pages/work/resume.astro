@@ -14,14 +14,14 @@ import "../../styles/resume.css";
           My Resume
         </h1>
         <div class="resume-actions">
-          <a class="resume-download" href={resume.pdfHref} target="_blank" rel="noopener">
+          <a class="resume-download" href={resume.pdfHref} target="_blank" rel="noopener noreferrer">
             Download PDF
           </a>
           <div class="resume-links">
             <p class="resume-links-title">
               Relevant links
             </p>{resume.contact.links.map((link: ResumeLink) =>
-            <a class="resume-link" href={link.href} target="_blank" rel="noopener">
+            <a class="resume-link" href={link.href} target="_blank" rel="noopener noreferrer">
               {link.label}
             </a>)}
             <a class="resume-link" href={`mailto:${resume.contact.email}`}>
@@ -51,7 +51,7 @@ import "../../styles/resume.css";
                   <a class="resume-entry-link"
                   href={entry.link.href}
                   target={entry.link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={entry.link.href.startsWith("http") ? "noopener" : undefined}
+                  rel={entry.link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   >
                     {entry.link.label}
                   </a></>}

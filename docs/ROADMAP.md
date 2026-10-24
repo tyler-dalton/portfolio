@@ -9,7 +9,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 
 | Priority | Task | Status | Owner decision? |
 | --- | --- | --- | --- |
-| P0 | Audit content consistency and broken paths | Ready | Only for changes to facts |
+| P0 | Audit content consistency and broken paths | In review | Only for changes to facts |
 | P0 | Finish Contact route | Ready | No for already-public methods |
 | P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
 | P1 | Create reusable Activity/Timeline/Changelog content model | Ready | Confirm personal narrative for timeline |
@@ -21,6 +21,26 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | P3 | Automated quality checks and low-maintenance content updates | Investigation | No for non-destructive workflow changes |
 
 ## P0.1 — Content, link and accuracy audit
+**Status:** In review. No career copy was rewritten. Findings below are the owner questions for P1.4.
+
+**Verified agreements (left unchanged)**
+- Email `tldalton54@gmail.com` matches the homepage, footer, card, web resume, vCard, and PDF.
+- GitHub profile, LinkedIn profile, homelab repository, fishnet.replit.app, and the Panoptes LinkedIn post respond successfully.
+- School, "Junior", graduation May 2029, and GPA 4.00 appear on both the web resume and the PDF.
+- Live image paths under `public/` exist. Built routes match `src/pages/`.
+
+**Do not publish until the owner picks a canonical wording**
+- Degree line: homepage and card say "Cybersecurity + Systems Administration". Layout metadata says "Cybersecurity and Systems Administration". The terminal profile says "Cyber/Electronic Operations & Warfare + Network/Systems Administration", while its major row says "Cybersecurity + Network/Systems Administration". The web resume and PDF say two B.S. degrees, Cybersecurity and Network/Systems Administration.
+- Awetomaton title: web resume "DevOps Engineer Intern"; PDF "Platform Engineer Intern"; Panoptes role "Platform Engineer".
+- Teaching assistant end date: web resume "August 2026 – December 2026"; PDF "August 2026 – Present".
+- Availability seasons match (Spring 2027 and Summer 2027) but the sentences differ. Confirm the line is still the right public position.
+- The PDF name line includes a middle initial the site does not use, and it still prints `homepages.uc.edu/~daltonty/portfolio/`, which now redirects to a UC maintenance page.
+- `https://github.com/tyler-dalton/kubernetes-ha-cluster` returns 404 and is not visible to the owner account either. The web resume still links it. The PDF links the GitHub profile instead. Do not guess a replacement URL.
+- The PDF and vCard contain a cell number that the visible site does not show. Leave it out of new pages unless the owner asks to display it. The vCard `TITLE` and `ORG` fields are empty.
+- Public repos `deployment-bags` and `dotfiles` exist and are not linked from the current site. They are candidates only, not approval to write case studies.
+
+**Safe fix in this pass:** external resume links now use `rel="noopener noreferrer"`.
+
 **Why:** Existing copy is distributed across homepage, terminal, resume data, project MDX, business card and downloadable assets. Inconsistent claims damage credibility.
 
 **Steps**
