@@ -60,6 +60,8 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Status:** In review. Narrow viewports were splitting `↗` onto its own line beside the GitHub Contributions heading. The handle and arrow now stay on one line, and the pair stacks under the heading below the `sm` breakpoint.
 
 ## P0.2 — Replace Contact placeholder
+**Status:** In review. `/contact` lists the public email, GitHub, LinkedIn, `/card`, and vCard. No form and no phone number. The homepage "Contact me" button now opens this page. The footer email remains a `mailto:` link.
+
 **Target:** `src/pages/contact.astro`.
 
 **Steps:** Use existing publicly displayed email, GitHub, LinkedIn, digital card and vCard; design a focused contacts page with semantically labeled links and a useful call-to-action. Prefer mailto links over adding an unneeded server-side form or third-party email service.

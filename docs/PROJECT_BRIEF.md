@@ -40,7 +40,7 @@ Main structure is defined in `src/data/navigation.ts`:
 | Changelog | `UnderConstruction` component | Needs a trustworthy curated source |
 | Personal | `UnderConstruction` component | Requires owner-approved personal text |
 | Now | `UnderConstruction` component | Requires owner confirmation for current focus |
-| Contact | `UnderConstruction` component | Can be built from existing public links/contact methods |
+| Contact | Public email, GitHub, LinkedIn, `/card`, and vCard download. No form and no phone number on the page | Homepage "Contact me" points here; footer email stays a mailto link |
 | Card | Implemented digital contact card, VCF download and share fallback | Do not regress its minimal headerless layout |
 | Contribution automation | Daily GitHub Actions cron, `scripts/contributions.mjs` writes SVG | Avoid turning routine SVG updates into changelog entries |
 
