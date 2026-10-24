@@ -135,6 +135,9 @@ Investigate `astro check` / typechecking, focused smoke tests (Playwright is alr
 
 **Done when:** PR authors can run documented deterministic checks and CI does not require private services.
 
+## P3.1 — Contribution graph workflow
+**Status:** In review. `scripts/contributions.mjs` still fails closed when the token, HTTP call, GraphQL payload, or calendar is missing, and it now also refuses a calendar with no weeks. The scheduled workflow serializes runs and will not commit an SVG that has no dated cells. The public graph file remains the no-JavaScript fallback. The workflow still uses the Actions `GITHUB_TOKEN` only on the runner.
+
 ## First three autonomous PRs (suggested)
 1. **Contact page** using only already-public contact links.
 2. **Activity GitHub enhancement** with verified, gracefully-degraded public links/data.

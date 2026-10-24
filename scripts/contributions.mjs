@@ -75,6 +75,10 @@ if (!calendar) {
 const weeks = calendar.weeks;
 const months = calendar.months;
 
+if (!Array.isArray(weeks) || weeks.length === 0) {
+  throw new Error(`Contribution calendar for ${username} has no weeks`);
+}
+
 /* Graph sizing */
 const CELL = 10;
 const GAP = 3;
