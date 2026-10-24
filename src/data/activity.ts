@@ -52,7 +52,7 @@ const changelogSource: DatedEntry[] = [
     dateLabel: "October 23, 2026",
     title: "Contact page",
     details: [
-      "The contact page lists the public email, GitHub, LinkedIn, digital card, and vCard. It has no form and no phone number.",
+      "The contact page is four icon cards: LinkedIn, GitHub, email, and the resume PDF. It has no form and no phone number.",
       "The homepage contact button opens that page. The footer email remains a mailto link.",
     ],
     href: "/contact",

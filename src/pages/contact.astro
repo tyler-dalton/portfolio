@@ -2,91 +2,265 @@
 import Layout from "../layouts/layout.astro";
 
 const email = "tldalton54@gmail.com";
-
-const channels = [
-  {
-    label: "GitHub",
-    href: "https://github.com/tyler-dalton",
-    value: "github.com/tyler-dalton",
-    detail: "Public repositories and contribution history.",
-    external: true,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/daltontyler/",
-    value: "linkedin.com/in/daltontyler",
-    detail: "Professional profile.",
-    external: true,
-  },
-  {
-    label: "Digital card",
-    href: "/card",
-    value: "tylerdalton.dev/card",
-    detail: "A headerless card with save and share.",
-    external: false,
-  },
-  {
-    label: "vCard",
-    href: "/media/tyler-dalton.vcf",
-    value: "Tyler-Dalton.vcf",
-    detail: "Download a contact card for your address book.",
-    external: false,
-    download: "Tyler-Dalton.vcf",
-  },
-];
 ---
 
 <Layout
   title="Tyler Dalton | Contact"
   socialTitle="Contact - Tyler Dalton"
-  description="Email Tyler Dalton, or reach him through GitHub, LinkedIn, and his digital business card."
+  description="Reach Tyler Dalton on LinkedIn, GitHub, or email, or open his resume."
 >
-  <section class="px-4 py-16 md:py-24">
-    <div class="mx-auto max-w-[1100px]">
-      <h1 class="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">Contact</h1>
-      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
-        Email is the direct path. GitHub, LinkedIn, and the digital card use the same public endpoints as the rest of this site.
-      </p>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed">
-        <a
-          href={`mailto:${email}`}
-          class="font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
-        >
-          {email}
-        </a>
-      </p>
+  <section class="contact-section">
+    <h1 class="contact-title">Let's Connect</h1>
+    <p class="contact-sub">
+      The fastest way to reach me is through LinkedIn or email.
+      I'm always happy to talk about internship opportunities, lab work, or projects.
+    </p>
 
-      <div class="mt-8">
-        <a
-          href={`mailto:${email}`}
-          class="inline-flex min-h-11 items-center rounded-full bg-[var(--page-foreground)] px-5 py-2 font-semibold tracking-[0.12em] text-[var(--page-background)] no-underline transition-colors hover:bg-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--page-background)]"
-        >
-          Send email
-        </a>
+    <div class="contact-grid">
+      <a
+        class="contact-card"
+        data-brand="linkedin"
+        href="https://linkedin.com/in/daltontyler/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+        </svg>
+        <h2>LinkedIn<span class="sr-only"> (opens in a new tab)</span></h2>
+        <p>Professional profile &amp; messaging</p>
+      </a>
+
+      <a
+        class="contact-card"
+        data-brand="github"
+        href="https://github.com/tyler-dalton"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+        </svg>
+        <h2>GitHub<span class="sr-only"> (opens in a new tab)</span></h2>
+        <p>Projects, labs, and source code</p>
+      </a>
+
+      <div class="contact-card" data-brand="email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+          <path d="M3 7l9 7 9-7"></path>
+        </svg>
+        <h2>Email</h2>
+        <p>Direct contact</p>
+        <p class="contact-address">{email}</p>
+        <div class="contact-actions">
+          <a class="contact-btn" href={`mailto:${email}`}>Send Email</a>
+          <button class="contact-btn contact-btn-secondary" type="button" data-copy-email={email}>Copy</button>
+        </div>
+        <p class="contact-copy-status" data-copy-status role="status" aria-live="polite"></p>
       </div>
 
-      <ul class="mt-12 grid list-none gap-4 p-0 md:grid-cols-2">
-        {channels.map((channel) => (
-          <li>
-            <a
-              href={channel.href}
-              download={channel.download}
-              target={channel.external ? "_blank" : undefined}
-              rel={channel.external ? "noopener noreferrer" : undefined}
-              class="group block h-full rounded-xl border border-[var(--page-border)] p-6 no-underline transition-colors hover:border-[var(--page-accent)] hover:bg-[color-mix(in_srgb,var(--page-accent)_7%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
-            >
-              <h2 class="text-2xl font-semibold text-[var(--page-foreground)]">
-                {channel.label}{channel.external && <span class="sr-only"> (opens in a new tab)</span>}
-                <span class="ml-2 inline-block whitespace-nowrap transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" aria-hidden="true">
-                  {channel.external ? "↗" : "→"}
-                </span>
-              </h2>
-              <p class="mt-3 break-words font-mono text-sm text-[var(--page-foreground)]">{channel.value}</p>
-              <p class="mt-2 leading-relaxed text-[var(--page-secondary)]">{channel.detail}</p>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <a
+        class="contact-card"
+        data-brand="resume"
+        href="/media/tyler-dalton-resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
+          <path d="M14 3v5h5M8 13h8M8 17h5"></path>
+        </svg>
+        <h2>Resume<span class="sr-only"> (opens in a new tab)</span></h2>
+        <p>PDF download</p>
+      </a>
     </div>
   </section>
 </Layout>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("[data-copy-email]");
+  const status = document.querySelector<HTMLElement>("[data-copy-status]");
+
+  if (button && status) {
+    const label = button.textContent ?? "Copy";
+    let resetTimer = 0;
+
+    button.addEventListener("click", async () => {
+      const address = button.dataset.copyEmail ?? "";
+      window.clearTimeout(resetTimer);
+      try {
+        await navigator.clipboard.writeText(address);
+        button.textContent = "Copied";
+        status.textContent = "Email copied.";
+      } catch {
+        button.textContent = label;
+        status.textContent = "Clipboard blocked. Select the address above.";
+      }
+      resetTimer = window.setTimeout(() => {
+        button.textContent = label;
+        status.textContent = "";
+      }, 1600);
+    });
+  }
+</script>
+
+<style>
+  .contact-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 4.5rem 1.25rem 5.5rem;
+    text-align: center;
+  }
+
+  .contact-title {
+    margin: 0;
+    font-size: clamp(2.7rem, 6vw, 4.4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+  }
+
+  .contact-sub {
+    max-width: 38rem;
+    margin: 1.1rem auto 2.8rem;
+    color: var(--page-secondary);
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .contact-card {
+    --card-accent: var(--page-accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 100%;
+    padding: 2.1rem 1.25rem 1.8rem;
+    border: 1px solid var(--page-border);
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--page-foreground) 5%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-accent) 30%, transparent);
+    color: var(--page-foreground);
+    text-decoration: none;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .contact-card[data-brand="linkedin"] { --card-accent: #0a66c2; }
+  .contact-card[data-brand="github"] { --card-accent: var(--page-foreground); }
+  .contact-card[data-brand="email"] { --card-accent: #1abc9c; }
+  .contact-card[data-brand="resume"] { --card-accent: var(--page-accent); }
+
+  .contact-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-accent);
+    background: color-mix(in srgb, var(--page-foreground) 8%, transparent);
+    box-shadow: 0 14px 32px color-mix(in srgb, var(--card-accent) 18%, transparent);
+  }
+
+  .contact-card:focus-visible {
+    outline: 2px solid var(--page-accent);
+    outline-offset: 3px;
+  }
+
+  .contact-card svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.45rem;
+    color: var(--card-accent);
+  }
+
+  .contact-card h2 {
+    margin: 0;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-card p {
+    margin: 0;
+    color: var(--page-secondary);
+    line-height: 1.45;
+  }
+
+  .contact-address {
+    margin-top: 0.35rem !important;
+    color: var(--page-foreground) !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.92rem;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-top: 0.95rem;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.55em 1.15em;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--page-foreground);
+    color: var(--page-background);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 150ms ease, background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+
+  .contact-btn:hover {
+    transform: translateY(-2px);
+    background: var(--page-accent);
+    color: var(--page-background);
+  }
+
+  .contact-btn-secondary {
+    border-color: var(--page-border);
+    background: transparent;
+    color: var(--page-foreground);
+  }
+
+  .contact-btn-secondary:hover {
+    border-color: var(--card-accent);
+    background: color-mix(in srgb, var(--card-accent) 12%, transparent);
+    color: var(--page-foreground);
+  }
+
+  .contact-btn:focus-visible {
+    outline: 2px solid var(--page-accent);
+    outline-offset: 3px;
+  }
+
+  .contact-copy-status {
+    min-height: 1.3rem;
+    margin-top: 0.55rem !important;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 700px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-section { padding-top: 3.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-card,
+    .contact-btn { transition: none; }
+    .contact-card:hover,
+    .contact-btn:hover { transform: none; }
+  }
+</style>

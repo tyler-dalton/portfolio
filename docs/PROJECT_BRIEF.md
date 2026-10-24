@@ -40,7 +40,7 @@ Main structure is defined in `src/data/navigation.ts`:
 | Changelog | Curated visitor-visible portfolio changes in `src/data/activity.ts`. Daily contribution-graph commits are excluded | Add a dated entry when a change is worth telling a visitor |
 | Personal | `UnderConstruction` component | Requires owner-approved personal text |
 | Now | `UnderConstruction` component | Requires owner confirmation for current focus |
-| Contact | Public email, GitHub, LinkedIn, `/card`, and vCard download. No form and no phone number on the page | Homepage "Contact me" points here; footer email stays a mailto link |
+| Contact | Icon cards for LinkedIn, GitHub, email (send and copy), and the resume PDF. No form and no phone number. `/card` and the vCard stay on their own routes | Homepage "Contact me" points here; footer email stays a mailto link |
 | Card | Implemented digital contact card, VCF download and share fallback | Do not regress its minimal headerless layout |
 | Contribution automation | Daily GitHub Actions cron, `scripts/contributions.mjs` writes SVG | Avoid turning routine SVG updates into changelog entries |
 | Quality checks | `npm run check` builds and runs `scripts/smoke.mjs`. `.github/workflows/ci.yml` runs it on pull requests and pushes to main | Keep the contribution workflow separate; do not claim a lint or typecheck script |
