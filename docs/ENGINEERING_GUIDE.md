@@ -62,8 +62,11 @@ For changelog, identify substantial commits/releases; filter out daily SVG graph
 - CTA links resolve; email/VCF/PDF downloads work; external links use safe `rel`.
 - Avoid layout shifts, unnecessary network requests and large new client dependencies.
 
+## Local checks
+`npm run check` builds the site, then `scripts/smoke.mjs` serves `dist` and checks key routes and interactions with Playwright. There is no separate lint or typecheck script. Set `SMOKE_CHROMIUM` to a browser executable when Playwright's Chromium is not installed. CI uses `.github/workflows/ci.yml` and does not call the contribution-graph workflow.
+
 ## Verification rubric for PRs
-Report exactly what was done: npm install/build, routes previewed, widths/themes checked, keyboard interactions exercised and failures/limitations. Supply before/after screenshots for visual changes. Compare against production where helpful, but remember production may lag `main`.
+Report exactly what was done: npm install/build, routes previewed, widths/themes checked, keyboard interactions exercised and failures/limitations. Supply before/after screenshots for visual changes. Compare against production where helpful, but remember production may lag `main`. For this repository, `npm run check` is the deterministic check. Do not claim a lint or typecheck script passed.
 
 ## Security / privacy
 No tokens, session values, credentials, API keys, secrets, private personal contact data, internal system IP addresses, student records or restricted employer details in code or PRs. Do not duplicate private project docs into the public repo. Existing public content does not permit extrapolation about classified deployments. Any contact form needs an actual secure handling and anti-spam plan; prefer mailto for the current scope.
