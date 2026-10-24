@@ -129,14 +129,14 @@ Check 320px, 375px, tablet and desktop; light/dark/Matrix; mobile menu; hover/fo
 **Done when:** regressions are fixed and checks are documented in PRs.
 
 ## P3 — Developer experience and automation
-**Status:** In review. `npm run check` builds the site and runs `scripts/smoke.mjs` against `dist`. The script checks key routes, the theme toggle, the command palette, Matrix enter and exit, the mobile menu, and homepage overflow at 320px. `.github/workflows/ci.yml` runs that check on pull requests and pushes to `main`. The contribution-graph workflow is unchanged and still owns `GH_TOKEN`.
+**Status:** In review. `npm run check` runs the analytics tests, builds the site, and runs `scripts/smoke.mjs` against `dist`. The script checks key routes, the theme toggle, the command palette, Matrix enter and exit, the mobile menu, and homepage overflow at 320px. `.github/workflows/ci.yml` runs that check on pull requests and pushes to `main`. The contribution-graph workflow now also writes the analytics snapshot and runs its tests. It still uses the Actions `GITHUB_TOKEN` only on the runner.
 
 Investigate `astro check` / typechecking, focused smoke tests (Playwright is already a dependency), link checking and PR CI. Prefer a very small verification suite over a large test framework. Protect the graph workflow from churn or bad commits but do not break its scheduled job.
 
 **Done when:** PR authors can run documented deterministic checks and CI does not require private services.
 
 ## P3.1 — Contribution graph workflow
-**Status:** In review. `scripts/contributions.mjs` still fails closed when the token, HTTP call, GraphQL payload, or calendar is missing, and it now also refuses a calendar with no weeks. The scheduled workflow serializes runs and will not commit an SVG that has no dated cells. The public graph file remains the no-JavaScript fallback. The workflow still uses the Actions `GITHUB_TOKEN` only on the runner.
+**Status:** In review. `scripts/contributions.mjs` still fails closed when the token, HTTP call, GraphQL payload, or calendar is missing, and it now also refuses a calendar with no weeks. The scheduled workflow serializes runs, refreshes the SVG, writes `src/data/github-analytics.json`, runs the analytics tests, and refuses an SVG without dated cells or a snapshot without contribution days. The public graph file remains the no-JavaScript fallback. The workflow still uses the Actions `GITHUB_TOKEN` only on the runner.
 
 ## First three autonomous PRs (suggested)
 1. **Contact page** using only already-public contact links.
