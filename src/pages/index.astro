@@ -3,6 +3,7 @@ import Layout from "../layouts/layout.astro";
 import AboutTerminal from "../components/terminal.astro";
 import SelectedWork from "../components/projects/selected-work.astro";
 import ContributionGraph from "../components/contribution-graph.astro";
+import { analytics } from "../lib/analytics-view";
 ---
 
 <Layout title="Tyler Dalton | Home"
@@ -76,7 +77,11 @@ import ContributionGraph from "../components/contribution-graph.astro";
           </a>
         </div>
 
-        <ContributionGraph />
+        <ContributionGraph
+          total={analytics.contributionTotal}
+          from={analytics.contributionFrom}
+          to={analytics.contributionTo}
+        />
       </div>
     </section>
 </Layout>
