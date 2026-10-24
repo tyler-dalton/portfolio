@@ -8,6 +8,11 @@ on:
 permissions:
   contents: write
 
+# One graph update at a time. A second run waits, then checks out the result of the first.
+concurrency:
+  group: update-contribution-graph
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -32,6 +37,11 @@ jobs:
           if [ -z "$(git status --porcelain public/github/contributions.svg)" ]; then
             echo "Contribution graph has not changed."
             exit 0
+          fi
+
+          if ! grep -q 'data-date=' public/github/contributions.svg; then
+            echo "Refusing to commit a contribution graph with no dated cells."
+            exit 1
           fi
 
           git config user.name "github-actions[bot]"
