@@ -10,9 +10,9 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | Priority | Task | Status | Owner decision? |
 | --- | --- | --- | --- |
 | P0 | Audit content consistency and broken paths | Ready | Only for changes to facts |
-| P0 | Keep homepage GitHub handle and arrow together ([#6](https://github.com/tyler-dalton/portfolio/issues/6)) | In review | No |
+| P0 | Keep homepage GitHub handle and arrow together ([#6](https://github.com/tyler-dalton/portfolio/issues/6)) | Merged ([#36](https://github.com/tyler-dalton/portfolio/pull/36)) | No |
 | P0 | Finish Contact route | Ready | No for already-public methods |
-| P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
+| P1 | Make GitHub activity page meaningfully useful | In review | No for verified public GitHub data |
 | P1 | Create reusable Activity/Timeline/Changelog content model | Ready | Confirm personal narrative for timeline |
 | P1 | Publish additional MDX project case studies | Needs facts | Yes |
 | P1 | Fix stale/contradictory career and availability copy | Needs facts | Yes |
@@ -34,7 +34,7 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** a single issue/PR documents all inconsistencies; safe technical fixes are made; undecidable facts are presented as exact questions rather than silently rewritten.
 
 ## P0.1b — Homepage GitHub handle wrap
-**Status:** In review. Narrow viewports were splitting `↗` onto its own line beside the GitHub Contributions heading. The handle and arrow now stay on one line, and the pair stacks under the heading below the `sm` breakpoint.
+**Status:** Merged in #36. Narrow viewports were splitting `↗` onto its own line beside the GitHub Contributions heading. The handle and arrow now stay on one line, and the pair stacks under the heading below the `sm` breakpoint.
 
 ## P0.2 — Replace Contact placeholder
 **Target:** `src/pages/contact.astro`.
@@ -44,6 +44,8 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** `/contact` no longer shows `UnderConstruction`; works on mobile and all themes; relevant internal routes and keyboard controls work; no made-up address or phone number.
 
 ## P1.1 — Expand GitHub activity
+**Status:** In review. `/activity/github` lists public non-fork repositories, then the contribution graph. Repositories come first because each graph day is keyboard focusable. The list is read from the public GitHub API at build time and falls back to `src/lib/github-repos.ts` when that read fails. The homepage uses the same graph component. Forks, the profile README, and a feed of individual commits are omitted.
+
 **Target:** `src/pages/activity/github.astro`, plus small reusable components if needed.
 
 **Current baseline:** contribution SVG graph and GitHub profile link. Homepage has a richer hover/focus tooltip enhancement than this page.

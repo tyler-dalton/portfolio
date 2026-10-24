@@ -1,25 +1,95 @@
 ---
 import Layout from "../../layouts/layout.astro";
+import ContributionGraph from "../../components/contribution-graph.astro";
+import { loadPublicRepos } from "../../lib/github-repos";
+
+const { repos, source } = await loadPublicRepos();
+
+const formatPushed = (iso: string) => {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "Unknown date";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+};
 ---
-<Layout title="Tyler Dalton | GitHub Activity"
-        socialTitle="GitHub Activity - Tyler Dalton"
-        description="Recent GitHub activity and open-source contributions from Tyler Dalton.">
+
+<Layout
+  title="Tyler Dalton | GitHub Activity"
+  socialTitle="GitHub Activity - Tyler Dalton"
+  description="Public GitHub repositories and a year of contribution activity from Tyler Dalton."
+>
   <section class="px-4 py-16 md:py-24">
     <div class="mx-auto max-w-[1100px]">
-      <h1 class="text-4xl font-bold tracking-tight md:text-6xl">
-        GitHub activity
-      </h1>
+      <h1 class="text-4xl font-bold tracking-tight md:text-6xl">GitHub activity</h1>
       <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
-        A year of public contribution activity. The graph refreshes from GitHub as part of the portfolio’s regular update process.
-      </p><div class="mt-12 overflow-x-auto rounded-xl border border-[var(--page-border)] bg-[color-mix(in_srgb,var(--page-foreground)_4%,transparent)] p-5">
-        <img src="/github/contributions.svg" alt="Tyler Dalton's GitHub contributions over the last year" class="block min-w-[735px]" loading="lazy" />
+        Public repositories first, then the contribution graph. A repository listing is the public record of that repo, not a case study, and a push is not a finished result.
+      </p>
+
+      <div class="mt-12">
+        <h2 class="text-2xl font-semibold tracking-tight">Public repositories</h2>
+        <p class="mt-3 max-w-2xl leading-relaxed text-[var(--page-secondary)]">
+          Non-fork repositories on the public profile. Descriptions are quoted from GitHub.
+        </p>
       </div>
-      <a href="https://github.com/tyler-dalton"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-6 inline-block font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)]">
-        Visit @tyler-dalton on GitHub ↗
-      </a>
+      <p class="mt-3 font-mono text-xs text-[var(--page-muted)]">
+        {source === "live"
+          ? "Read from the public GitHub API when this site was built."
+          : "Showing the repository list verified on October 24, 2026. Live GitHub data was unavailable at build time."}
+      </p>
+
+      {repos.length === 0 ? (
+        <p class="mt-8 text-[var(--page-secondary)]">No public repositories are listed right now.</p>
+      ) : (
+        <ul class="mt-8 grid list-none gap-4 p-0">
+          {repos.map((repo) => (
+            <li>
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block rounded-xl border border-[var(--page-border)] p-6 no-underline transition-colors hover:border-[var(--page-accent)] hover:bg-[color-mix(in_srgb,var(--page-accent)_7%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+              >
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                  <h3 class="text-xl font-semibold text-[var(--page-foreground)]">
+                    {repo.name}
+                    <span class="sr-only"> (opens in a new tab)</span>
+                    <span class="ml-2 inline-block whitespace-nowrap transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" aria-hidden="true">↗</span>
+                  </h3>
+                  <p class="font-mono text-xs text-[var(--page-muted)]">
+                    {repo.language ? `${repo.language} · ` : ""}Last push {formatPushed(repo.pushedAt)}
+                  </p>
+                </div>
+                <p class="mt-3 max-w-3xl leading-relaxed text-[var(--page-secondary)]">
+                  {repo.description ?? "No description is published on GitHub."}
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div class="mt-16 flex flex-col items-start gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+        <h2 class="text-2xl font-semibold tracking-tight">Contribution graph</h2>
+        <a
+          href="https://github.com/tyler-dalton"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-sm text-[var(--page-muted)] underline-offset-4 hover:text-[var(--page-foreground)] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+        >
+          @tyler-dalton
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--page-muted)]">
+        Each square is one day of activity GitHub counts for this account. A darker day is more activity, not more important work. Routine updates, including the automated refresh of this graph, are included. Hover a day after the graph loads for the count. Without JavaScript, or if that load fails, the image still shows the year.
+      </p>
+      <div class="mt-5 rounded-xl border border-[var(--page-border)] bg-[color-mix(in_srgb,var(--page-foreground)_4%,transparent)] p-5">
+        <ContributionGraph />
+      </div>
     </div>
   </section>
 </Layout>
