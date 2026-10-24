@@ -1,23 +1,52 @@
 ---
 import Layout from "../../layouts/layout.astro";
-import SectionHub from "../../components/section-hub.astro";
+import Metrics from "../../components/activity/metrics.astro";
+import { analytics } from "../../lib/analytics-view";
+import { formatFull } from "../../lib/github-analytics";
+import "../../styles/activity.css";
 ---
-<Layout title="Tyler Dalton | Activity"
-        socialTitle="Activity - Tyler Dalton"
-        description="Explore Tyler Dalton's recent activity through GitHub contributions, project updates, and timeline of ongoing work.">
-  <SectionHub
-    title="A record of work in motion."
-    intro="Updates, contribution history, and context for what is being built over time."
-    links={[
-      { label: "GitHub",
-      href: "/activity/github",
-      description: "Contribution graph and public repositories." },
 
-      { label: "Timeline",
-      href: "/activity/timeline",
-      description: "Published milestones with a public source." },
+<Layout
+  title="Tyler Dalton | Activity"
+  socialTitle="Activity - Tyler Dalton"
+  description="A snapshot of Tyler Dalton's recent GitHub work, published milestones, and portfolio changes."
+>
+  <section class="px-4 py-16 md:py-24">
+    <div class="mx-auto max-w-[1100px]">
+      <header class="activity-intro">
+        <p class="activity-kicker">Activity</p>
+        <h1>A look at what I'm building</h1>
+        <p class="activity-lede">The last 30 days, then the pages that hold the rest.</p>
+        <p class="activity-caption">
+          Contributions through {formatFull(analytics.contributionAsOf)}. Commits through {formatFull(analytics.commitAsOf)}.
+        </p>
+      </header>
 
-      { label: "Changelog",
-      href: "/activity/changelog",
-      description: "Visitor-visible changes to this portfolio." }]} />
+      <p class="activity-kicker activity-kicker--section">Last 30 days</p>
+      <Metrics metrics={analytics.metrics} />
+
+      <nav aria-label="Activity pages">
+        <ol class="activity-links">
+          <li>
+            <a href="/activity/github">
+              <span class="activity-links__label">GitHub analytics</span>
+              <span class="activity-links__detail">Contributions, commits, and languages.</span>
+            </a>
+          </li>
+          <li>
+            <a href="/activity/timeline">
+              <span class="activity-links__label">Timeline</span>
+              <span class="activity-links__detail">Published milestones with a public source.</span>
+            </a>
+          </li>
+          <li>
+            <a href="/activity/changelog">
+              <span class="activity-links__label">Changelog</span>
+              <span class="activity-links__detail">Visitor-visible changes to this portfolio.</span>
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
 </Layout>

@@ -35,8 +35,8 @@ Main structure is defined in `src/data/navigation.ts`:
 | Panoptes | Complete, detailed MDX case study with visual architecture components | Use as structural reference; do not copy claims to other projects |
 | Project count | Only `src/content/projects/panoptes.mdx` found | Other filters may show honest empty state |
 | Resume | Interactive web view generated from `src/data/resume.ts` and PDF download | Data may need owner verification and synchronization |
-| GitHub | Contribution graph page implemented; homepage adds tooltips | Not yet a comprehensive GitHub activity page |
-| Timeline | Dated entries for the published Panoptes case study and the resume's personal infrastructure lab. Disagreeing resume titles and dates are not repeated | Add a milestone only after it has a public source the owner accepts |
+| GitHub | Analytics snapshot in `src/data/github-analytics.json`. The page shows 30-day contribution figures, month and weekday bars, language bytes, a commit rail, the graph, and recently active public repositories. Contribution totals and commit counts are separate units | In review. Do not merge until the owner has seen the rendered pages |
+| Timeline | Vertical spine for the published Panoptes case study and the resume's personal infrastructure lab. Disagreeing resume titles and dates are not repeated. Changelog remains a dated release log | Add a milestone only after it has a public source the owner accepts |
 | Changelog | Curated visitor-visible portfolio changes in `src/data/activity.ts`. Daily contribution-graph commits are excluded | Add a dated entry when a change is worth telling a visitor |
 | Personal | `UnderConstruction` component | Requires owner-approved personal text |
 | Now | `UnderConstruction` component | Requires owner confirmation for current focus |

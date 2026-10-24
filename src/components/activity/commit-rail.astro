@@ -1,0 +1,27 @@
+---
+import { countLabel, type RecentCommitDay } from "../../lib/github-analytics";
+
+interface Props {
+  days: RecentCommitDay[];
+}
+
+const { days } = Astro.props;
+---
+
+{
+  days.length === 0 ? (
+    <p class="activity-empty">No authored public commits in this window.</p>
+  ) : (
+    <ol class="activity-rail">
+      {days.map((day) => (
+        <li>
+          <span class="activity-rail__mark" aria-hidden="true">
+            <span class="activity-rail__node" />
+          </span>
+          <time datetime={day.date}>{day.label}</time>
+          <span class="activity-rail__count">{countLabel(day.count, "commit")}</span>
+        </li>
+      ))}
+    </ol>
+  )
+}

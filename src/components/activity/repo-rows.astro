@@ -1,0 +1,34 @@
+---
+import { countLabel, type ActiveRepository } from "../../lib/github-analytics";
+
+interface Props {
+  repositories: ActiveRepository[];
+}
+
+const { repositories } = Astro.props;
+---
+
+{
+  repositories.length === 0 ? (
+    <p class="activity-empty">No authored public commits in this window.</p>
+  ) : (
+    <ol class="activity-repos">
+      {repositories.map((repository) => (
+        <li class="activity-repo">
+          <a class="activity-repo__name" href={repository.url} target="_blank" rel="noopener noreferrer">
+            {repository.name}
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+          <span class="activity-track" aria-hidden="true">
+            <span class="activity-fill" style={`width: ${repository.scale}%`} />
+          </span>
+          <span class="activity-repo__count">{countLabel(repository.commits, "commit")}</span>
+          <p class="activity-repo__meta">
+            {repository.languages.length > 0 && <span>{repository.languages.join(" · ")}</span>}
+            <span>Last active {repository.lastActiveLabel}</span>
+          </p>
+        </li>
+      ))}
+    </ol>
+  )
+}

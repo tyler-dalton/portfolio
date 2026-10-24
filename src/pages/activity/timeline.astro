@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/layout.astro";
-import DatedEntries from "../../components/dated-entries.astro";
+import Milestones from "../../components/activity/milestones.astro";
 import { timeline } from "../../data/activity";
+import "../../styles/activity.css";
 ---
 
 <Layout
@@ -11,12 +12,15 @@ import { timeline } from "../../data/activity";
 >
   <section class="px-4 py-16 md:py-24">
     <div class="mx-auto max-w-[1100px]">
-      <h1 class="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">Timeline</h1>
-      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
-        Milestones that already have a public page or repository. Newest starts are first.
-        Resume lines whose titles or dates still disagree stay on the resume and are not repeated here.
-      </p>
-      <DatedEntries entries={timeline} empty="No milestones are listed yet." />
+      <header class="activity-intro">
+        <p class="activity-kicker">Activity</p>
+        <h1>Timeline</h1>
+        <p class="activity-lede">
+          Milestones that already have a public page or repository. Newest starts are first.
+          Resume lines whose titles or dates still disagree stay on the resume and are not repeated here.
+        </p>
+      </header>
+      <Milestones entries={timeline} />
     </div>
   </section>
 </Layout>

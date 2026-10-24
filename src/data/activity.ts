@@ -47,6 +47,18 @@ function publish(entries: DatedEntry[]): DatedEntry[] {
 
 const changelogSource: DatedEntry[] = [
   {
+    id: "activity-analytics",
+    date: "2026-10-24",
+    dateLabel: "October 24, 2026",
+    title: "Activity analytics",
+    details: [
+      "The GitHub page shows contribution totals, month and weekday bars, language share, and recent public commits.",
+      "The timeline lists the published milestones on a vertical spine. The changelog stays a release log.",
+    ],
+    href: "/activity/github",
+    hrefLabel: "GitHub analytics",
+  },
+  {
     id: "contact-page",
     date: "2026-10-23",
     dateLabel: "October 23, 2026",
