@@ -1,12 +1,22 @@
 ---
 import Layout from "../../layouts/layout.astro";
-import UnderConstruction from "../../components/under-construction.astro";
+import DatedEntries from "../../components/dated-entries.astro";
+import { changelog } from "../../data/activity";
 ---
-<Layout title="Tyler Dalton | Changelog"
-        socialTitle="Changelog - Tyler Dalton"
-        description="A running log on changes and updates to Tyler Dalton's portfolio.">
-  <UnderConstruction
-    title="Changelog"
-    path="/activity/changelog"
-    message="Portfolio release notes are being prepared alongside the next content pass." />
+
+<Layout
+  title="Tyler Dalton | Changelog"
+  socialTitle="Changelog - Tyler Dalton"
+  description="Visitor-visible changes to Tyler Dalton's portfolio. Daily contribution-graph updates are not listed."
+>
+  <section class="px-4 py-16 md:py-24">
+    <div class="mx-auto max-w-[1100px]">
+      <h1 class="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">Changelog</h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
+        A short record of changes a visitor can still see. Newest entries are first.
+        Daily refreshes of the contribution graph are generated automatically and are not listed.
+      </p>
+      <DatedEntries entries={changelog} empty="No portfolio changes are listed yet." />
+    </div>
+  </section>
 </Layout>

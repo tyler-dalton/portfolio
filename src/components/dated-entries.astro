@@ -1,0 +1,49 @@
+---
+import type { DatedEntry } from "../data/activity";
+
+interface Props {
+  entries: DatedEntry[];
+  empty: string;
+}
+
+const { entries, empty } = Astro.props;
+---
+
+{
+  entries.length === 0 ? (
+    <p class="mt-12 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">{empty}</p>
+  ) : (
+    <ol class="mt-12 list-none space-y-4 p-0">
+      {entries.map((entry) => (
+        <li class="rounded-xl border border-[var(--page-border)] p-6">
+          <p class="font-mono text-sm text-[var(--page-muted)]">
+            <time datetime={entry.date}>{entry.dateLabel}</time>
+          </p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--page-foreground)]">{entry.title}</h2>
+          {entry.details.map((detail) => (
+            <p class="mt-3 max-w-3xl leading-relaxed text-[var(--page-secondary)]">{detail}</p>
+          ))}
+          {entry.href && entry.hrefLabel && (
+            <p class="mt-4">
+              <a
+                href={entry.href}
+                target={entry.external ? "_blank" : undefined}
+                rel={entry.external ? "noopener noreferrer" : undefined}
+                class="group inline-flex items-center font-medium text-[var(--page-foreground)] underline decoration-[var(--page-border)] underline-offset-4 hover:text-[var(--page-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--page-accent)]"
+              >
+                {entry.hrefLabel}
+                {entry.external && <span class="sr-only"> (opens in a new tab)</span>}
+                <span
+                  class="ml-2 inline-block whitespace-nowrap transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                  aria-hidden="true"
+                >
+                  {entry.external ? "↗" : "→"}
+                </span>
+              </a>
+            </p>
+          )}
+        </li>
+      ))}
+    </ol>
+  )
+}

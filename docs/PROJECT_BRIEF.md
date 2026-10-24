@@ -36,8 +36,8 @@ Main structure is defined in `src/data/navigation.ts`:
 | Project count | Only `src/content/projects/panoptes.mdx` found | Other filters may show honest empty state |
 | Resume | Interactive web view generated from `src/data/resume.ts` and PDF download | Data may need owner verification and synchronization |
 | GitHub | Contribution graph page implemented; homepage adds tooltips | Not yet a comprehensive GitHub activity page |
-| Timeline | `UnderConstruction` component | Needs verified milestones |
-| Changelog | `UnderConstruction` component | Needs a trustworthy curated source |
+| Timeline | Dated entries for the published Panoptes case study and the resume's personal infrastructure lab. Disagreeing resume titles and dates are not repeated | Add a milestone only after it has a public source the owner accepts |
+| Changelog | Curated visitor-visible portfolio changes in `src/data/activity.ts`. Daily contribution-graph commits are excluded | Add a dated entry when a change is worth telling a visitor |
 | Personal | `UnderConstruction` component | Requires owner-approved personal text |
 | Now | `UnderConstruction` component | Requires owner confirmation for current focus |
 | Contact | Public email, GitHub, LinkedIn, `/card`, and vCard download. No form and no phone number on the page | Homepage "Contact me" points here; footer email stays a mailto link |
