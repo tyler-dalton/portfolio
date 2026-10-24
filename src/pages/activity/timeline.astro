@@ -1,12 +1,22 @@
 ---
 import Layout from "../../layouts/layout.astro";
-import UnderConstruction from "../../components/under-construction.astro";
+import DatedEntries from "../../components/dated-entries.astro";
+import { timeline } from "../../data/activity";
 ---
-<Layout title="Tyler Dalton | Timeline"
-        socialTitle="Timeline - Tyler Dalton"
-        description="A chronological view of Tyler Dalton's milestones and ongoing projects.">
-  <UnderConstruction
-    title="Timeline"
-    path="/activity/timeline"
-    message="The timeline is being assembled around meaningful milestones, rather than a stream of filler." />
+
+<Layout
+  title="Tyler Dalton | Timeline"
+  socialTitle="Timeline - Tyler Dalton"
+  description="Published milestones for Tyler Dalton: the Panoptes case study and the personal infrastructure lab."
+>
+  <section class="px-4 py-16 md:py-24">
+    <div class="mx-auto max-w-[1100px]">
+      <h1 class="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">Timeline</h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--page-secondary)]">
+        Milestones that already have a public page or repository. Newest starts are first.
+        Resume lines whose titles or dates still disagree stay on the resume and are not repeated here.
+      </p>
+      <DatedEntries entries={timeline} empty="No milestones are listed yet." />
+    </div>
+  </section>
 </Layout>

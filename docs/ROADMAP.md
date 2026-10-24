@@ -14,11 +14,11 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | P0 | Finish Contact route | Ready | No for already-public methods |
 | P0 | Match the mobile browser top bar to the active theme ([#5](https://github.com/tyler-dalton/portfolio/issues/5)) | In review | No |
 | P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
-| P1 | Create reusable Activity/Timeline/Changelog content model | Ready | Confirm personal narrative for timeline |
+| P1 | Create reusable Activity/Timeline/Changelog content model ([#10](https://github.com/tyler-dalton/portfolio/issues/10), [#11](https://github.com/tyler-dalton/portfolio/issues/11)) | In review | Confirm personal narrative for timeline |
 | P1 | Publish additional MDX project case studies | Needs facts | Yes |
 | P1 | Fix stale/contradictory career and availability copy | Needs facts | Yes |
 | P2 | Finish About / Now and Personal pages | Needs facts | Yes |
-| P2 | Curated changelog experience | Ready | Confirm whether notable changes should be public |
+| P2 | Curated changelog experience ([#11](https://github.com/tyler-dalton/portfolio/issues/11)) | In review | Confirm whether notable changes should be public |
 | P2 | Accessibility, mobile and theme regression coverage | Ready | No |
 | P3 | Automated quality checks and low-maintenance content updates | Investigation | No for non-destructive workflow changes |
 
@@ -80,6 +80,8 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** provides more value than merely repeating the homepage graph, is resilient if GitHub fails and does not treat every commit as substantive engineering activity.
 
 ## P1.2 — Timeline and changelog data foundation
+**Status:** In review. `src/data/activity.ts` holds typed, dated entries. `src/components/dated-entries.astro` renders them on both pages, including an empty state. The timeline lists the published Panoptes case study (May 18 – August 14, 2026) and the resume's personal infrastructure lab (December 2025 – Present). It does not pick between disagreeing job titles, and it does not repeat other resume lines whose titles or dates still disagree. The changelog lists visitor-visible portfolio changes and skips daily contribution-graph commits. Month-only dates sort as the first of that month; the visible label is the claim.
+
 **Targets:** `src/pages/activity/timeline.astro`, `src/pages/activity/changelog.astro`.
 
 **Steps:** Define a small, typed data model (TypeScript data or content collection) and present meaningful entries with date, title, description and optional verified link. Choose source based on requirements; do not invent entries to fill the page. Start with verifiable site version/change history. Separate *portfolio releases* from *career/project milestones*.
@@ -115,6 +117,8 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 **Done when:** both pages replace placeholders using owner-approved text and preserve site tone.
 
 ## P2.2 — Portfolio changelog
+**Status:** In review. The log is the typed changelog in P1.2. Add an object with an id, ISO date, visible label, title, and short details. Do not list routine `chore(git contributions)` SVG updates.
+
 Create a human-curated log of meaningful releases. Source from verified product commits/tags when useful; filter out routine `chore(git contributions)` SVG updates, dependency churn and noise. Do not assert an automated change was reviewed unless it was.
 
 **Done when:** visitors can tell what substantively improved and when, and maintainers can update it in minutes.
