@@ -10,7 +10,9 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | Priority | Task | Status | Owner decision? |
 | --- | --- | --- | --- |
 | P0 | Audit content consistency and broken paths | Ready | Only for changes to facts |
-| P0 | Finish Contact route | In review | No for already-public methods |
+| P0 | Keep homepage GitHub handle and arrow together ([#6](https://github.com/tyler-dalton/portfolio/issues/6)) | In review | No |
+| P0 | Finish Contact route | Ready | No for already-public methods |
+| P0 | Match the mobile browser top bar to the active theme ([#5](https://github.com/tyler-dalton/portfolio/issues/5)) | In review | No |
 | P1 | Make GitHub activity page meaningfully useful | Ready | No for verified public GitHub data |
 | P1 | Create reusable Activity/Timeline/Changelog content model | Ready | Confirm personal narrative for timeline |
 | P1 | Publish additional MDX project case studies | Needs facts | Yes |
@@ -21,6 +23,26 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 | P3 | Automated quality checks and low-maintenance content updates | Investigation | No for non-destructive workflow changes |
 
 ## P0.1 — Content, link and accuracy audit
+**Status:** In review. No career copy was rewritten. Findings below are the owner questions for P1.4.
+
+**Verified agreements (left unchanged)**
+- Email `tldalton54@gmail.com` matches the homepage, footer, card, web resume, vCard, and PDF.
+- GitHub profile, LinkedIn profile, homelab repository, fishnet.replit.app, and the Panoptes LinkedIn post respond successfully.
+- School, "Junior", graduation May 2029, and GPA 4.00 appear on both the web resume and the PDF.
+- Live image paths under `public/` exist. Built routes match `src/pages/`.
+
+**Do not publish until the owner picks a canonical wording**
+- Degree line: homepage and card say "Cybersecurity + Systems Administration". Layout metadata says "Cybersecurity and Systems Administration". The terminal profile says "Cyber/Electronic Operations & Warfare + Network/Systems Administration", while its major row says "Cybersecurity + Network/Systems Administration". The web resume and PDF say two B.S. degrees, Cybersecurity and Network/Systems Administration.
+- Awetomaton title: web resume "DevOps Engineer Intern"; PDF "Platform Engineer Intern"; Panoptes role "Platform Engineer".
+- Teaching assistant end date: web resume "August 2026 – December 2026"; PDF "August 2026 – Present".
+- Availability seasons match (Spring 2027 and Summer 2027) but the sentences differ. Confirm the line is still the right public position.
+- The PDF name line includes a middle initial the site does not use, and it still prints `homepages.uc.edu/~daltonty/portfolio/`, which now redirects to a UC maintenance page.
+- `https://github.com/tyler-dalton/kubernetes-ha-cluster` returns 404 and is not visible to the owner account either. The web resume still links it. The PDF links the GitHub profile instead. Do not guess a replacement URL.
+- The PDF and vCard contain a cell number that the visible site does not show. Leave it out of new pages unless the owner asks to display it. The vCard `TITLE` and `ORG` fields are empty.
+- Public repos `deployment-bags` and `dotfiles` exist and are not linked from the current site. They are candidates only, not approval to write case studies.
+
+**Safe fix in this pass:** external resume links now use `rel="noopener noreferrer"`.
+
 **Why:** Existing copy is distributed across homepage, terminal, resume data, project MDX, business card and downloadable assets. Inconsistent claims damage credibility.
 
 **Steps**
@@ -31,6 +53,11 @@ Statuses: **Ready** = implement without new facts; **Needs facts** = technical s
 - Check links, image 404s, route metadata, output sitemap, and CTA targets. Create a short audit section in the PR.
 
 **Done when:** a single issue/PR documents all inconsistencies; safe technical fixes are made; undecidable facts are presented as exact questions rather than silently rewritten.
+
+## P0.1c — Mobile theme color
+**Status:** In review. The shell now sets `theme-color` from the active theme before first paint and again whenever `data-theme` changes, including Matrix. `viewport-fit=cover` lets that background reach the display edge, and the header pads for `safe-area-inset-top`. A real iPhone Safari check is still required; desktop Chromium can only confirm the meta tag.
+## P0.1b — Homepage GitHub handle wrap
+**Status:** In review. Narrow viewports were splitting `↗` onto its own line beside the GitHub Contributions heading. The handle and arrow now stay on one line, and the pair stacks under the heading below the `sm` breakpoint.
 
 ## P0.2 — Replace Contact placeholder
 **Status:** In review. `/contact` lists the public email, GitHub, LinkedIn, `/card`, and vCard. No form and no phone number. The homepage "Contact me" button now opens this page. The footer email remains a `mailto:` link.

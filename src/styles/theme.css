@@ -8,7 +8,10 @@ body {
   transition: background-color 180ms ease, color 180ms ease; }
 
 /* ── Hierarchical navigation ─────────────────────────────────────────────── */
-.site-header { position: relative; z-index: 20; }
+.site-header {
+  position: relative;
+  z-index: 20;
+  padding-top: env(safe-area-inset-top); }
 .site-nav-item { position: relative; }
 .site-nav-item:not(:first-child)::before {
   position: absolute;

@@ -47,7 +47,7 @@ Main structure is defined in `src/data/navigation.ts`:
 No open PRs or open issues were returned by the connected GitHub search during this snapshot. Do not assume that remains true.
 
 ## Relevant existing assets and patterns
-- `src/layouts/layout.astro`: default metadata, canonical and social tags, common chrome, theme bootstrap, Matrix mounts.
+- `src/layouts/layout.astro`: default metadata, canonical and social tags, common chrome, theme bootstrap, `theme-color` kept in sync with the active theme, Matrix mounts.
 - `src/components/section-hub.astro`: consistent Work/Activity/About hub style.
 - `src/components/under-construction.astro`: reusable placeholder; retire from routes as content is completed.
 - `src/components/projects/`: cards, project indexes, stats and Panoptes visualizations.
