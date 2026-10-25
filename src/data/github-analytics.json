@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-24T11:11:18.337Z",
-  "lastSuccessfulRefresh": "2026-10-24T11:11:18.337Z",
+  "generatedAt": "2026-10-25T11:40:51.458Z",
+  "lastSuccessfulRefresh": "2026-10-25T11:40:51.458Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-10-24",
-  "commitAsOf": "2026-10-24",
+  "contributionAsOf": "2026-10-25",
+  "commitAsOf": "2026-10-25",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,50 +22,22 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-09-25",
-      "end": "2026-10-24",
+      "start": "2026-09-26",
+      "end": "2026-10-25",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-07-27",
-      "end": "2026-10-24",
+      "start": "2026-07-28",
+      "end": "2026-10-25",
       "days": 90
     },
     "commits": {
-      "start": "2026-07-27",
-      "end": "2026-10-24",
+      "start": "2026-07-28",
+      "end": "2026-10-25",
       "days": 90
     }
   },
   "contributionDays": [
-    {
-      "date": "2025-10-19",
-      "count": 0
-    },
-    {
-      "date": "2025-10-20",
-      "count": 0
-    },
-    {
-      "date": "2025-10-21",
-      "count": 0
-    },
-    {
-      "date": "2025-10-22",
-      "count": 0
-    },
-    {
-      "date": "2025-10-23",
-      "count": 0
-    },
-    {
-      "date": "2025-10-24",
-      "count": 0
-    },
-    {
-      "date": "2025-10-25",
-      "count": 0
-    },
     {
       "date": "2025-10-26",
       "count": 0
@@ -1521,6 +1493,10 @@
     {
       "date": "2026-10-24",
       "count": 35
+    },
+    {
+      "date": "2026-10-25",
+      "count": 0
     }
   ],
   "commits": [
@@ -5070,7 +5046,7 @@
       "name": "deployment-bags",
       "url": "https://github.com/tyler-dalton/deployment-bags",
       "languages": {
-        "Shell": 7160
+        "Shell": 7015
       }
     },
     {
