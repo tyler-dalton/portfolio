@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-30T13:05:06.013Z",
-  "lastSuccessfulRefresh": "2026-10-30T13:05:06.013Z",
+  "generatedAt": "2026-10-31T12:42:38.812Z",
+  "lastSuccessfulRefresh": "2026-10-31T12:42:38.812Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-10-30",
-  "commitAsOf": "2026-10-30",
+  "contributionAsOf": "2026-10-31",
+  "commitAsOf": "2026-10-31",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,18 +22,18 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-10-01",
-      "end": "2026-10-30",
+      "start": "2026-10-02",
+      "end": "2026-10-31",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-08-02",
-      "end": "2026-10-30",
+      "start": "2026-08-03",
+      "end": "2026-10-31",
       "days": 90
     },
     "commits": {
-      "start": "2026-08-02",
-      "end": "2026-10-30",
+      "start": "2026-08-03",
+      "end": "2026-10-31",
       "days": 90
     }
   },
@@ -1508,7 +1508,7 @@
     },
     {
       "date": "2026-10-28",
-      "count": 7
+      "count": 8
     },
     {
       "date": "2026-10-29",
@@ -1516,7 +1516,11 @@
     },
     {
       "date": "2026-10-30",
-      "count": 0
+      "count": 8
+    },
+    {
+      "date": "2026-10-31",
+      "count": 4
     }
   ],
   "commits": [
@@ -5157,8 +5161,60 @@
       "date": "2026-10-28"
     },
     {
+      "repo": "dotfiles",
+      "date": "2026-10-28"
+    },
+    {
       "repo": "deployment-bags",
       "date": "2026-10-29"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-30"
+    },
+    {
+      "repo": "deployment-bags",
+      "date": "2026-10-31"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-10-31"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-10-31"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-10-31"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-10-31"
     }
   ],
   "repositories": [
@@ -5173,7 +5229,7 @@
       "name": "dotfiles",
       "url": "https://github.com/tyler-dalton/dotfiles",
       "languages": {
-        "Lua": 8453,
+        "Lua": 11280,
         "Shell": 26603
       }
     },
