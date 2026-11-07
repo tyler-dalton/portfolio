@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-06T14:22:58.625Z",
-  "lastSuccessfulRefresh": "2026-11-06T14:22:58.625Z",
+  "generatedAt": "2026-11-07T13:12:52.010Z",
+  "lastSuccessfulRefresh": "2026-11-07T13:12:52.010Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-11-06",
-  "commitAsOf": "2026-11-06",
+  "contributionAsOf": "2026-11-07",
+  "commitAsOf": "2026-11-07",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,18 +22,18 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-10-08",
-      "end": "2026-11-06",
+      "start": "2026-10-09",
+      "end": "2026-11-07",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-08-09",
-      "end": "2026-11-06",
+      "start": "2026-08-10",
+      "end": "2026-11-07",
       "days": 90
     },
     "commits": {
-      "start": "2026-08-09",
-      "end": "2026-11-06",
+      "start": "2026-08-10",
+      "end": "2026-11-07",
       "days": 90
     }
   },
@@ -1516,6 +1516,10 @@
     },
     {
       "date": "2026-11-06",
+      "count": 12
+    },
+    {
+      "date": "2026-11-07",
       "count": 0
     }
   ],
@@ -5291,6 +5295,46 @@
     {
       "repo": "homelab-infra",
       "date": "2026-11-04"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
+    },
+    {
+      "repo": "dotfiles",
+      "date": "2026-11-07"
     }
   ],
   "repositories": [
@@ -5305,7 +5349,7 @@
       "name": "dotfiles",
       "url": "https://github.com/tyler-dalton/dotfiles",
       "languages": {
-        "Lua": 11280,
+        "Lua": 13513,
         "Shell": 26603
       }
     },
