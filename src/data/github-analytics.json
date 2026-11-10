@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-09T16:32:03.004Z",
-  "lastSuccessfulRefresh": "2026-11-09T16:32:03.004Z",
+  "generatedAt": "2026-11-10T14:59:08.396Z",
+  "lastSuccessfulRefresh": "2026-11-10T14:59:08.396Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-11-09",
-  "commitAsOf": "2026-11-09",
+  "contributionAsOf": "2026-11-10",
+  "commitAsOf": "2026-11-10",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,18 +22,18 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-10-11",
-      "end": "2026-11-09",
+      "start": "2026-10-12",
+      "end": "2026-11-10",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-08-12",
-      "end": "2026-11-09",
+      "start": "2026-08-13",
+      "end": "2026-11-10",
       "days": 90
     },
     "commits": {
-      "start": "2026-08-12",
-      "end": "2026-11-09",
+      "start": "2026-08-13",
+      "end": "2026-11-10",
       "days": 90
     }
   },
@@ -1500,7 +1500,11 @@
     },
     {
       "date": "2026-11-09",
-      "count": 0
+      "count": 31
+    },
+    {
+      "date": "2026-11-10",
+      "count": 1
     }
   ],
   "commits": [
@@ -5315,6 +5319,98 @@
     {
       "repo": "dotfiles",
       "date": "2026-11-07"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-09"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "pyrgos",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "pyrgos",
+      "date": "2026-11-10"
+    },
+    {
+      "repo": "pyrgos",
+      "date": "2026-11-10"
     }
   ],
   "repositories": [
@@ -5338,7 +5434,8 @@
       "url": "https://github.com/tyler-dalton/homelab-infra",
       "languages": {
         "CSS": 16371,
-        "Jinja": 6240
+        "Jinja": 6240,
+        "YAML": 46770
       }
     },
     {
@@ -5352,6 +5449,11 @@
         "MDX": 14349,
         "TypeScript": 108330
       }
+    },
+    {
+      "name": "pyrgos",
+      "url": "https://github.com/tyler-dalton/pyrgos",
+      "languages": {}
     }
   ]
 }
