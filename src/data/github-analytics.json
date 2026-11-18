@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-17T16:09:49.592Z",
-  "lastSuccessfulRefresh": "2026-11-17T16:09:49.592Z",
+  "generatedAt": "2026-11-18T15:46:02.326Z",
+  "lastSuccessfulRefresh": "2026-11-18T15:46:02.326Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-11-17",
-  "commitAsOf": "2026-11-17",
+  "contributionAsOf": "2026-11-18",
+  "commitAsOf": "2026-11-18",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,18 +22,18 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-10-19",
-      "end": "2026-11-17",
+      "start": "2026-10-20",
+      "end": "2026-11-18",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-08-20",
-      "end": "2026-11-17",
+      "start": "2026-08-21",
+      "end": "2026-11-18",
       "days": 90
     },
     "commits": {
-      "start": "2026-08-20",
-      "end": "2026-11-17",
+      "start": "2026-08-21",
+      "end": "2026-11-18",
       "days": 90
     }
   },
@@ -1504,6 +1504,10 @@
     },
     {
       "date": "2026-11-17",
+      "count": 26
+    },
+    {
+      "date": "2026-11-18",
       "count": 0
     }
   ],
@@ -5419,6 +5423,94 @@
     {
       "repo": "dotfiles",
       "date": "2026-11-14"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-17"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-18"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-18"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-18"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-18"
+    },
+    {
+      "repo": "homelab-infra",
+      "date": "2026-11-18"
     }
   ],
   "repositories": [
@@ -5443,7 +5535,7 @@
       "languages": {
         "CSS": 16371,
         "Jinja": 6240,
-        "YAML": 46770
+        "YAML": 45631
       }
     },
     {
