@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-19T15:51:36.223Z",
-  "lastSuccessfulRefresh": "2026-11-19T15:51:36.223Z",
+  "generatedAt": "2026-11-20T15:33:45.913Z",
+  "lastSuccessfulRefresh": "2026-11-20T15:33:45.913Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-11-19",
-  "commitAsOf": "2026-11-19",
+  "contributionAsOf": "2026-11-20",
+  "commitAsOf": "2026-11-20",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,18 +22,18 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-10-21",
-      "end": "2026-11-19",
+      "start": "2026-10-22",
+      "end": "2026-11-20",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-08-22",
-      "end": "2026-11-19",
+      "start": "2026-08-23",
+      "end": "2026-11-20",
       "days": 90
     },
     "commits": {
-      "start": "2026-08-22",
-      "end": "2026-11-19",
+      "start": "2026-08-23",
+      "end": "2026-11-20",
       "days": 90
     }
   },
@@ -1513,65 +1513,13 @@
     {
       "date": "2026-11-19",
       "count": 0
+    },
+    {
+      "date": "2026-11-20",
+      "count": 0
     }
   ],
   "commits": [
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-22"
-    },
     {
       "repo": "homelab-infra",
       "date": "2026-08-23"
