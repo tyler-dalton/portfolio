@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-20T15:33:45.913Z",
-  "lastSuccessfulRefresh": "2026-11-20T15:33:45.913Z",
+  "generatedAt": "2026-11-21T14:44:52.316Z",
+  "lastSuccessfulRefresh": "2026-11-21T14:44:52.316Z",
   "timezone": "UTC",
-  "contributionAsOf": "2026-11-20",
-  "commitAsOf": "2026-11-20",
+  "contributionAsOf": "2026-11-21",
+  "commitAsOf": "2026-11-21",
   "source": {
     "contributions": "public/github/contributions.svg",
     "commits": "https://api.github.com/repos/tyler-dalton/{repo}/commits",
@@ -22,18 +22,18 @@
   },
   "windows": {
     "metrics": {
-      "start": "2026-10-22",
-      "end": "2026-11-20",
+      "start": "2026-10-23",
+      "end": "2026-11-21",
       "days": 30
     },
     "weekdays": {
-      "start": "2026-08-23",
-      "end": "2026-11-20",
+      "start": "2026-08-24",
+      "end": "2026-11-21",
       "days": 90
     },
     "commits": {
-      "start": "2026-08-23",
-      "end": "2026-11-20",
+      "start": "2026-08-24",
+      "end": "2026-11-21",
       "days": 90
     }
   },
@@ -1517,13 +1517,13 @@
     {
       "date": "2026-11-20",
       "count": 0
+    },
+    {
+      "date": "2026-11-21",
+      "count": 0
     }
   ],
   "commits": [
-    {
-      "repo": "homelab-infra",
-      "date": "2026-08-23"
-    },
     {
       "repo": "deployment-bags",
       "date": "2026-08-29"
