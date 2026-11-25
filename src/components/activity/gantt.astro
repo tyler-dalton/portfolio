@@ -1,0 +1,212 @@
+---
+import type { DatedEntry } from "../../data/activity";
+import { layoutGantt } from "../../lib/gantt";
+
+interface Props {
+  entries: DatedEntry[];
+}
+
+// A Gantt chart reads top-down from the earliest start.
+const sortKey = (date: string) => (date.length === 7 ? `${date}-01` : date);
+const entries = [...Astro.props.entries].sort((a, b) => sortKey(a.date).localeCompare(sortKey(b.date)));
+const chart = layoutGantt(
+  entries.flatMap((entry) => [
+    { id: entry.id, start: entry.date, end: entry.end },
+    ...(entry.tasks ?? []).map((task, index) => ({ id: `${entry.id}/${index}`, start: task.date, end: task.end })),
+  ]),
+);
+const bars = new Map(chart.bars.map((bar) => [bar.id, bar]));
+const round = (value: number) => Math.round(value * 1000) / 1000;
+
+const rows = entries.map((entry, index) => {
+  const bar = bars.get(entry.id)!;
+  let from = bar.left;
+  const tasks = (entry.tasks ?? []).map((task, taskIndex) => {
+    const taskBar = bars.get(`${entry.id}/${taskIndex}`)!;
+    // Elbow from the previous bar's end (the parent's start for the first task) to this bar's start.
+    const link = taskBar.left > from ? { left: from, width: round(taskBar.left - from) } : undefined;
+    from = round(taskBar.left + taskBar.width);
+    return { task, bar: taskBar, link, first: taskIndex === 0 };
+  });
+  // A bar that starts late in the plot gets its date label right-aligned so it stays inside the frame.
+  return { entry, bar, tasks, color: (index % 5) + 1, flip: bar.left > 40 };
+});
+---
+
+{
+  entries.length === 0 ? (
+    <p class="activity-empty">No milestones are listed yet.</p>
+  ) : (
+    <>
+      <div class="gantt" data-gantt data-axis-start={chart.axisStart} data-axis-end={chart.axisEnd}>
+        <div class="gantt__grid" aria-hidden="true">
+          {chart.months.map((month) => (
+            <span class="gantt__gridline" style={`left:${month.left}%`} />
+          ))}
+          <span class="gantt__today" data-gantt-today style={`left:${chart.today}%`} />
+        </div>
+
+        <div class="gantt__row gantt__head" aria-hidden="true">
+          <p class="gantt__corner">Milestones</p>
+          <div class="gantt__track gantt__axis">
+            <div class="gantt__years">
+              {chart.years.map((year) => (
+                <span class:list={[year.tight && "tight"]} style={`left:${year.left}%`}>{year.label}</span>
+              ))}
+            </div>
+            <div class="gantt__months">
+              {chart.months.map((month) => (
+                <span style={`left:${month.left}%;width:${month.width}%`}>
+                  {month.showLabel && (
+                    <>
+                      <span class="full">{month.label}</span>
+                      <span class="short">{month.initial}</span>
+                    </>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <ol class="gantt__rows">
+          {rows.map(({ entry, bar, tasks, color, flip }) => (
+            <li class={`gantt__group gantt__group--c${color}`}>
+              <div class="gantt__row gantt__row--main">
+                <a class="gantt__name" href={`#${entry.id}`} data-gantt-toggle={entry.id}>{entry.title}</a>
+                <div class="gantt__track">
+                  <p
+                    class="gantt__when"
+                    style={flip ? `right:${round(100 - bar.left - bar.width)}%` : `left:${bar.left}%`}
+                  >
+                    <time datetime={entry.date}>{entry.dateLabel}</time>
+                  </p>
+                  <a
+                    class:list={["gantt__bar", bar.ongoing && "gantt__bar--ongoing"]}
+                    style={`left:${bar.left}%;width:${bar.width}%`}
+                    data-gantt-ongoing={bar.ongoing ? bar.left : undefined}
+                    href={`#${entry.id}`}
+                    data-gantt-toggle={entry.id}
+                    tabindex="-1"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+              {tasks.length > 0 && (
+                <ol class="gantt__tasks">
+                  {tasks.map(({ task, bar: taskBar, link, first }) => (
+                    <li class="gantt__row gantt__row--task">
+                      <p class="gantt__task">
+                        {task.title}
+                        <span class="sr-only">, {task.dateLabel}</span>
+                      </p>
+                      <div class="gantt__track" aria-hidden="true">
+                        {link && (
+                          <span
+                            class:list={["gantt__link", first && "gantt__link--first"]}
+                            style={`left:${link.left}%;width:${link.width}%`}
+                          />
+                        )}
+                        <span
+                          class:list={["gantt__bar", taskBar.ongoing && "gantt__bar--ongoing"]}
+                          style={`left:${taskBar.left}%;width:${taskBar.width}%`}
+                          data-gantt-ongoing={taskBar.ongoing ? taskBar.left : undefined}
+                        />
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <ol class="gantt-notes" data-gantt-notes>
+        {entries.map((entry) => (
+          <li class="gantt-note" id={entry.id}>
+            <div class="gantt-note__head">
+              <h2 class="gantt-note__title">{entry.title}</h2>
+              <p class="gantt-note__date">
+                <time datetime={entry.date}>{entry.dateLabel}</time>
+              </p>
+            </div>
+            <div class="gantt-note__body">
+              {entry.details.map((detail) => (
+                <p>{detail}</p>
+              ))}
+              {entry.href && entry.hrefLabel && (
+                <a
+                  class="gantt-note__link"
+                  href={entry.href}
+                  target={entry.external ? "_blank" : undefined}
+                  rel={entry.external ? "noopener noreferrer" : undefined}
+                >
+                  {entry.hrefLabel}
+                  {entry.external && <span class="sr-only"> (opens in a new tab)</span>}
+                </a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </>
+  )
+}
+
+<script is:inline>
+  // Runs right after the chart so nothing flashes. Without JavaScript the chart keeps
+  // its build-date positions, every description stays visible, and bars are jump links.
+  (() => {
+    for (const chart of document.querySelectorAll("[data-gantt]:not([data-gantt-ready])")) {
+      chart.setAttribute("data-gantt-ready", "");
+
+      // Between builds, move the today line and still-running bars to the visitor's date.
+      const start = Number(chart.dataset.axisStart);
+      const end = Number(chart.dataset.axisEnd);
+      const line = chart.querySelector("[data-gantt-today]");
+      if (line && end > start) {
+        const now = new Date();
+        const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        const built = parseFloat(line.style.left);
+        // Never move backwards, and stop at the right edge until the next build extends the axis.
+        const position = Math.min(100, Math.max(built, ((today - start) / (end - start)) * 100));
+        line.style.left = position + "%";
+        for (const bar of chart.querySelectorAll("[data-gantt-ongoing]")) {
+          bar.style.width = Math.max(0, position - Number(bar.dataset.ganttOngoing)) + "%";
+        }
+      }
+
+      // Descriptions open one at a time from a bar or its title.
+      const notes = chart.parentElement.querySelector("[data-gantt-notes]");
+      if (!notes) continue;
+      const toggles = [...chart.querySelectorAll("[data-gantt-toggle]")];
+      const show = (id) => {
+        let open = false;
+        for (const note of notes.children) {
+          note.hidden = note.id !== id;
+          open = open || !note.hidden;
+        }
+        notes.hidden = !open;
+        for (const toggle of toggles) {
+          const on = open && toggle.dataset.ganttToggle === id;
+          toggle.setAttribute("aria-expanded", String(on));
+          toggle.closest(".gantt__group").classList.toggle("gantt__group--open", on);
+        }
+      };
+      for (const toggle of toggles) {
+        toggle.setAttribute("role", "button");
+        toggle.setAttribute("aria-controls", toggle.dataset.ganttToggle);
+        const act = (event) => {
+          event.preventDefault();
+          show(toggle.getAttribute("aria-expanded") === "true" ? "" : toggle.dataset.ganttToggle);
+        };
+        toggle.addEventListener("click", act);
+        toggle.addEventListener("keydown", (event) => {
+          if (event.key === " ") act(event);
+        });
+      }
+      show(decodeURIComponent(location.hash.slice(1)));
+    }
+  })();
+</script>

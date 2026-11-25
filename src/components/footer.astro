@@ -1,5 +1,6 @@
 ---
 import { version } from "../../package.json";
+import Credits from "./credits.astro";
 const year = new Date().getFullYear();
 ---
 
@@ -30,8 +31,9 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="md:text-right">
-      <div class="flex items-center justify-center gap-2 md:justify-end">
+      <div class="flex items-center justify-center gap-3 md:justify-end">
         <p>&copy; {year} · v{version}</p>
+        <Credits />
         <button
           id="white-rabbit-btn"
           type="button"

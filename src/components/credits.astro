@@ -1,0 +1,147 @@
+---
+import { existsSync } from "node:fs";
+
+// Optional screenshot of the credited site. The dialog works without it.
+const preview = "/media/credits/gabrielbeebe.webp";
+const hasPreview = existsSync(new URL(`../../public${preview}`, import.meta.url));
+---
+
+<button id="credits-open" type="button" class="credits-open" aria-haspopup="dialog">Credits</button>
+
+<dialog id="credits-dialog" class="credits" aria-labelledby="credits-title">
+  <div class="credits__head">
+    <h2 id="credits-title">Credits</h2>
+    <button type="button" class="credits__close" data-credits-close aria-label="Close credits">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6 6 18"></path>
+      </svg>
+    </button>
+  </div>
+  {
+    hasPreview && (
+      <img
+        class="credits__preview"
+        src={preview}
+        alt="Homepage of gabrielbeebe.com, Gabe Beebe's portfolio."
+        width="1280"
+        height="720"
+        loading="lazy"
+        decoding="async"
+      />
+    )
+  }
+  <p class="credits__text">
+    Thanks to Gabe Beebe for his feedback and for his work on the Activity pages. See what he is building at{" "}
+    <a href="https://gabrielbeebe.com" target="_blank" rel="noopener noreferrer">
+      gabrielbeebe.com<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span>
+    </a>
+  </p>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#credits-dialog");
+  const open = document.querySelector<HTMLButtonElement>("#credits-open");
+  if (dialog && open) {
+    open.addEventListener("click", () => dialog.showModal());
+    dialog.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+      // A click on the backdrop lands on the dialog element itself.
+      if (target === dialog || target.closest("[data-credits-close]")) dialog.close();
+    });
+    dialog.addEventListener("close", () => open.focus());
+  }
+</script>
+
+<style>
+  .credits-open {
+    padding: 0.25rem 0;
+    border: 0;
+    background: none;
+    color: var(--page-foreground);
+    cursor: pointer;
+    font: inherit;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--page-foreground) 28%, transparent);
+    text-underline-offset: 0.22em;
+  }
+
+  .credits-open:hover { color: var(--page-accent); }
+
+  .credits-open:focus-visible,
+  .credits__close:focus-visible,
+  .credits__text a:focus-visible {
+    outline: 2px solid var(--page-accent);
+    outline-offset: 3px;
+  }
+
+  .credits {
+    width: min(34rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 1.5rem;
+    overflow-y: auto;
+    border: 1px solid var(--page-border);
+    border-radius: 1rem;
+    background: var(--page-background);
+    color: var(--page-foreground);
+    text-align: left;
+  }
+
+  .credits::backdrop { background: rgba(0, 0, 0, 0.55); }
+
+  .credits__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .credits__head h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .credits__close {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--page-border);
+    border-radius: 50%;
+    background: none;
+    color: var(--page-foreground);
+    cursor: pointer;
+  }
+
+  .credits__close:hover { border-color: var(--page-accent); color: var(--page-accent); }
+  .credits__close svg { width: 1.1rem; height: 1.1rem; }
+
+  .credits__preview {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 1.1rem;
+    border: 1px solid var(--page-border);
+    border-radius: 0.75rem;
+  }
+
+  .credits__text {
+    margin: 1.1rem 0 0;
+    color: var(--page-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+
+  .credits__text a {
+    color: var(--page-foreground);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--page-foreground) 28%, transparent);
+    text-underline-offset: 0.22em;
+    white-space: nowrap;
+  }
+
+  .credits__text a:hover { color: var(--page-accent); }
+</style>

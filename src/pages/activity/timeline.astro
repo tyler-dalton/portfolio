@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/layout.astro";
-import Milestones from "../../components/activity/milestones.astro";
+import Gantt from "../../components/activity/gantt.astro";
 import { timeline } from "../../data/activity";
 import "../../styles/activity.css";
 ---
@@ -16,11 +16,11 @@ import "../../styles/activity.css";
         <p class="activity-kicker">Activity</p>
         <h1>Timeline</h1>
         <p class="activity-lede">
-          Milestones that already have a public page or repository. Newest starts are first.
+          Milestones that already have a public page or repository. Each bar runs from its start date to its end date, earliest start first.
           Resume lines whose titles or dates still disagree stay on the resume and are not repeated here.
         </p>
       </header>
-      <Milestones entries={timeline} />
+      <Gantt entries={timeline} />
     </div>
   </section>
 </Layout>

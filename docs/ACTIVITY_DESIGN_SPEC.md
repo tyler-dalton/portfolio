@@ -18,7 +18,7 @@ The owner wants a high-end custom frontend, not a GitHub API response formatted 
 | --- | --- |
 | `/activity` | Compelling activity **overview** with a compact analytics snapshot, not a generic navigation tile hub; route clearly to full GitHub view/timeline/changelog |
 | `/activity/github` | Full GitHub **analytics** experience, visual sections described below |
-| `/activity/timeline` | **Career / project milestones** as a real vertical timeline with connected nodes |
+| `/activity/timeline` | **Career / project milestones** as a Gantt chart: one to-scale bar per milestone on a shared month axis |
 | `/activity/changelog` | Separate factual **portfolio release** log; don't conflate releases with activity or career timeline |
 
 Keep navigation routes stable. The full dashboard lives at `/activity/github` unless the owner explicitly chooses to make `/activity` the primary full dashboard. Share components and data rather than duplicating the page.
@@ -63,7 +63,7 @@ Short ranked selection of public repos. **Each row is a comparison, not a market
 Include only relevant public repos and transparent lookback. Handle sparse data elegantly.
 
 ## Timeline route: real chronology
-`/activity/timeline` must have a visible connecting vertical rule and circular nodes with aligned time labels, milestone titles and short factual descriptions. Group by year when useful. The current `src/components/dated-entries.astro` ordinary bordered card list **does not satisfy** this. Keep milestones in `src/data/activity.ts` until a genuine content model is needed; do not invent items. If a shared renderer must support two visuals, add deliberate `timeline` and `changelog` variants, not a brittle CSS override.
+`/activity/timeline` is a Gantt chart (owner request, November 2026; it replaces the earlier vertical-spine requirement). Each milestone is a row with its title and date label, and a bar drawn to scale by day on a shared month axis from `date` to `end`. An entry without `end` is still running and its bar stops at the build-date line. The chart is a framed panel with a label column; each milestone takes the next colour from a five-colour set (Matrix keeps its single green), and its date label sits above its bar. An entry may list dated `tasks`, drawn as thin bars joined by elbow connectors; none are published yet, and one should be added only with a public source. The short factual descriptions and source links stay hidden until a visitor selects a bar or its title, then show under the chart one at a time; without JavaScript they are all visible. `src/components/activity/gantt.astro` renders it and `src/lib/gantt.ts` holds the layout maths; a small inline script moves the today line and still-running bars to the visitor's date between builds, and the daily contribution workflow always pushes (an empty commit when nothing changed) so the host rebuilds the axis every day. The current `src/components/dated-entries.astro` ordinary bordered card list **does not satisfy** this. Keep milestones in `src/data/activity.ts` until a genuine content model is needed; do not invent items. If a shared renderer must support two visuals, add deliberate `timeline` and `changelog` variants, not a brittle CSS override.
 
 ## Visual direction
 - Existing design system: slate/dark and light surfaces, blue accent, Matrix green as opt-in third theme.

@@ -40,13 +40,23 @@ const sameYearRange = (start: string, end: string) =>
       <p class="activity-kicker activity-kicker--section">Last 30 days</p>
       <Metrics metrics={analytics.metrics} />
 
-      <section class="activity-section" aria-labelledby="activity-months">
-        <div class="activity-section__head">
-          <h2 id="activity-months">By month</h2>
-          <p>Contributions · {monthStart.label} – {monthEnd.label}</p>
-        </div>
-        <Bars bars={analytics.months} label="Contributions by month" />
-      </section>
+      <div class="activity-split">
+        <section class="activity-section" aria-labelledby="activity-months">
+          <div class="activity-section__head">
+            <h2 id="activity-months">By month</h2>
+            <p>Contributions · {monthStart.label} – {monthEnd.label}</p>
+          </div>
+          <Bars bars={analytics.months} label="Contributions by month" />
+        </section>
+
+        <section class="activity-section" aria-labelledby="activity-recent">
+          <div class="activity-section__head">
+            <h2 id="activity-recent">Recent activity</h2>
+            <p>Commits · {sameYearRange(analytics.commitWindow.start, analytics.commitWindow.end)}</p>
+          </div>
+          <CommitRail days={analytics.recentDays} />
+        </section>
+      </div>
 
       <section class="activity-section" aria-labelledby="activity-weekdays">
         <div class="activity-section__head">
@@ -62,14 +72,6 @@ const sameYearRange = (start: string, end: string) =>
           <p>Share of code</p>
         </div>
         <Languages languages={analytics.languages} />
-      </section>
-
-      <section class="activity-section" aria-labelledby="activity-recent">
-        <div class="activity-section__head">
-          <h2 id="activity-recent">Recent activity</h2>
-          <p>Commits · {sameYearRange(analytics.commitWindow.start, analytics.commitWindow.end)}</p>
-        </div>
-        <CommitRail days={analytics.recentDays} />
       </section>
 
       <section class="activity-section" aria-labelledby="activity-graph">
